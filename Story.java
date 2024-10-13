@@ -1,8 +1,30 @@
 public class Story implements Stories {
+    // this lets you input a string of text and splits text into words and adds delay in MilliSeconds
+    private void displayWithDelay(String text, int delayInMillis) {
+        String[] words = text.split(" ");  // Split text into words
+        for (String word : words) {
+            System.out.print(word + " ");   // Print each word followed by a space
+            try {
+                Thread.sleep(delayInMillis); // Delay between each word
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt(); // Handle interruptions
+            }
+        }
+        System.out.println(); // Move to the next line after the text is displayed
+    }
+
+    // New method to handle the pause
+    private void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt(); // Handle interruptions
+        }
+    }
+
     @Override
     public void tellStoryIntro(String name) {
         //////////////
-        // ANG displayWithDelay method ni sya naa ni sa pina ka ubos sa code snippet
         displayWithDelay("One day in Cebu, a game developer had not slept or eaten for three days because he was busy coding a game that was set to release soon.", 250);
         pause(1000); // Additional pause between dialogues
 
@@ -200,26 +222,5 @@ public class Story implements Stories {
         
         */
     
-    // this lets you input a string of text and splits text into words and adds delay in MilliSeconds
-    private void displayWithDelay(String text, int delayInMillis) {
-        String[] words = text.split(" ");  // Split text into words
-        for (String word : words) {
-            System.out.print(word + " ");   // Print each word followed by a space
-            try {
-                Thread.sleep(delayInMillis); // Delay between each word
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt(); // Handle interruptions
-            }
-        }
-        System.out.println(); // Move to the next line after the text is displayed
-    }
 
-    // New method to handle the pause
-    private void pause(int millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt(); // Handle interruptions
-        }
-    }
 }
