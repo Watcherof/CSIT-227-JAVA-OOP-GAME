@@ -17,7 +17,7 @@ public class Main {
         s1.tellStoryKingdom(kingdom,mc,warrior,ranger,mage);
         Thread.sleep(1000);
         s1.tellStoryEnd(mc);
-        System.out.print("HELLO WORLD");
+
         // TOTAL STORY TIME FROM START TO FINISH IS 5:37 minutes 
         // I change lang ni nato ang delay time kung maka finalize nata sa tanan
     }
