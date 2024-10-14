@@ -1,6 +1,7 @@
 public class Story implements Stories {
     // this lets you input a string of text and splits text into words and adds delay in MilliSeconds
-    private void displayWithDelay(String text, int delayInMillis) {
+    @Override
+    public void displayWithDelay(String text, int delayInMillis) {
         String[] words = text.split(" ");  // Split text into words
         for (String word : words) {
             System.out.print(word + " ");   // Print each word followed by a space
@@ -14,7 +15,8 @@ public class Story implements Stories {
     }
 
     // New method to handle the pause
-    private void pause(int millis) {
+    @Override
+    public void pause(int millis) {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException ex) {
@@ -222,5 +224,16 @@ public class Story implements Stories {
         
         */
 
+    @Override
+    public void tellCharLoreAttack() {
+       //
+    }
+
+    @Override
+    public void tellCharLoreSupport() {
+        //
+    }
+
+    
 
 }
