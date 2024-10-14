@@ -8,10 +8,10 @@ public class Story implements Stories {
             try {
                 Thread.sleep(delayInMillis); // Delay between each word
             } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt(); // Handle interruptions
+                Thread.currentThread().interrupt(); 
             }
         }
-        System.out.println(); // Move to the next line after the text is displayed
+        System.out.println(); 
     }
 
     // New method to handle the pause
@@ -20,7 +20,7 @@ public class Story implements Stories {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt(); // Handle interruptions
+            Thread.currentThread().interrupt();
         }
     }
 

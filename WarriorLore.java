@@ -22,15 +22,22 @@
    @Override
    //GENERAL
    public void tellCharLoreSupport() {
-     System.out.println("From commanding a whole troop into battle to mastering their craft.");
-     System.out.println("A class regarded as a mixture of brain and power that falls shortly");
-     System.out.println("behind the Guardian in terms of rank.");
-     System.out.println("Generals take full responsibility for each of their units' lives.");
-     System.out.println("Not many would take this job, as it also takes a lot of mental strength");
-     System.out.println("and perception to prepare for each battle.");
-     System.out.println("Every action they make carries a human life under their command,");
-     System.out.println("and because of this burden, a general will either be shaped into a");
-     System.out.println("brilliant tactician or fall into insanity because of the guilt.");
+     displayWithDelay("\n\nFrom commanding a whole troop into battle to mastering their craft,", 300);
+     displayWithDelay("Generals are regarded as a mixture of brain and power,", 300);
+     displayWithDelay("falling just behind the Guardians in terms of rank.", 300);
+     pause(500);
+ 
+     displayWithDelay("Generals take full responsibility for each of their unit's lives.", 300);
+     displayWithDelay("Not many would take this job,", 300);
+     displayWithDelay("as it requires a great deal of mental strength and perception to prepare for each battle.", 300);
+     pause(500);
+ 
+     displayWithDelay("Every action they make carries the weight of a human life under their command.", 300);
+     displayWithDelay("Because of this burden,", 300);
+     displayWithDelay("a general will either become a brilliant tactician or fall into insanity from the guilt.", 300);
+     pause(500);
  }
+ 
+
  
  }  
