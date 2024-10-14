@@ -16,7 +16,7 @@ public class Main {
         System.out.print("Do you want to read the story?(1-YES/2-NO): ");
         skip = scan.nextInt();
 
-        // put invalid things once we finalize 
+        // put try catch one we finallize things
         if(skip == 1){
         // if skips then go to method that lets you chooses the char and the kingdom
         Thread.sleep(1000);
