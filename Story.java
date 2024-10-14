@@ -33,11 +33,11 @@ public class Story implements Stories {
 
         displayWithDelay("He was responsible for finalizing the game before handing it over to the QA tester,", 250);
         displayWithDelay("ensuring there would be fewer bugs on launch day.", 250);
-        pause(1000); // Additional pause between dialogues
+        pause(1000);
 
         displayWithDelay("But while coding, exhaustion overcame him, and he suddenly passed out.", 250);
         displayWithDelay("When he woke up, he found himself on a hill overlooking two massive armies locked in battle.", 250);
-        pause(1000); // Additional pause between dialogues
+        pause(1000);
 
         // Character dialogue
         displayWithDelay(name + ": Where am I?", 300); // Faster delay
@@ -171,87 +171,101 @@ public class Story implements Stories {
 
 
     @Override
-    public void tellStoryKingdom(String kingdom, String name,String warrior,String ranger,String mage){
-        displayWithDelay("The main character " + name + " stands before the generals, having chosen a side. He explains his purpose to them.",300);
+    public void tellStoryKingdom(String kingdom, String name, String warrior, String ranger, String mage) {
+        displayWithDelay("The main character " + name + " stands before the generals, having chosen a side.", 300);
+        displayWithDelay("He explains his purpose to them.", 300);
         pause(500);
-
-        displayWithDelay(name +": I have been sent by a higher being a mysterious creature to aid in bringing an end to this war.",300);
-        pause(500);
-
-        displayWithDelay("General: So, you are here to assist us at the behest of the true beings?",300);
-        pause(500);
-
     
-        displayWithDelay(name + ": Yes, that is the essence of my mission",300);
+        displayWithDelay(name + ": I have been sent by a higher being, a mysterious creature,", 300);
+        displayWithDelay("to aid in bringing an end to this war.", 300);
         pause(500);
-
-
-        displayWithDelay("General: How do you intend to prove that you were sent by the higher beings?",300);
+    
+        displayWithDelay("General: So, you are here to assist us at the behest of the true beings?", 300);
         pause(500);
-
-
-        displayWithDelay("You reveal the mark engraved on your arm.",300);
+    
+        displayWithDelay(name + ": Yes, that is the essence of my mission.", 300);
         pause(500);
-
-        displayWithDelay("General: It seems the prophecy was true. You are the chosen one. Follow me; I will escort you to the king.",300);
+    
+        displayWithDelay("General: How do you intend to prove that you were sent by the higher beings?", 300);
         pause(500);
-
-        displayWithDelay(warrior + " (Warrior class): \"O great chosen one, I, "+ warrior +", from the [place of the chosen warrior], pledge my unwavering loyalty to you. With my sword and shield, I shall fight fiercely by your side until victory is ours in this war.\"", 300);
+    
+        displayWithDelay("You reveal the mark engraved on your arm.", 300);
         pause(500);
-        
-        displayWithDelay(ranger + " (Ranger class): \"O great chosen one, I, "+ ranger +", from the [place of the chosen ranger], vow to be your eyes and ears in the wild. My arrows shall strike true, and no enemy will escape my keen sight. Together, we will move swiftly and silently to bring triumph in this battle.\"", 300);
+    
+        displayWithDelay("General: It seems the prophecy was true. You are the chosen one.", 300);
+        displayWithDelay("Follow me; I will escort you to the king.", 300);
         pause(500);
-
-        displayWithDelay(mage + " (Mage class): \"O great chosen one, I, " + mage + ", from the [place of the chosen mage], offer you the power of the ancient elements. With the forces of fire, ice, and lightning at my command, I will shatter the enemies that stand in our way. Let magic guide our path to victory.\"", 300);
+    
+        displayWithDelay(warrior + " (Warrior class): \"O great chosen one, I, " + warrior + ",", 300);
+        displayWithDelay("from the " + kingdom + ", pledge my unwavering loyalty to you.", 300);
+        displayWithDelay("With my sword and shield, I shall fight fiercely by your side until victory is ours in this war.\"", 300);
         pause(500);
-
-        displayWithDelay("The King steps forward, his demeanour commanding yet regal.",300);
+    
+        displayWithDelay(ranger + " (Ranger class): \"O great chosen one, I, " + ranger + ",", 300);
+        displayWithDelay("from the " + kingdom + ", vow to be your eyes and ears in the wild.", 300);
+        displayWithDelay("My arrows shall strike true, and no enemy will escape my keen sight.", 300);
+        displayWithDelay("Together, we will move swiftly and silently to bring triumph in this battle.\"", 300);
         pause(500);
-
-
-        // change this  parts cause the identity of the king will depend on the kingdom that the mc chooses
-        displayWithDelay("King of (Asura/Camelot): You claim to be a harbinger of hope in these dark times. I shall place my trust in you. I will entrust you with my finest warriors; they will be under your command as we strive to secure victory in this conflict.",300);
+    
+        displayWithDelay(mage + " (Mage class): \"O great chosen one, I, " + mage + ",", 300);
+        displayWithDelay("from the " + kingdom + ", offer you the power of the ancient elements.", 300);
+        displayWithDelay("With the forces of fire, ice, and lightning at my command,", 300);
+        displayWithDelay("I will shatter the enemies that stand in our way.", 300);
+        displayWithDelay("Let magic guide our path to victory.\"", 300);
         pause(500);
-
-
-        displayWithDelay("The King gestures to the warriors, ready and eager to fight.",300);
+    
+        displayWithDelay("The King steps forward, his demeanor commanding yet regal.", 300);
         pause(500);
-
-        displayWithDelay("King of (Asura/Camelot): Now go, and lead us to triumph in this war.",300);
+    
+        // Adjusting based on chosen kingdom
+        displayWithDelay("King of " + kingdom + ": You claim to be a harbinger of hope in these dark times.", 300);
+        displayWithDelay("I shall place my trust in you.", 300);
+        displayWithDelay("I will entrust you with my finest warriors; they will be under your command", 300);
+        displayWithDelay("as we strive to secure victory in this conflict.", 300);
         pause(500);
-
-        displayWithDelay("The MC departs, accompanied by the warriors he has selected, determined to face the challenges that lie ahead.",300);
+    
+        displayWithDelay("The King gestures to the warriors, ready and eager to fight.", 300);
         pause(500);
- 
+    
+        displayWithDelay("King of " + kingdom + ": Now go, and lead us to triumph in this war.", 300);
+        pause(500);
+    
+        displayWithDelay("The MC departs, accompanied by the warriors he has selected,", 300);
+        displayWithDelay("determined to face the challenges that lie ahead.", 300);
+        pause(500);
     }
+    
 
 
     @Override 
-    public void tellStoryEnd(String name){
-
-        displayWithDelay(name + ": Finally, it’s over! We did it, guys!",300);
+    public void tellStoryEnd(String name) {
+        displayWithDelay(name + ": Finally, it’s over! We did it, guys!", 300);
         pause(500);
-
-        displayWithDelay("Mysterious Creature: Well done, " + name + ". You have done well for the task and hardships that I have given you. With this, I can now safely send you back to your world.",300);
+    
+        displayWithDelay("Mysterious Creature: Well done, " + name + ".", 300);
+        displayWithDelay("You have done well for the task and hardships that I have given you.", 300);
+        displayWithDelay("With this, I can now safely send you back to your world.", 300);
         pause(500);
-
-
-        displayWithDelay(name + ": Thank you! I didn't know if I could make it through, but we pushed through together. I amm ready to go home now!",300);
+    
+        displayWithDelay(name + ": Thank you! I didn't know if I could make it through,", 300);
+        displayWithDelay("but we pushed through together. I am ready to go home now!", 300);
         pause(500);
-
-        displayWithDelay(" Mysterious Creature casts a spell that sends the MC back home\nMC wakes up and looks around the house.",300);
+    
+        displayWithDelay("Mysterious Creature casts a spell that sends the MC back home.", 300);
+        displayWithDelay("MC wakes up and looks around the house.", 300);
         pause(500);
-
-        displayWithDelay(name + ": Man, what a crazy day! But at least I did something valuable from that trip.",300);
+    
+        displayWithDelay(name + ": Man, what a crazy day! But at least I did something valuable from that trip.", 300);
         pause(500);
-
-        displayWithDelay("QA Tester calls for the code.",300);
+    
+        displayWithDelay("QA Tester calls for the code.", 300);
         pause(500);
-
-        displayWithDelay("MC: Oh no, I forgot I still have projects to finish! I better hurry up, or I might get fired!",300);
+    
+        displayWithDelay(name + ": Oh no, I forgot I still have projects to finish!", 300);
+        displayWithDelay("I better hurry up, or I might get fired!", 300);
         pause(500);
-
     }
+    
 
        /*
         displayWithDelay("",300);

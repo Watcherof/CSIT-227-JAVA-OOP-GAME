@@ -13,14 +13,14 @@ public class Main {
         String kingdom = "Camelot";
         System.out.println("Echoes of War: The Guardian's Path");
         
-        System.out.print("Do you want to skip the story?(1-YES/2-NO): ");
+        System.out.print("Do you want to read the story?(1-YES/2-NO): ");
         skip = scan.nextInt();
 
         // put invalid things once we finalize 
-        if(skip != 1){
+        if(skip != 2){
         // if skips then go to method that lets you chooses the char and the kingdom
         Thread.sleep(1000);
-        s1.tellStoryIntro(mc);
+        //s1.tellStoryIntro(mc);
         Thread.sleep(1000);
         // dre na part naay choosing method before mo continue and story
         //s1.chooseKingdom(etc,etc,etc)
