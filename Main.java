@@ -35,7 +35,7 @@ public class Main {
             // DILI PANI FINAL
             if(loreChoice == 1){
               w1.tellCharLoreAttack();
-              w1.tellCharLoreSupport();
+              //w1.tellCharLoreSupport();
             }else{
                 //do you wnat to play the game
             }
