@@ -221,6 +221,6 @@ public class Story implements Stories {
         pause(300);
         
         */
-    
+
 
 }

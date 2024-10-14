@@ -1,0 +1,6 @@
+public class CharLores implements Lores{
+    @Override
+    public void tellLoreGuardian(){
+        System.out.print("HELLO WOLRD");
+    }
+}
