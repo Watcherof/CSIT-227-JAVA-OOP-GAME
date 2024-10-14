@@ -20,7 +20,7 @@ public class Main {
         if(skip == 1){
         // if skips then go to method that lets you chooses the char and the kingdom
         Thread.sleep(1000);
-        //s1.tellStoryIntro(mc);
+        //1s1.tellStoryIntro(mc);
         Thread.sleep(1000);
         // dre na part naay choosing method before mo continue and story
         //s1.chooseKingdom(etc,etc,etc)
@@ -29,42 +29,41 @@ public class Main {
         s1.tellStoryEnd(mc);
         // TOTAL STORY TIME FROM START TO FINISH IS 5:37 minutes 
         // I change lang ni nato ang delay time kung maka finalize nata sa tanan
-        }else{
-            System.out.print("Do you want to read the lores of the characters?(1-YES/2-NO): ");
-            loreChoice = scan.nextInt();
-            // DILI PANI FINAL
-            if(loreChoice == 1){
-                char classChoice;
+        }
+        System.out.print("Do you want to read the lores of the characters?(1-YES/2-NO): ");
+        loreChoice = scan.nextInt();
+        // DILI PANI FINAL
+        if(loreChoice == 1){
+            char classChoice;
 
-                System.out.print("Enter corresponding letters [M-mage, R-Ranger, W-Warrior]: ");
-                classChoice = Character.toUpperCase(scan.next().charAt(0));
+            System.out.print("Enter corresponding letters [M-mage, R-Ranger, W-Warrior]: ");
+            classChoice = Character.toUpperCase(scan.next().charAt(0));
             
-                switch(classChoice) {
-                    case 'W': {
-                        w1.tellCharLoreAttack();
-                        Thread.sleep(1000);
-                        w1.tellCharLoreSupport();
-                        break;
+            switch(classChoice) {
+                case 'W': {
+                    w1.tellCharLoreAttack();
+                    Thread.sleep(1000);
+                    w1.tellCharLoreSupport();
+                    break;
                     }
-                    case 'M': {
-                        m1.tellCharLoreAttack();
-                        Thread.sleep(1000);
-                        m1.tellCharLoreSupport();
-                        break;
+                case 'M': {
+                    m1.tellCharLoreAttack();
+                    Thread.sleep(1000);
+                    m1.tellCharLoreSupport();
+                    break;
+                }
+                case 'R': {
+                    r1.tellCharLoreAttack();
+                    Thread.sleep(1000);
+                    r1.tellCharLoreSupport();
+                    break;
                     }
-                    case 'R': {
-                       r1.tellCharLoreAttack();
-                       Thread.sleep(1000);
-                       r1.tellCharLoreSupport();
-                        break;
-                    }
-                    default: {
-                        System.out.println("Invalid choice. Please enter M, R, or W.");
-                    }
+                default: {
+                    System.out.println("Invalid choice. Please enter M, R, or W.");
+                }
                 }                
             }else{
                 //do you wnat to play the game
-            }
         }
     }
 }
