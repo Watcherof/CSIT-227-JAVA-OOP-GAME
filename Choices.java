@@ -105,7 +105,7 @@ public class Choices implements Choose {
     @Override
     public void characterSelection() {
         System.out.println("╔════════════════════════════════════════════════╗");
-        System.out.println("║               CHOOSE YOUR CHARACTERS:          ║");
+        System.out.println("║               CHOOSE YOUR CHARACTERS           ║");
         System.out.println("╠════════════════════════════════════════════════╣");
         System.out.println("║   ATTACK              ║           SUPPORT      ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
