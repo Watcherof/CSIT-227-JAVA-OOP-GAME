@@ -5,7 +5,7 @@ public class Main {
         Story s1 = new Story();
         WarriorLore w1 = new WarriorLore();
         MageLore m1 = new MageLore();
-        Choices c1 = new Choices();
+        ChoicesPVE c1 = new ChoicesPVE();
         RangerLore r1 = new RangerLore();
         Scanner scan = new Scanner(System.in);
         int loreChoice, skip, chooseMode;
@@ -16,19 +16,7 @@ public class Main {
         String kingdom = "Camelot";
 
         System.out.println("Echoes of War: The Guardian's Path");
-        System.out.print("Choose mode (1-pvp/2-pve): ");
-        chooseMode = scan.nextInt();
-
-        if (chooseMode == 1) {
-            System.out.println("You have chosen player versus player!");
-        } else if (chooseMode == 2) {
-            System.out.println("You have chosen player vs environment!");
-        }
-
-        // Display character selection box
-        c1.characterSelection(); // Display character selection options
-        c1.selectCharacters(); // Handle character selection
-
+  
         System.out.print("Do you want to read the story? (1-YES/2-NO): ");
         skip = scan.nextInt();
         // put try catch once we finalize things
@@ -45,6 +33,17 @@ public class Main {
             // TOTAL STORY TIME FROM START TO FINISH IS 5:37 minutes 
             // I change lang ni nato ang delay time kung maka finalize nata sa tanan
         }
+        System.out.print("Choose mode (1-pvp/2-pve): ");
+        chooseMode = scan.nextInt();
+
+        if (chooseMode == 1) {
+            System.out.println("You have chosen player versus player!");
+            c1.characterSelection();
+            c1.selectCharacters(); 
+        } else if (chooseMode == 2) {
+            System.out.println("You have chosen player vs environment!");
+        }
+
 
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
         loreChoice = scan.nextInt();

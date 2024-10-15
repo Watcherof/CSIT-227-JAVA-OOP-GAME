@@ -1,10 +1,8 @@
 import java.util.Scanner;
-
-public class Choices implements Choose {
+public class ChoicesPVE implements Choose {
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
     private final String[] validRangerCharacters = {"Shadow Strider", "Arcane Musketeer"};
-
     private final String[] chosenCharacters = new String[3]; // Array to store selected characters
 
     // Getter for chosen characters
@@ -23,7 +21,7 @@ public class Choices implements Choose {
                     return; // Exit the method once added
                 }
             }
-            throw new IllegalStateException("All character slots are filled."); // Handle case when array is full
+            throw new IllegalArgumentException("All character slots are filled."); // Handle case when array is full
         } else {
             throw new IllegalArgumentException("Invalid character choice: " + character);
         }
@@ -51,7 +49,8 @@ public class Choices implements Choose {
     }
 
     // Check if a character from the same class has already been chosen
-    private boolean isClassAlreadyChosen(String character) {
+    @Override
+    public boolean isClassAlreadyChosen(String character) {
         if (isMageCharacter(character)) {
             for (String chosenCharacter : chosenCharacters) {
                 if (isMageCharacter(chosenCharacter)) {
@@ -75,7 +74,8 @@ public class Choices implements Choose {
     }
 
     // Helper methods to check character classes
-    private boolean isMageCharacter(String character) {
+    @Override
+    public boolean isMageCharacter(String character) {
         for (String validCharacter : validMageCharacters) {
             if (validCharacter.equalsIgnoreCase(character)) {
                 return true;
@@ -84,7 +84,8 @@ public class Choices implements Choose {
         return false;
     }
 
-    private boolean isWarriorCharacter(String character) {
+    @Override
+    public boolean isWarriorCharacter(String character) {
         for (String validCharacter : validWarriorCharacters) {
             if (validCharacter.equalsIgnoreCase(character)) {
                 return true;
@@ -93,7 +94,8 @@ public class Choices implements Choose {
         return false;
     }
 
-    private boolean isRangerCharacter(String character) {
+    @Override
+    public boolean isRangerCharacter(String character) {
         for (String validCharacter : validRangerCharacters) {
             if (validCharacter.equalsIgnoreCase(character)) {
                 return true;
