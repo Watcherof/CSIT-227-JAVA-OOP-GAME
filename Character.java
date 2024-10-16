@@ -1,7 +1,13 @@
 public class Character implements CharacterInterface{
 
     @Override
-    public int health(int damageTaken) {
+    public void setHealth() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setHealth'");
+    }
+    
+    @Override
+    public int getHealth(int damageTaken) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -34,5 +40,6 @@ public class Character implements CharacterInterface{
     public void switchCharacter() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
     
 }
