@@ -1,58 +1,68 @@
 public class Character implements CharacterInterface{
-    private String[] type;
+    private String type;
 
     @Override
     public void setHealth(int health) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      //
     }
 
     @Override
     public int getHealth(int damageTaken) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public int numberOfRolls(int roll) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return 0;
     }
 
     @Override
     public void setType(String type) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       this.type = type;
     }
 
     @Override
     public String getType() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return type;
     }
 
     @Override
     public void setDefence(int defence) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      //
     }
 
     @Override
     public int getDefence(int damageTaken) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      return 0;
     }
 
     @Override
     public int basicAttack(int roll) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return 0;
     }
 
     @Override
     public int skill(int roll) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      return 0;
     }
 
     @Override
     public int ult(int roll) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return 0;
     }
 
     @Override
     public int switchCharacter(int roll) {
+        return 0;
+    }
+
+    @Override
+    public int takeDamage(int damage) {
+       return damage;
+    }
+
+    @Override
+    public void setRolls(int roll) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getRolls() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

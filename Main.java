@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
-        //Combat combat = new Combat();
+        Combat combat = new Combat();
         Story s1 = new Story();
         WarriorLore w1 = new WarriorLore();
         MageLore m1 = new MageLore();
@@ -13,7 +13,7 @@ public class Main {
         String ranger = "Arcane Musketeer";
         String mage = "Ember Witch";
         String kingdom = "Camelot";
-        
+
         int loreChoice, skip, chooseMode;
 
         System.out.println("Echoes of War: The Guardian's Path");
@@ -29,6 +29,7 @@ public class Main {
             c1.characterSelection();
             c1.selectCharacters(); 
             c1.displayCharacters(c1.getChosenCharacters());
+            //combat.wish();
             // After this, the battle starts
         }
 
