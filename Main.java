@@ -3,11 +3,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Combat combat = new Combat();
         Story s1 = new Story();
+        Guardian g1 = new Guardian();
         WarriorLore w1 = new WarriorLore();
         MageLore m1 = new MageLore();
         ChoicesPVE c1 = new ChoicesPVE();
         RangerLore r1 = new RangerLore();
-        Combat combat = new Combat();
         Scanner scan = new Scanner(System.in);
         String mc;
         String warrior = "Guardian";
@@ -22,9 +22,6 @@ public class Main {
         mc = scan.nextLine();
 
         System.out.print("Choose mode (1-PVP/2-PVE): ");
-        System.out.print("Enter your name: ");
-        mc = scan.nextLine();
-        System.out.print("Choose mode (1-pvp/2-pve): ");
         chooseMode = scan.nextInt();
     
 
@@ -35,12 +32,6 @@ public class Main {
             c1.characterSelection();
             c1.selectCharacters(); 
             c1.displayCharacters(c1.getChosenCharacters());
-
-            // after ani kay start battle na 
-            combat.wish();
-            //combat.wish();
-            // After this, the battle starts
-
         }
        System.out.print("Do you want to read the story? (1-YES/2-NO): ");
         skip = scan.nextInt();
@@ -53,6 +44,10 @@ public class Main {
             Thread.sleep(1000);
             s1.tellStoryEnd(mc);
         }
+        //BATTLE
+        //////////////////////
+        combat.display(c1.getChosenCharacters(),g1.getHealth(15),g1.getDefence(12) );
+        //////////////////
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
         loreChoice = scan.nextInt();
         // add lang ta og invalid selection dre

@@ -1,10 +1,12 @@
 # CSIT-227-JAVA-OOP-GAME
 Echoes of War: The Guardian's Path
-Started on the story and its text delay
-Focus First on the text delay since total read time of story is 5 min
-ADDED ALL LORES & STORIES
-NI add nako sa choosing characters implementation pero sa pve pana nya taronong pana
-abcdefghijklkas
-There is still a bug in character selection that if you choose a character from a different class
-it will accept it(EXAMPLE: CHOOSE CLASS FROM WARRIOR: EMBER WITCH) it will accept it
-JAVA PROJECTasdasfwsgarradaza
+TARGET OUT COME BY FRIDAY
+Make a wish
+You have receive 3 stamina, 2 mana , 4 spirits, 5 energy;
+Your current Character: Guardian (Health: 150 | Defence: 4 | stamina 3);
+Choose attack: 
+1 Basic Attack
+2 Skill
+3 Ultimate
+4 Switch Character
+Your choice: ___
