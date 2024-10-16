@@ -3,68 +3,57 @@ public class Character implements CharacterInterface{
 
     @Override
     public void setHealth(int health) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'setHealth'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int getHealth(int damageTaken) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHealth'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public int numberOfRolls() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'damage'");
+    public int numberOfRolls(int roll) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setType(String type) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setType'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public String getType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getType'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setDefence(int defence) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDefence'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int getDefence(int damageTaken) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDefence'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void basicAttack(int roll) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'basicAttack'");
+    public int basicAttack(int roll) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void skill(int roll) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'skill'");
+    public int skill(int roll) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void ult() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ult'");
+    public int ult(int roll) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void switchCharacter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'switchCharacter'");
+    public int switchCharacter(int roll) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     
