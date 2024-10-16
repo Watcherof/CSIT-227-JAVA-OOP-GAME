@@ -1,7 +1,7 @@
 import java.util.*;
 public class Combat implements CombatInterface {
     @Override
-    public void wish() {
+    public void wish() { 
         System.out.println("Press Enter key to wish...");
         Scanner scan = new Scanner(System.in);
         scan.nextLine();
