@@ -24,7 +24,7 @@ public class RangerLore extends Story{
     
 
     @Override
-    //Verdant Warden 
+    //Verdant  Warden 
     public void tellCharLoreSupport() {
         displayWithDelay("The Wardens are a revered order of rangers who draw their power from nature itself.", 300);
         displayWithDelay("Trained in the ancient ways of the forest, these rangers are both fierce protectors and compassionate healers.", 300);
