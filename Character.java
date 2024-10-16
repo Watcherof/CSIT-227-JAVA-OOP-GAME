@@ -1,59 +1,60 @@
 public class Character implements CharacterInterface{
-
+    private String[] type;
     @Override
     public void setHealth(int health) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setHealth'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int getHealth(int damageTaken) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHealth'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int damage() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'damage'");
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setType(String[] type) {
+       this.type = type;
+    }
+
+    @Override
+    public String[] getType() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setDefence(int defence) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setDefence'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int getDefence(int damageTaken) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDefence'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void basicAttack(String type, int roll) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'basicAttack'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void skill(String type, int roll) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'skill'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void ult() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'ult'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void switchCharacter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'switchCharacter'");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-   
-  
+
+
     
 }
