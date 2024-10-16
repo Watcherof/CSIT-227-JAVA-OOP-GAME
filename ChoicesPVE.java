@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class ChoicesPVE implements ChoicesInterface {
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
-    private final String[] validRangerCharacters = {"Shadow Strider", "Arcane Musketeer"};
-    private final String[] chosenCharacters = new String[3]; // Array to store selected characters
+    private final String[] validRangerCharacters = {"Shadow Strider", "Verdant Warden"};
+    public final String[] chosenCharacters = new String[3]; // Array to store selected characters
     private final boolean[] classChosen = new boolean[3]; // Track if a class has already been chosen
 
     // Getter for chosen characters
@@ -160,12 +160,13 @@ public class ChoicesPVE implements ChoicesInterface {
 
     @Override
     public void displayCharacters(String[] characters) {
-        System.out.println("You have chosen the following characters:");
+        System.out.println("You have chosen the following characters:\n");
         for (String character : chosenCharacters) {
             if (character != null) {
                 System.out.println("- " + character);
             }
         }
+        System.out.println();
     }
 
     @Override
