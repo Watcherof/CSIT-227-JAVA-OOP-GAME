@@ -8,6 +8,8 @@ public class Combat implements CombatInterface {
         int[] result = generateNumbers();
         System.out.println("Your received: ");
         System.out.println("Mana: " + result[0] + ", Stamina: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
+    
+        scan.close();
     }
 
     private int[] generateNumbers() {
