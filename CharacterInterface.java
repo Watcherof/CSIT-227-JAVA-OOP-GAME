@@ -1,5 +1,6 @@
 public interface CharacterInterface{
-    public int health(int damageTaken);
+    public void setHealth();
+    public int getHealth(int damageTaken);
     public void damage();
     public int defence(int damageTaken);
     public void basicAttack(String type, int roll);
