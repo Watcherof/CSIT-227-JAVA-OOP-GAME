@@ -125,7 +125,7 @@ public class ChoicesPVE implements ChoicesInterface {
             String choice = scanner.nextLine();
             try {
                 if(!isWarriorCharacter(choice)){
-                    System.out.println("Invalid Choice, character not in Warrior Class.");
+                    System.out.println("Invalid Choice, character not a Warrior");
                     continue;
                 }else{
                     setChosenCharacter(choice);
@@ -143,7 +143,7 @@ public class ChoicesPVE implements ChoicesInterface {
             String choice = scanner.nextLine();
             try {
                 if(!isMageCharacter(choice)){
-                    System.out.println("Invalid Choice, character not in Mage Class.");
+                    System.out.println("Invalid Choice, character not a Mage");
                     continue;
                 }else{
                     setChosenCharacter(choice);
@@ -159,7 +159,7 @@ public class ChoicesPVE implements ChoicesInterface {
             String choice = scanner.nextLine();
             try {
                 if(!isRangerCharacter(choice)){
-                    System.out.println("Invalid Choice, character not in Ranger Class.");
+                    System.out.println("Invalid Choice, character not a Ranger");
                     continue;
                 }else{
                     setChosenCharacter(choice);
