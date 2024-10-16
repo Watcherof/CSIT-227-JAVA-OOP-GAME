@@ -3,7 +3,7 @@ public class Character implements CharacterInterface{
 
     @Override
     public void setHealth(int health) {
-        // TODO Auto-generated method stub
+
         throw new UnsupportedOperationException("Unimplemented method 'setHealth'");
     }
 
@@ -14,7 +14,7 @@ public class Character implements CharacterInterface{
     }
 
     @Override
-    public int damage() {
+    public int numberOfRolls() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'damage'");
     }
