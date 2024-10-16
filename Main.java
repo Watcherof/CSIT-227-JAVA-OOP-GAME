@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
+        //Combat combat = new Combat();
         Story s1 = new Story();
         WarriorLore w1 = new WarriorLore();
         MageLore m1 = new MageLore();
@@ -37,12 +38,11 @@ public class Main {
 
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
-
         } else if (chooseMode == 2) {
             System.out.println("You have chosen player vs environment!");
             c1.characterSelection();
             c1.selectCharacters(); 
-            c1.display(c1.getChosenCharacters());
+            c1.displayCharacters(c1.getChosenCharacters());
         }
 
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");

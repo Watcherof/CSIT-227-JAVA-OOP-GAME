@@ -1,5 +1,7 @@
 import java.util.Scanner;
 public class ChoicesPVE implements Choose {
+
+
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
     private final String[] validRangerCharacters = {"Shadow Strider", "Arcane Musketeer"};
@@ -7,6 +9,10 @@ public class ChoicesPVE implements Choose {
     private final boolean[] classChosen = new boolean[3]; // Track if a class has already been chosen
     //private final String[] validClass = {"Warrior", "Mage", "Ranger"};
 
+    /* 
+    public ChoicesPVE(int player) {
+        this.player = player;
+    }*/
 
     // Getter for chosen characters
     @Override
@@ -138,7 +144,6 @@ public class ChoicesPVE implements Choose {
                 System.out.println(e.getMessage() + " Please try again.");
             }
         }
-
         // Enforce order: Ranger third
         System.out.print("Choose character from Ranger: ");
         while (true) {
@@ -150,8 +155,6 @@ public class ChoicesPVE implements Choose {
                 System.out.println(e.getMessage() + " Please try again.");
             }
         }
-
-        displayCharacters(chosenCharacters); // Display the chosen characters
     }
 
     @Override
@@ -166,18 +169,19 @@ public class ChoicesPVE implements Choose {
 
     @Override
     public void characterSelection() {
+                                                /*player*/
+        System.out.println("==============Player =================");
         System.out.println("╔════════════════════════════════════════════════╗");
         System.out.println("║               CHOOSE YOUR CHARACTERS           ║");
         System.out.println("╠════════════════════════════════════════════════╣");
         System.out.println("║   ATTACK              ║           SUPPORT      ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║   Guardians           ║           General      ║");
+        System.out.println("║  1 - Guardians        ║  2 - General           ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║   Ember Witch         ║         Aquamancer     ║");
+        System.out.println("║  3 - Ember Witch      ║  4 - Aquamancer        ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║   Shadow Strider      ║     Arcane Musketeer   ║");
+        System.out.println("║  5 - Shadow Strider   ║  6 - Arcane Musketeer  ║");
         System.out.println("╚═══════════════════════╩════════════════════════╝");
     }
-
 
 }
