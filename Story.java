@@ -1,4 +1,4 @@
-public class Story implements Stories {
+public class Story implements StoryInterface {
     // this lets you input a string of text and splits text into words and adds delay in MilliSeconds
     @Override
     public void displayWithDelay(String text, int delayInMillis) {
