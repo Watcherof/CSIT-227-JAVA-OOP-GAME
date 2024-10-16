@@ -120,35 +120,51 @@ public class ChoicesPVE implements ChoicesInterface {
         Scanner scanner = new Scanner(System.in); // Scanner for user input
 
         // Enforce order: Warrior first
-        System.out.print("Choose character from Warrior: ");
         while (true) {
+            System.out.print("Choose character from Warrior: ");
             String choice = scanner.nextLine();
             try {
-                setChosenCharacter(choice);
-                break; // Exit loop if valid
+                if(!isWarriorCharacter(choice)){
+                    System.out.println("Invalid Choice, character not in Warrior Class.");
+                    continue;
+                }else{
+                    setChosenCharacter(choice);
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage() + " Please try again.");
             }
         }
 
         // Enforce order: Mage second
-        System.out.print("Choose character from Mage: ");
+        
         while (true) {
+            System.out.print("Choose character from Mage: ");
             String choice = scanner.nextLine();
             try {
-                setChosenCharacter(choice);
-                break; // Exit loop if valid
+                if(!isMageCharacter(choice)){
+                    System.out.println("Invalid Choice, character not in Mage Class.");
+                    continue;
+                }else{
+                    setChosenCharacter(choice);
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage() + " Please try again.");
             }
         }
         // Enforce order: Ranger third
-        System.out.print("Choose character from Ranger: ");
         while (true) {
+            System.out.print("Choose character from Ranger: ");
             String choice = scanner.nextLine();
             try {
-                setChosenCharacter(choice);
-                break; // Exit loop if valid
+                if(!isRangerCharacter(choice)){
+                    System.out.println("Invalid Choice, character not in Ranger Class.");
+                    continue;
+                }else{
+                    setChosenCharacter(choice);
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage() + " Please try again.");
             }
