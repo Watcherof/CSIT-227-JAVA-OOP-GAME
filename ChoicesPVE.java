@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class ChoicesPVE implements Choose {
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
