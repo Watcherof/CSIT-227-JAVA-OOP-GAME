@@ -1,6 +1,5 @@
 import java.util.*;
 public class Combat implements CombatInterface {
-    
     @Override
     public void wish() {
         System.out.println("Press Enter key to wish...");
