@@ -13,7 +13,7 @@ public class Story implements StoryInterface {
         }
         System.out.println(); 
     }
-
+    //test 
     // New method to handle the pause
     @Override
     public void pause(int millis) {
