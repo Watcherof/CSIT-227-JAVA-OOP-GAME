@@ -24,18 +24,22 @@ public class RangerLore extends Story{
     
 
     @Override
-    //Verdant Warden
+    //Verdant Warden 
     public void tellCharLoreSupport() {
         displayWithDelay("The Wardens are a revered order of rangers who draw their power from nature itself.", 300);
+        displayWithDelay("Trained in the ancient ways of the forest, these rangers are both fierce protectors and compassionate healers.", 300);
         pause(500);
-    
-        displayWithDelay("Trained in the ancient ways of the forest, they are fierce protectors and compassionate healers.", 300);
+        
+        displayWithDelay("With a deep bond to the living world, they channel the vitality of nature to mend wounds and strengthen allies.", 300);
         pause(500);
-    
-        displayWithDelay("With a deep bond to the living world, Wardens channel nature's vitality to mend wounds and strengthen allies.", 300);
+        
+        displayWithDelay("Legends say that the Wardens can commune with the spirit of the wild,", 300);
+        displayWithDelay("calling upon ancient trees and mythical creatures for guidance.", 300);
         pause(500);
-    
-        displayWithDelay("Legends say they can commune with the spirit of the wild, calling upon ancient trees and mythical creatures for guidance.", 300);
+
+        displayWithDelay("In battle, they strike swiftly with their bows and blades,", 300);
+        displayWithDelay("but their greatest gift lies in their ability to restore hope to their companions,", 300);
+        displayWithDelay("healing with the gentle touch of a forest breeze and shielding them with the strength of the earth.", 300);
         pause(500);
     
         displayWithDelay("In battle, they strike swiftly with their bows and blades, but their greatest gift lies in restoring hope to their companions.", 300);
