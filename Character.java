@@ -1,5 +1,6 @@
 public class Character implements CharacterInterface{
     private String[] type;
+
     @Override
     public void setHealth(int health) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -17,12 +18,12 @@ public class Character implements CharacterInterface{
 
     @Override
     public void setType(String[] type) {
-       this.type = type;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public String[] getType() {
-       return type;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -36,12 +37,12 @@ public class Character implements CharacterInterface{
     }
 
     @Override
-    public void basicAttack(String type, int roll) {
+    public void basicAttack(int roll) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void skill(String type, int roll) {
+    public void skill(int roll) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -54,7 +55,6 @@ public class Character implements CharacterInterface{
     public void switchCharacter() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 
     
 }

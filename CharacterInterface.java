@@ -6,8 +6,8 @@ public interface CharacterInterface{
     public String[] getType();
     public void setDefence(int defence);
     public int getDefence(int damageTaken);
-    public void basicAttack(String type, int roll);
-    public void skill(String type, int roll);
+    public void basicAttack(int roll);
+    public void skill(int roll);
     public void ult();
     public void switchCharacter();
 }
