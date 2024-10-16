@@ -32,9 +32,9 @@ public class ChoicesPVE implements Choose {
                     return;
                 }
             }
-            throw new IllegalArgumentException("All character slots are filled."); // Handle case when array is full
+            System.out.println("All character slots are filled."); // Handle case when array is full
         } else {
-            throw new IllegalArgumentException("Invalid character choice: " + chosenCharacter);
+            System.out.println("Invalid character choice: " + chosenCharacter);
         }
     }
 
