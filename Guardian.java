@@ -13,5 +13,9 @@ public class Guardian extends Character{
         this.defence = defence;
     }
 
-    
+    @Override
+    public void basicAttack(String type,int roll){
+
+    }
+
 }

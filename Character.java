@@ -53,7 +53,6 @@ public class Character implements CharacterInterface{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'switchCharacter'");
     }
-   
-  
+
     
 }
