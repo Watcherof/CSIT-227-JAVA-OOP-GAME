@@ -22,7 +22,7 @@ public class Character implements CharacterInterface{
 
     @Override
     public String[] getType() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return type;
     }
 
     @Override
