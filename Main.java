@@ -38,12 +38,13 @@ public class Main {
 
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
-            c1.characterSelection();
-            c1.selectCharacters(); 
+
         } else if (chooseMode == 2) {
             System.out.println("You have chosen player vs environment!");
+            c1.characterSelection();
+            c1.selectCharacters(); 
+            c1.display(c1.getChosenCharacters());
         }
-
 
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
         loreChoice = scan.nextInt();
