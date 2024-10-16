@@ -24,23 +24,25 @@ public class RangerLore extends Story{
     
 
     @Override
-    //Arcane Musketeer
+    //Verdant Warden
     public void tellCharLoreSupport() {
-        displayWithDelay("Within the realm, legends speak of the Arcane Musketeers,", 300);
-        displayWithDelay("a mystical order of marksmen whose power defies conventional understanding of magic and weaponry.", 300);
+        displayWithDelay("The Wardens are a revered order of rangers who draw their power from nature itself.", 300);
         pause(500);
-        
-        displayWithDelay("These warriors have mastered the fusion of ancient arcane energy and modern firearms,", 300);
-        displayWithDelay("transforming their muskets into conduits of destructive power.", 300);
+    
+        displayWithDelay("Trained in the ancient ways of the forest, they are fierce protectors and compassionate healers.", 300);
         pause(500);
-        
-        displayWithDelay("Each shot from an Arcane Musketeer is like a cataclysm in itself—infused with raw magical force,", 300);
-        displayWithDelay("capable of annihilating enemies with a single pull of the trigger.", 300);
+    
+        displayWithDelay("With a deep bond to the living world, Wardens channel nature's vitality to mend wounds and strengthen allies.", 300);
         pause(500);
-        
-        displayWithDelay("However, their unparalleled damage comes with a critical drawback.", 300);
-        displayWithDelay("The process of channeling such immense energy into their shots exhausts both the musket and the user.", 300);
+    
+        displayWithDelay("Legends say they can commune with the spirit of the wild, calling upon ancient trees and mythical creatures for guidance.", 300);
+        pause(500);
+    
+        displayWithDelay("In battle, they strike swiftly with their bows and blades, but their greatest gift lies in restoring hope to their companions.", 300);
+        pause(500);
+    
+        displayWithDelay("They heal with the gentle touch of a forest breeze and shield allies with the strength of the earth.", 300);
         pause(500);
     }
-    
+  
 }

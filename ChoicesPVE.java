@@ -180,7 +180,7 @@ public class ChoicesPVE implements ChoicesInterface {
         System.out.println("╠═══════════════════════╬════════════════════════╣");
         System.out.println("║  3 - Ember Witch      ║  4 - Aquamancer        ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║  5 - Shadow Strider   ║  6 - Arcane Musketeer  ║");
+        System.out.println("║  5 - Shadow Strider   ║  6 -Verdant Warden     ║");
         System.out.println("╚═══════════════════════╩════════════════════════╝");
     }
 
