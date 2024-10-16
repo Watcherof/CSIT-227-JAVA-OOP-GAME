@@ -1,9 +1,15 @@
 import java.util.Scanner;
 public class ChoicesPVE implements Choose {
+    int player = 0;
+
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
     private final String[] validRangerCharacters = {"Shadow Strider", "Arcane Musketeer"};
     private final String[] chosenCharacters = new String[3]; // Array to store selected characters
+
+    public ChoicesPVE(int player) {
+        this.player = player;
+    }
 
     // Getter for chosen characters
     public String[] getChosenCharacters() {
@@ -106,26 +112,27 @@ public class ChoicesPVE implements Choose {
 
     @Override
     public void characterSelection() {
+        System.out.println("==============Player " + player + "=================");
         System.out.println("╔════════════════════════════════════════════════╗");
         System.out.println("║               CHOOSE YOUR CHARACTERS           ║");
         System.out.println("╠════════════════════════════════════════════════╣");
         System.out.println("║   ATTACK              ║           SUPPORT      ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║   Guardians           ║           General      ║");
+        System.out.println("║  1 - Guardians        ║  2 - General           ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║   Ember Witch         ║         Aquamancer     ║");
+        System.out.println("║  3 - Ember Witch      ║  4 - Aquamancer        ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║   Shadow Strider      ║     Arcane Musketeer   ║");
+        System.out.println("║  5 - Shadow Strider   ║  6 - Arcane Musketeer  ║");
         System.out.println("╚═══════════════════════╩════════════════════════╝");
     }
 
     @Override
     public void selectCharacters() {
-        Scanner scanner = new Scanner(System.in); // Scanner for user input
+        Scanner scan = new Scanner(System.in); // Scanner for user input
 
         for (int i = 0; i < 3; i++) {
             System.out.print("Choose character " + (i + 1) + ": ");
-            String choice = scanner.nextLine(); // Read character choice
+            String choice = scan.nextLine(); // Read character choice
 
             try {
                 setChosenCharacter(choice); // Set chosen character using setter

@@ -2,10 +2,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        Combat combat = new Combat();
         Story s1 = new Story();
         WarriorLore w1 = new WarriorLore();
         MageLore m1 = new MageLore();
-        ChoicesPVE c1 = new ChoicesPVE();
+        ChoicesPVE c1 = new ChoicesPVE(1);
+        ChoicesPVE c2 = new ChoicesPVE(2);
         RangerLore r1 = new RangerLore();
         Scanner scan = new Scanner(System.in);
         int loreChoice, skip, chooseMode;
@@ -39,7 +41,10 @@ public class Main {
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
             c1.characterSelection();
-            c1.selectCharacters(); 
+            c1.selectCharacters();
+            c2.characterSelection();
+            c2.selectCharacters();
+            combat.wish();
         } else if (chooseMode == 2) {
             System.out.println("You have chosen player vs environment!");
         }
