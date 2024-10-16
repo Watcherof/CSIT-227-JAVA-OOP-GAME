@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         //Combat combat = new Combat();
@@ -49,12 +50,11 @@ public class Main {
         loreChoice = scan.nextInt();
         // DILI PANI FINAL
         if (loreChoice == 1) {
-            char classChoice;
 
             System.out.print("Enter corresponding letters [M-mage, R-Ranger, W-Warrior]: ");
-            classChoice = Character.toUpperCase(scan.next().charAt(0));
+            char classChoice = scan.next().charAt(0);
 
-            switch (classChoice) {
+            switch ((classChoice)) {
                 case 'W': {
                     w1.tellCharLoreAttack();
                     Thread.sleep(1000);

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class ChoicesPVE implements Choose {
+public class ChoicesPVE implements ChoicesInterface {
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
     private final String[] validRangerCharacters = {"Shadow Strider", "Arcane Musketeer"};

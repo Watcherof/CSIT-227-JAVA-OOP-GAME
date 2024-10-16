@@ -5,3 +5,5 @@ Focus First on the text delay since total read time of story is 5 min
 ADDED ALL LORES & STORIES
 NI add nako sa choosing characters implementation pero sa pve pana nya taronong pana
 abcdefghijklkas
+There is still a bug in character selection that if you choose a character from a different class
+it will accept it(EXAMPLE: CHOOSE CLASS FROM WARRIOR: EMBER WITCH) it will accept it

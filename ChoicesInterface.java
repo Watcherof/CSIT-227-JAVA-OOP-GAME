@@ -1,4 +1,4 @@
-public interface Choose{
+public interface ChoicesInterface{
     boolean isValidCharacter(String choice);
     void characterSelection();
     void selectCharacters();
