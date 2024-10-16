@@ -44,6 +44,8 @@ public class Main {
             c1.characterSelection();
             c1.selectCharacters(); 
             c1.displayCharacters(c1.getChosenCharacters());
+            // after ani kay start battle na 
+            //
         }
 
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
