@@ -18,6 +18,8 @@ public class Main {
         int loreChoice, skip, chooseMode;
 
         System.out.println("Echoes of War: The Guardian's Path");
+        System.out.print("Enter your name: ");
+        mc = scan.nextLine();
 
         System.out.print("Choose mode (1-PVP/2-PVE): ");
         System.out.print("Enter your name: ");
