@@ -1,14 +1,14 @@
 
 import java.util.Random;
 
-public class General implements Skills {
+public class General extends Character {
     
     public void getStats() {
         Stats stats = new Stats(100, 7);
     }
 
     @Override
-    public int basicAtk() {
+    public int basicAttack() {
         int damage = getRandomBetween(0, 4);
         System.out.println("You used basic attack and dealth " + damage + " damage.");
 

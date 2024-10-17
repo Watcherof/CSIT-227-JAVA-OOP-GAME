@@ -51,5 +51,9 @@ public class Combat implements CombatInterface {
 
         return numbers;
     }
+
+    int[] getPoints() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
 
