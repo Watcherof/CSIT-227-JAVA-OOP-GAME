@@ -28,12 +28,12 @@ public class Combat implements CombatInterface {
             type = g1.getType();
             }
         System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
-
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack");
         System.out.println("2) Skill");
         System.out.println("3) Ultimate SKill");
         System.out.println("4) Switch Character");
+        System.out.println("5) End Turn");
         System.out.println("\nYour Choice: ");
     }
     

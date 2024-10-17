@@ -5,7 +5,7 @@ public class Main {
         Player player2 = new Player(2);
         Combat combat = new Combat();
         Story s1 = new Story();
-        Guardian g1 = new Guardian();
+        General g1 = new General();
         WarriorLore w1 = new WarriorLore();
         MageLore m1 = new MageLore();
         int player = 9;
