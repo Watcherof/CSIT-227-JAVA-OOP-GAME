@@ -1,6 +1,18 @@
 import java.util.*;
-public class Combat implements CombatInterface {
-
+public class Combat extends Character implements CombatInterface {
+    
+    public void displayWithDelay(String text, int delayInMillis) {
+        String[] words = text.split(" ");  // Split text into words
+        for (String word : words) {
+            System.out.print(word + " ");   // Print each word followed by a space
+            try {
+                Thread.sleep(delayInMillis); // Delay between each word
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt(); 
+            }
+        }
+        System.out.println(); 
+    }
     @Override
     public int[] wish() {
         System.out.println("\nPress Enter key to wish...");
@@ -15,51 +27,87 @@ public class Combat implements CombatInterface {
     }
 
      
+
     @Override
     // need pani i change
-    public void display(String[] chars,int health,int defence) {
-        int[]res = wish();
+    public void display(String[] chars, int health, int defence) {
+        int[] res = wish();  // Assume res[0] is stamina
         Scanner scan = new Scanner(System.in);
         int choice;
-            General g1 = new General();
+        General g1 = new General();
         String type = " ";
         int i = 0;
-            if(i == 0){
+        
+        if (i == 0) {
             type = g1.getType();
-            }
-
-        do { 
-            
-            System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
+        }
+    
+        do {
+            System.out.println("Your current character: " + chars[i] + " (Health: " + health + " | Defence: " + defence + " | " + type + ": " + res[0] + ")");
             System.out.println("\nChoose Attack: ");
-            System.out.println("1) Basic Attack");
-            System.out.println("2) Skill");
-            System.out.println("3) Ultimate SKill");
+            System.out.println("1) Basic Attack (Cost: 2 Stamina)");
+            System.out.println("2) Skill (Cost: 3 Stamina)");
+            System.out.println("3) Ultimate Skill (Cost: 5 Stamina)");
             System.out.println("4) Switch Character");
             System.out.println("5) End Turn");
-            System.out.println("\nYour Choice: ");
-
+            System.out.print("\nYour Choice: ");
+    
             choice = scan.nextInt();
+            
             switch (choice) {
                 case 1:
-                    System.out.println(chars[i]+" uses basic attack!");
+                    if (res[0] < 2) {
+                        System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");  
+                    } else {
+                        res[0] -= 2;  
+                        displayWithDelay(chars[i] + " charges towards the enemies with a swift basic attack!", 150); 
+                        displayWithDelay("They hit the enemies, dealing " + getRandomBetween(0, 10) + " damage.", 150);  // 0-10 damage range
+                        displayWithDelay("You now have " + res[0] + " stamina/energy left.", 150);
+                    }
                     break;
+            
                 case 2:
-                    System.out.println(chars[i]+" uses a skill!");
+                    if (res[0] < 3) {
+                        System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!"); 
+                    } else {
+                        res[0] -= 3; 
+                        displayWithDelay(chars[i] + " focuses intensely, channeling a devastating skill!", 150); 
+                        displayWithDelay("Critical damage is inflicted upon the enemies dealing " + getRandomBetween(11,15) + " to tne enemies!", 150);
+                        displayWithDelay("You now have " + res[0] + " stamina/energy left.", 150);
+                    }
                     break;
+            
                 case 3:
-                    System.out.println(chars[i]+" uses an ULTIMATE SKILL!");
+                    if (res[0] < 5) {
+                        System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
+                    } else {
+                        res[0] -= 5;  
+                        displayWithDelay(chars[i] + " unsheathes dual swords, unleashing their ultimate technique!", 150);  
+                        displayWithDelay("The skill's damage is doubled as the dual swords tear through the battlefield, dealing " + getRandomBetween(16,25 ) , 150);
+                        displayWithDelay("You now have " + res[0] + " stamina/energy left.", 150);
+                    }
                     break;
+            
                 case 4:
-                    System.out.println(chars[i]+" calls for backup.");
+                    if (res[0] < 1) {
+                        displayWithDelay("Insufficient Stamina or Energy to switch! Please END TURN!", 150); 
+                    } else {
+                        res[0] -= 1;
+                        displayWithDelay(chars[i] + " calls for reinforcements! A new character is ready to fight!", 150); 
+                        displayWithDelay("You now have " + res[0] + " stamina/energy left.", 150);
+                      
+                    }
                     break;
+            
                 default:
-                    System.out.println(chars[i]+" ends its turn.");
+                    displayWithDelay(chars[i] + " decides to regroup and ends their turn.", 150);  
                     break;
             }
+            
+            
         } while (choice != 5);
+
     }
-    
     
 
     private int[] generateNumbers() {
@@ -75,7 +123,6 @@ public class Combat implements CombatInterface {
 
         // The fourth number should be the remainder of the sum to ensure total sum is 8
         numbers[3] = sum;
-
         return numbers;
     }
 

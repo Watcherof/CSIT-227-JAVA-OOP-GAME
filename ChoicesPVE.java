@@ -174,7 +174,7 @@ public class ChoicesPVE implements ChoicesInterface {
 
     @Override
     public void characterSelection() {
-        System.out.println("==============Player =================");
+        System.out.println("====================Player 1======================");
         System.out.println("╔════════════════════════════════════════════════╗");
         System.out.println("║               CHOOSE YOUR CHARACTERS           ║");
         System.out.println("╠════════════════════════════════════════════════╣");

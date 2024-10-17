@@ -57,7 +57,7 @@ public class Main {
         }
         //BATTLE
         //////////////////////
-        combat.display(c1.getChosenCharacters(),g1.getHealth(),g1.getDefence() );
+        combat.display(c1.getChosenCharacters(),g1.getHealth(),g1.getDefence());
         //////////////////
 
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
