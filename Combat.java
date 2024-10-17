@@ -10,9 +10,6 @@ public class Combat implements CombatInterface {
         System.out.println("You received: ");
         System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
 
-
-        scan.close();
-
         return result;
     }
 
@@ -32,17 +29,32 @@ public class Combat implements CombatInterface {
 
         do { 
             
-        System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
-        System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack");
-        System.out.println("2) Skill");
-        System.out.println("3) Ultimate SKill");
-        System.out.println("4) Switch Character");
-        System.out.println("5) End Turn");
-        System.out.println("\nYour Choice: ");
+            System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
+            System.out.println("\nChoose Attack: ");
+            System.out.println("1) Basic Attack");
+            System.out.println("2) Skill");
+            System.out.println("3) Ultimate SKill");
+            System.out.println("4) Switch Character");
+            System.out.println("5) End Turn");
+            System.out.println("\nYour Choice: ");
 
-
-        choice = scan.nextInt();
+            choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println(chars[i]+" uses basic attack!");
+                    break;
+                case 2:
+                    System.out.println(chars[i]+" uses a skill!");
+                    break;
+                case 3:
+                    System.out.println(chars[i]+" uses an ULTIMATE SKILL!");
+                    break;
+                case 4:
+                    System.out.println(chars[i]+" calls for backup.");
+                    break;
+                default:
+                    break;
+            }
         } while (choice != 5);
     }
     
