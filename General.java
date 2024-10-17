@@ -1,15 +1,26 @@
-public class General extends Character {
-    private int health = 100;
-    private int defence = 7;
 
-    @Override
-    public void setHealth(int health){
-        this.health = health;
+import java.util.Random;
+
+public class General implements Skills {
+    
+    public void getStats() {
+        Stats stats = new Stats(100, 7);
     }
 
-
     @Override
-    public void setDefence(int defence){
-        this.defence = defence;
+    public int basicAtk() {
+        int damage = getRandomBetween(0, 4);
+        System.out.println("You used basic attack and dealth " + damage + " damage.");
+
+        return damage;
+    }
+
+    private int getRandomBetween(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("Min should be less than or equal to Max");
+        }
+        Random random = new Random();
+        // Generate random number between min (inclusive) and max (inclusive)
+        return random.nextInt((max - min) + 1) + min;
     }
 }

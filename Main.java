@@ -1,6 +1,8 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
+        Player player1 = new Player(1);
+        Player player2 = new Player(2);
         Combat combat = new Combat();
         Story s1 = new Story();
         Guardian g1 = new Guardian();
@@ -44,10 +46,27 @@ public class Main {
             Thread.sleep(1000);
             s1.tellStoryEnd(mc);
         }
+
+        System.out.print("Choose mode (1-pvp/2-pve): ");
+        chooseMode = scan.nextInt();
+
+        if (chooseMode == 1) {
+            System.out.println("You have chosen player versus player!");
+            c1.characterSelection();
+            c1.selectCharacters();
+            c2.characterSelection();
+            c2.selectCharacters();
+            player1.wish();
+            player2.wish();
+        } else if (chooseMode == 2) {
+            System.out.println("You have chosen player vs environment!");
+        }
+
         //BATTLE
         //////////////////////
         combat.display(c1.getChosenCharacters(),g1.getHealth(15),g1.getDefence(12) );
         //////////////////
+
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
         loreChoice = scan.nextInt();
         // add lang ta og invalid selection dre

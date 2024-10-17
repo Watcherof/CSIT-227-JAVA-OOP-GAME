@@ -1,5 +1,6 @@
 import java.util.*;
 public class Combat implements CombatInterface {
+
     @Override
     public int[] wish() {
         System.out.println("\nPress Enter key to wish...");
@@ -8,7 +9,6 @@ public class Combat implements CombatInterface {
         int[] result = generateNumbers();
         System.out.println("You received: ");
         System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
-
         return result;
     }
 
@@ -52,3 +52,4 @@ public class Combat implements CombatInterface {
         return numbers;
     }
 }
+
