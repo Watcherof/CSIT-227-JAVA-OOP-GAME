@@ -53,6 +53,7 @@ public class Combat implements CombatInterface {
                     System.out.println(chars[i]+" calls for backup.");
                     break;
                 default:
+                    System.out.println(chars[i]+" ends its turn.");
                     break;
             }
         } while (choice != 5);
