@@ -37,6 +37,9 @@ public class Main {
             player1.wish();
            // player2.wish();
         } else if (chooseMode == 2) {
+            c1.characterSelection();
+            c1.selectCharacters();
+            c1.displayCharacters(c1.getChosenCharacters());
             System.out.println("You have chosen player vs environment!");
         }
 
