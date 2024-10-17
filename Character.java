@@ -32,7 +32,7 @@ public class Character implements CharacterInterface{
     }
 
     @Override
-    public int basicAttack(int roll) {
+    public int basicAttack() {
        return 0;
     }
 

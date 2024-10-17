@@ -1,12 +1,15 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
+        Player player1 = new Player(1);
+        Player player2 = new Player(2);
         Combat combat = new Combat();
         Story s1 = new Story();
         Guardian g1 = new Guardian();
         WarriorLore w1 = new WarriorLore();
         MageLore m1 = new MageLore();
-        ChoicesPVE c1 = new ChoicesPVE();
+        int player = 9;
+        ChoicesPVE c1 = new ChoicesPVE(player);
         RangerLore r1 = new RangerLore();
         Scanner scan = new Scanner(System.in);
         String mc;
@@ -27,12 +30,18 @@ public class Main {
 
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
+            c1.characterSelection();
+            c1.selectCharacters();
+            c1.displayCharacters(c1.getChosenCharacters());
+            player1.chars();
+            player1.wish();
+           // player2.wish();
         } else if (chooseMode == 2) {
             System.out.println("You have chosen player vs environment!");
-            c1.characterSelection();
-            c1.selectCharacters(); 
-            c1.displayCharacters(c1.getChosenCharacters());
         }
+
+
+
        System.out.print("Do you want to read the story? (1-YES/2-NO): ");
         skip = scan.nextInt();
 
@@ -46,8 +55,9 @@ public class Main {
         }
         //BATTLE
         //////////////////////
-        combat.display(c1.getChosenCharacters(),g1.getHealth(15),g1.getDefence(12) );
+        //combat.display(c1.getChosenCharacters(),10,15 );
         //////////////////
+
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
         loreChoice = scan.nextInt();
         // add lang ta og invalid selection dre
