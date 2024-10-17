@@ -12,7 +12,7 @@ public class EmberWitch extends Character {
     }
 
     @Override
-    public int getHealth(int damageTaken){
+    public int getHealth(){
         return health;
     }
 
@@ -21,7 +21,7 @@ public class EmberWitch extends Character {
         this.defence = defence;
     }
     @Override
-    public int getDefence(int damageTaken){
+    public int getDefence(){
         return defence;
     }
 

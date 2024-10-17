@@ -19,11 +19,25 @@ public class General extends Character {
         return damage;
     }
 
+    @Override
+    public void setDefence(int defence){
+        this.defence = defence;
+    }
    
 
     @Override
-    public int getDefence(int damageTaken){
+    public int getDefence(){
         return defence;
+    }
+
+    @Override
+    public void setHealth(int health){
+        this.health = health;
+    }
+
+    @Override
+    public int getHealth(){
+        return health;
     }
 
     @Override

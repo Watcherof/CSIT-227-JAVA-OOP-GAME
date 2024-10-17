@@ -15,7 +15,7 @@ public class Guardian extends Character{
 
     @Override
     public int takeDamage(int damage){
-        int health = getHealth(damage);
+        int health = getHealth();
         return health-=damage;
     }
 
