@@ -33,8 +33,9 @@ public class Main {
             c1.characterSelection();
             c1.selectCharacters();
             c1.displayCharacters(c1.getChosenCharacters());
+            player1.chars();
             player1.wish();
-            player2.wish();
+           // player2.wish();
         } else if (chooseMode == 2) {
             System.out.println("You have chosen player vs environment!");
         }
@@ -54,7 +55,7 @@ public class Main {
         }
         //BATTLE
         //////////////////////
-        combat.display(c1.getChosenCharacters(),10,15 );
+        //combat.display(c1.getChosenCharacters(),10,15 );
         //////////////////
 
         System.out.print("Do you want to read the lores of the characters? (1-YES/2-NO): ");
