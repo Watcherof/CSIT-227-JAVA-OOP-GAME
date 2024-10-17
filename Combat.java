@@ -21,12 +21,17 @@ public class Combat implements CombatInterface {
     // need pani i change
     public void display(String[] chars,int health,int defence) {
         int[]res = wish();
-            Guardian g1 = new Guardian();
+        Scanner scan = new Scanner(System.in);
+        int choice;
+            General g1 = new General();
         String type = " ";
         int i = 0;
             if(i == 0){
             type = g1.getType();
             }
+
+        do { 
+            
         System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack");
@@ -35,6 +40,10 @@ public class Combat implements CombatInterface {
         System.out.println("4) Switch Character");
         System.out.println("5) End Turn");
         System.out.println("\nYour Choice: ");
+
+
+        choice = scan.nextInt();
+        } while (choice != 5);
     }
     
     
