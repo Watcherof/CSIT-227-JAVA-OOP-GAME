@@ -14,9 +14,9 @@ public class Player {
 
         for (int i = 0; i < 3; i++) {
             if ("Guardians".equals(chars[i])) {  // Use equals() for string comparison
-                characters[i] = new Guardian();  // Store Guardian object in the array
+                characters[i] = (Characters) new Guardian();  // Store Guardian object in the array
             } else if ("General".equals(chars[i])) {
-                characters[i] = new General();   // Store General object in the array
+                characters[i] = (Characters) new General();   // Store General object in the array
             }
         }
     }   
@@ -33,7 +33,8 @@ public class Player {
         points = combat.getPoints();
     }
 
-    public void displayPoints() {
+    public void displayPoints(String character) {
+        
         System.out.println("You currently have: ");
         System.out.println("Mana: " + points[0] + ", Stamina: " + points[1] + ", Spirit: " + points[2] + ", Energy: " + points[3]);
     }

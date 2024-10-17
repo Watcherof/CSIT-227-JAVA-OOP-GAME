@@ -9,6 +9,10 @@ public class Combat implements CombatInterface {
         int[] result = generateNumbers();
         System.out.println("You received: ");
         System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
+
+
+        scan.close();
+
         return result;
     }
 
@@ -17,20 +21,29 @@ public class Combat implements CombatInterface {
     // need pani i change
     public void display(String[] chars,int health,int defence) {
         int[]res = wish();
-            Guardian g1 = new Guardian();
+        Scanner scan = new Scanner(System.in);
+        int choice;
+            General g1 = new General();
         String type = " ";
         int i = 0;
             if(i == 0){
             type = g1.getType();
             }
-        System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
 
+        do { 
+            
+        System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack");
         System.out.println("2) Skill");
         System.out.println("3) Ultimate SKill");
         System.out.println("4) Switch Character");
+        System.out.println("5) End Turn");
         System.out.println("\nYour Choice: ");
+
+
+        choice = scan.nextInt();
+        } while (choice != 5);
     }
     
     
@@ -50,6 +63,10 @@ public class Combat implements CombatInterface {
         numbers[3] = sum;
 
         return numbers;
+    }
+
+    int[] getPoints() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
 
