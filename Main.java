@@ -7,8 +7,8 @@ public class Main {
         MageLore m1 = new MageLore();
         ChoicesPVE c1 = new ChoicesPVE();
         RangerLore r1 = new RangerLore();
-        Combat combat = new Combat();
         Scanner scan = new Scanner(System.in);
+
         String mc;
         String warrior = "Guardian";
         String ranger = "Arcane Musketeer";
@@ -18,13 +18,11 @@ public class Main {
         int loreChoice, skip, chooseMode;
 
         System.out.println("Echoes of War: The Guardian's Path");
-
-        System.out.print("Choose mode (1-PVP/2-PVE): ");
         System.out.print("Enter your name: ");
         mc = scan.nextLine();
-        System.out.print("Choose mode (1-pvp/2-pve): ");
+        System.out.print("Choose mode (1-PVP/2-PVE): ");
         chooseMode = scan.nextInt();
-    
+        
 
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
@@ -35,10 +33,7 @@ public class Main {
             c1.displayCharacters(c1.getChosenCharacters());
 
             // after ani kay start battle na 
-            combat.wish();
-            //combat.wish();
-            // After this, the battle starts
-
+            combat.startBattle();
         }
        System.out.print("Do you want to read the story? (1-YES/2-NO): ");
         skip = scan.nextInt();
