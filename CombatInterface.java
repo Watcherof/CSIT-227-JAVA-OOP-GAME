@@ -1,5 +1,4 @@
 public interface CombatInterface {
 
-    void wish();
-    
+    int[] wish();
 }

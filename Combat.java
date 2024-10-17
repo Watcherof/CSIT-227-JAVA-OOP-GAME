@@ -1,15 +1,17 @@
 import java.util.*;
 
 public class Combat implements CombatInterface {
+    int[] points;
     
     @Override
-    public void wish() {
-        System.out.println("Press Enter key to wish...");
+    public int[] wish() {
+        System.out.print("Press Enter key to wish...");
         Scanner scan = new Scanner(System.in);
         scan.nextLine();
-        int[] result = generateNumbers();
+       points = generateNumbers();
         System.out.println("Your received: ");
-        System.out.println("Mana: " + result[0] + ", Stamina: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
+        System.out.println("Mana: " + points[0] + ", Stamina: " + points[1] + ", Spirit: " + points[2] + ", Energy: " + points[3]);
+        return points;
     }
 
     private int[] generateNumbers() {
@@ -35,5 +37,9 @@ public class Combat implements CombatInterface {
         }
 
         return numbers;
+    }
+
+    public int[] getPoints() {
+        return points;
     }
 } 

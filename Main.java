@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        Player player1 = new Player(1);
+        Player player2 = new Player(2);
         Combat combat = new Combat();
         Story s1 = new Story();
         WarriorLore w1 = new WarriorLore();
@@ -44,7 +46,8 @@ public class Main {
             c1.selectCharacters();
             c2.characterSelection();
             c2.selectCharacters();
-            combat.wish();
+            player1.wish();
+            player2.wish();
         } else if (chooseMode == 2) {
             System.out.println("You have chosen player vs environment!");
         }
