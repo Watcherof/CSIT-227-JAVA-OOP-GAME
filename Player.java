@@ -33,7 +33,8 @@ public class Player {
         points = combat.getPoints();
     }
 
-    public void displayPoints() {
+    public void displayPoints(String character) {
+        
         System.out.println("You currently have: ");
         System.out.println("Mana: " + points[0] + ", Stamina: " + points[1] + ", Spirit: " + points[2] + ", Energy: " + points[3]);
     }
