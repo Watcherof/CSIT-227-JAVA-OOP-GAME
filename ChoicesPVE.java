@@ -1,35 +1,35 @@
 import java.util.Scanner;
-public class ChoicesPVE implements Choose {
-    int player = 0;
 
+public class ChoicesPVE implements ChoicesInterface {
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
-    private final String[] validRangerCharacters = {"Shadow Strider", "Arcane Musketeer"};
-    private final String[] chosenCharacters = new String[3]; // Array to store selected characters
-
-    public ChoicesPVE(int player) {
-        this.player = player;
-    }
+    private final String[] validRangerCharacters = {"Shadow Strider", "Verdant Warden"};
+    public final String[] chosenCharacters = new String[3]; // Array to store selected characters
+    private final boolean[] classChosen = new boolean[3]; // Track if a class has already been chosen
 
     // Getter for chosen characters
+    @Override
     public String[] getChosenCharacters() {
         return chosenCharacters;
     }
 
-    public void setChosenCharacter(String character) {
-        if (isValidCharacter(character)) {
-            if (isClassAlreadyChosen(character)) {
-                throw new IllegalArgumentException("A character from the same class has already been chosen: " + character);
+    // Setter 
+    @Override
+    public void setChosenCharacter(String chosenCharacter) {
+        if (isValidCharacter(chosenCharacter)) {
+            if (isClassAlreadyChosen(chosenCharacter)) {
+                throw new IllegalArgumentException("A character from the same class has already been chosen: " + chosenCharacter);
             }
             for (int i = 0; i < chosenCharacters.length; i++) {
                 if (chosenCharacters[i] == null) { // Find the first empty slot
-                    chosenCharacters[i] = character; // Add character to that slot
-                    return; // Exit the method once added
+                    this.chosenCharacters[i] = chosenCharacter; // Add character to that slot
+                    markClassAsChosen(chosenCharacter); // Mark the class as chosen
+                    return;
                 }
             }
-            throw new IllegalArgumentException("All character slots are filled."); // Handle case when array is full
+            throw new IllegalArgumentException("All character slots are filled.");
         } else {
-            throw new IllegalArgumentException("Invalid character choice: " + character);
+            throw new IllegalArgumentException("Invalid character choice: " + chosenCharacter);
         }
     }
 
@@ -57,29 +57,27 @@ public class ChoicesPVE implements Choose {
     // Check if a character from the same class has already been chosen
     @Override
     public boolean isClassAlreadyChosen(String character) {
-        if (isMageCharacter(character)) {
-            for (String chosenCharacter : chosenCharacters) {
-                if (isMageCharacter(chosenCharacter)) {
-                    return true; // Mage character already chosen
-                }
-            }
-        } else if (isWarriorCharacter(character)) {
-            for (String chosenCharacter : chosenCharacters) {
-                if (isWarriorCharacter(chosenCharacter)) {
-                    return true; // Warrior character already chosen
-                }
-            }
-        } else if (isRangerCharacter(character)) {
-            for (String chosenCharacter : chosenCharacters) {
-                if (isRangerCharacter(chosenCharacter)) {
-                    return true; // Ranger character already chosen
-                }
-            }
+        if (isMageCharacter(character) && classChosen[1]) {
+            return true; // Mage character already chosen
+        } else if (isWarriorCharacter(character) && classChosen[0]) {
+            return true; // Warrior character already chosen
+        } else if (isRangerCharacter(character) && classChosen[2]) {
+            return true; // Ranger character already chosen
         }
         return false;
     }
 
-    // Helper methods to check character classes
+    // Mark the class as chosen
+    private void markClassAsChosen(String character) {
+        if (isMageCharacter(character)) {
+            classChosen[1] = true;
+        } else if (isWarriorCharacter(character)) {
+            classChosen[0] = true;
+        } else if (isRangerCharacter(character)) {
+            classChosen[2] = true;
+        }
+    }
+
     @Override
     public boolean isMageCharacter(String character) {
         for (String validCharacter : validMageCharacters) {
@@ -111,8 +109,69 @@ public class ChoicesPVE implements Choose {
     }
 
     @Override
+    public void selectCharacters() {
+        Scanner scanner = new Scanner(System.in); // Scanner for user input
+
+        // Enforce order: Warrior first
+        System.out.print("Choose character from Warrior: ");
+        while (true) {
+            String choice = scanner.nextLine();
+            try {
+                if (!isWarriorCharacter(choice)) {
+                    throw new IllegalArgumentException("Please select a Warrior character.");
+                }
+                setChosenCharacter(choice);
+                break; // Exit loop if valid
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " Please try again.");
+            }
+        }
+
+        // Enforce order: Mage second
+        System.out.print("Choose character from Mage: ");
+        while (true) {
+            String choice = scanner.nextLine();
+            try {
+                if (!isMageCharacter(choice)) {
+                    throw new IllegalArgumentException("Please select a Mage character.");
+                }
+                setChosenCharacter(choice);
+                break; // Exit loop if valid
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " Please try again.");
+            }
+        }
+
+        // Enforce order: Ranger third
+        System.out.print("Choose character from Ranger: ");
+        while (true) {
+            String choice = scanner.nextLine();
+            try {
+                if (!isRangerCharacter(choice)) {
+                    throw new IllegalArgumentException("Please select a Ranger character.");
+                }
+                setChosenCharacter(choice);
+                break; // Exit loop if valid
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " Please try again.");
+            }
+        }
+    }
+
+    @Override
+    public void displayCharacters(String[] characters) {
+        System.out.println("You have chosen the following characters:\n");
+        for (String character : chosenCharacters) {
+            if (character != null) {
+                System.out.println("- " + character);
+            }
+        }
+        System.out.println();
+    }
+
+    @Override
     public void characterSelection() {
-        System.out.println("==============Player " + player + "=================");
+        System.out.println("==============Player =================");
         System.out.println("╔════════════════════════════════════════════════╗");
         System.out.println("║               CHOOSE YOUR CHARACTERS           ║");
         System.out.println("╠════════════════════════════════════════════════╣");
@@ -122,32 +181,8 @@ public class ChoicesPVE implements Choose {
         System.out.println("╠═══════════════════════╬════════════════════════╣");
         System.out.println("║  3 - Ember Witch      ║  4 - Aquamancer        ║");
         System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║  5 - Shadow Strider   ║  6 - Arcane Musketeer  ║");
+        System.out.println("║  5 - Shadow Strider   ║  6 -Verdant Warden     ║");
         System.out.println("╚═══════════════════════╩════════════════════════╝");
     }
 
-    @Override
-    public void selectCharacters() {
-        Scanner scan = new Scanner(System.in); // Scanner for user input
-
-        for (int i = 0; i < 3; i++) {
-            System.out.print("Choose character " + (i + 1) + ": ");
-            String choice = scan.nextLine(); // Read character choice
-
-            try {
-                setChosenCharacter(choice); // Set chosen character using setter
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                System.out.println(e.getMessage()); // Print error message if invalid
-                i--; // Decrement i to retry the same index
-            }
-        }
-
-        // Display chosen characters after selection
-        System.out.println("You have chosen the following characters:");
-        for (String character : chosenCharacters) {
-            if (character != null) {
-                System.out.println("- " + character);
-            }
-        }
-    }
 }

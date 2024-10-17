@@ -1,45 +1,55 @@
 import java.util.*;
-
 public class Combat implements CombatInterface {
-    int[] points;
-    
+
     @Override
     public int[] wish() {
-        System.out.print("Press Enter key to wish...");
+        System.out.println("\nPress Enter key to wish...");
         Scanner scan = new Scanner(System.in);
         scan.nextLine();
-       points = generateNumbers();
-        System.out.println("Your received: ");
-        System.out.println("Mana: " + points[0] + ", Stamina: " + points[1] + ", Spirit: " + points[2] + ", Energy: " + points[3]);
-        return points;
+        int[] result = generateNumbers();
+        System.out.println("You received: ");
+        System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
+        return result;
     }
+
+     
+    @Override
+    // need pani i change
+    public void display(String[] chars,int health,int defence) {
+        int[]res = wish();
+            Guardian g1 = new Guardian();
+        String type = " ";
+        int i = 0;
+            if(i == 0){
+            type = g1.getType();
+            }
+        System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
+
+        System.out.println("\nChoose Attack: ");
+        System.out.println("1) Basic Attack");
+        System.out.println("2) Skill");
+        System.out.println("3) Ultimate SKill");
+        System.out.println("4) Switch Character");
+        System.out.println("\nYour Choice: ");
+    }
+    
+    
 
     private int[] generateNumbers() {
         Random random = new Random();
         int[] numbers = new int[4];
+        int sum = 10; // We want the sum of the four numbers to be exactly 10
 
-        // Generate three random numbers between 0 and 8
+        // Generate three random numbers between 0 and the remaining sum
         for (int i = 0; i < 3; i++) {
-            numbers[i] = random.nextInt(9);  // generates numbers from 0 to 8
+            numbers[i] = random.nextInt(Math.min(sum + 1, 11)); // Ensure sum does not exceed 10
+            sum -= numbers[i]; // Subtract the generated number from the sum
         }
 
-        // Calculate the last number so the sum equals 8
-        int sum = numbers[0] + numbers[1] + numbers[2];
-        numbers[3] = 8 - sum;
-
-        // If the last number goes out of range, regenerate
-        while (numbers[3] < 0 || numbers[3] > 8) {
-            for (int i = 0; i < 3; i++) {
-                numbers[i] = random.nextInt(9);
-            }
-            sum = numbers[0] + numbers[1] + numbers[2];
-            numbers[3] = 8 - sum;
-        }
+        // The fourth number should be the remainder of the sum to ensure total sum is 8
+        numbers[3] = sum;
 
         return numbers;
     }
+}
 
-    public int[] getPoints() {
-        return points;
-    }
-} 

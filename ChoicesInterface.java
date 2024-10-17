@@ -1,7 +1,10 @@
-public interface Choose{
+public interface ChoicesInterface{
     boolean isValidCharacter(String choice);
-    public void characterSelection();
-    public void selectCharacters();
+    void characterSelection();
+    void selectCharacters();
+    void setChosenCharacter(String chosenCharacter);
+    void displayCharacters(String[] characters);
+    String[] getChosenCharacters();
     boolean isClassAlreadyChosen(String character);
     boolean isMageCharacter(String character);
     boolean isWarriorCharacter(String character);
