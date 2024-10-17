@@ -13,7 +13,7 @@ public class Character implements CharacterInterface{
 
     @Override
     public void setType(String type) {
-       this.type = type;
+      //
     }
 
     @Override
@@ -58,12 +58,12 @@ public class Character implements CharacterInterface{
 
     @Override
     public void setRolls(int roll) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       //
     }
 
     @Override
     public int getRolls() {
-        throw new UnsupportedOperationException("Not supported yet.");
+      return 0;    
     }
 
     

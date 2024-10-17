@@ -1,4 +1,4 @@
 public interface CombatInterface {
-    void wish();
-    void startBattle();
+    int[] wish();
+    void display(String[] chars,int health,int defence);
 }

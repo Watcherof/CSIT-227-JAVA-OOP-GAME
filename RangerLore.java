@@ -41,6 +41,12 @@ public class RangerLore extends Story{
         displayWithDelay("but their greatest gift lies in their ability to restore hope to their companions,", 300);
         displayWithDelay("healing with the gentle touch of a forest breeze and shielding them with the strength of the earth.", 300);
         pause(500);
-    }
     
+        displayWithDelay("In battle, they strike swiftly with their bows and blades, but their greatest gift lies in restoring hope to their companions.", 300);
+        pause(500);
+    
+        displayWithDelay("They heal with the gentle touch of a forest breeze and shield allies with the strength of the earth.", 300);
+        pause(500);
+    }
+  
 }

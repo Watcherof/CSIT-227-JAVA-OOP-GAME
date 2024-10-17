@@ -1,4 +1,4 @@
-public class ArcaneMusketeer extends Character {
+public class VerdantWarden extends Character {
     private int health = 75;
     private int defence = 3;
 
