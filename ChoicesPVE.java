@@ -113,8 +113,8 @@ public class ChoicesPVE implements ChoicesInterface {
         Scanner scanner = new Scanner(System.in); // Scanner for user input
 
         // Enforce order: Warrior first
+        System.out.print("Choose character from Warrior: ");
         while (true) {
-            System.out.print("Choose character from Warrior: ");
             String choice = scanner.nextLine();
             try {
                 if (!isWarriorCharacter(choice)) {
@@ -128,31 +128,34 @@ public class ChoicesPVE implements ChoicesInterface {
         }
 
         // Enforce order: Mage second
-        
+        System.out.print("Choose character from Mage: ");
         while (true) {
-            System.out.print("Choose character from Mage: ");
             String choice = scanner.nextLine();
             try {
+                if (!isMageCharacter(choice)) {
+                    throw new IllegalArgumentException("Please select a Mage character.");
+                }
                 setChosenCharacter(choice);
                 break; // Exit loop if valid
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + " Please try again.");
             }
         }
 
         // Enforce order: Ranger third
+        System.out.print("Choose character from Ranger: ");
         while (true) {
-            System.out.print("Choose character from Ranger: ");
             String choice = scanner.nextLine();
             try {
+                if (!isRangerCharacter(choice)) {
+                    throw new IllegalArgumentException("Please select a Ranger character.");
+                }
                 setChosenCharacter(choice);
                 break; // Exit loop if valid
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage() + " Please try again.");
             }
         }
-        
-        scanner.close();
     }
 
     @Override
