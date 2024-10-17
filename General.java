@@ -1,12 +1,10 @@
 
-import java.util.Random;
-
 public class General extends Character {
     private int health = 100;
     private int defence = 7;
     private int roll;
     private String type = "Stamina";
- class General extends Character {
+
     
     public void getStats() {
         Stats stats = new Stats(100, 7);
@@ -18,20 +16,11 @@ public class General extends Character {
         int damage = getRandomBetween(0, 4);
         System.out.println("You used basic attack and dealth " + damage + " damage.");
 
-
-    @Override
-    public int getHealth(int damageTaken){
-        return health;
+        return damage;
     }
 
-    private int getRandomBetween(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Min should be less than or equal to Max");
-        }
-        Random random = new Random();
-        // Generate random number between min (inclusive) and max (inclusive)
-        return random.nextInt((max - min) + 1) + min;
-    }
+   
+
     @Override
     public int getDefence(int damageTaken){
         return defence;
@@ -62,11 +51,10 @@ public class General extends Character {
         return health-=damage;
     }
 
-    public int basicAttack() {
-        Random r = new Random();
-        return r.nextInt(10); 
-    }
+  
     
 
-
 }
+
+
+

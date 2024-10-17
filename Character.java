@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Character implements CharacterInterface{
     private String type;
 
@@ -66,5 +68,14 @@ public class Character implements CharacterInterface{
       return 0;    
     }
 
+    @Override
+    public int getRandomBetween(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("Min should be less than or equal to Max");
+        }
+        Random random = new Random();
+        // Generate random number between min (inclusive) and max (inclusive)
+        return random.nextInt((max - min) + 1) + min;
+    }
     
 }

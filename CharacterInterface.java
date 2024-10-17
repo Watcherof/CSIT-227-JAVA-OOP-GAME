@@ -12,4 +12,5 @@ public interface CharacterInterface{
     public int skill(int roll);
     public int ult(int roll);
     public int switchCharacter(int roll);
+    public int getRandomBetween(int min, int max);
 }
