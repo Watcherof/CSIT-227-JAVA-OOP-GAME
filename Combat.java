@@ -9,6 +9,7 @@ public class Combat implements CombatInterface {
         System.out.println("You received: ");
         System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
 
+        scan.close();
         return result;
     }
 

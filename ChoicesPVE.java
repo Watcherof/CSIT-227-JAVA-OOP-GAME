@@ -151,6 +151,8 @@ public class ChoicesPVE implements ChoicesInterface {
                 System.out.println(e.getMessage() + " Please try again.");
             }
         }
+        
+        scanner.close();
     }
 
     @Override
