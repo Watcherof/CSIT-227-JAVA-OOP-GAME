@@ -12,7 +12,11 @@ public class Guardian extends Character{
         int damage = getRandomBetween(0, 4);
         System.out.println("You used basic attack and dealth " + damage + " damage.");
 
-        return damage;
+
+    @Override
+    public int takeDamage(int damage){
+        return health-=damage;
+
     }
 
     private int getRandomBetween(int min, int max) {
