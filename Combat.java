@@ -1,25 +1,48 @@
 import java.util.*;
-import java.util.Scanner;
 public class Combat implements CombatInterface {
     @Override
-    public void wish() {
-        System.out.println("Press Enter key to wish...");
+    public int[] wish() {
+        System.out.println("\nPress Enter key to wish...");
         Scanner scan = new Scanner(System.in);
         scan.nextLine();
         int[] result = generateNumbers();
-        System.out.println("Your received: ");
+        System.out.println("You received: ");
         System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
-        scan.close();
+
+        return result;
     }
+
+     
+    @Override
+    // need pani i change
+    public void display(String[] chars,int health,int defence) {
+        int[]res = wish();
+            Guardian g1 = new Guardian();
+        String type = " ";
+        int i = 0;
+            if(i == 0){
+            type = g1.getType();
+            }
+        System.out.println("You current character: " + chars[i] + " (Health: " + health + "|Defence: " + defence + "|" + type + ": " + res[0] + ")");
+
+        System.out.println("\nChoose Attack: ");
+        System.out.println("1) Basic Attack");
+        System.out.println("2) Skill");
+        System.out.println("3) Ultimate SKill");
+        System.out.println("4) Switch Character");
+        System.out.println("\nYour Choice: ");
+    }
+    
+    
 
     private int[] generateNumbers() {
         Random random = new Random();
         int[] numbers = new int[4];
-        int sum = 8; // We want the sum of the four numbers to be exactly 8
+        int sum = 10; // We want the sum of the four numbers to be exactly 10
 
-        // Generate three random numbers between 0 and 8
+        // Generate three random numbers between 0 and the remaining sum
         for (int i = 0; i < 3; i++) {
-            numbers[i] = random.nextInt(Math.min(sum + 1, 9)); // Ensure sum does not exceed 8
+            numbers[i] = random.nextInt(Math.min(sum + 1, 11)); // Ensure sum does not exceed 10
             sum -= numbers[i]; // Subtract the generated number from the sum
         }
 

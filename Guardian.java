@@ -5,11 +5,11 @@ public class Guardian extends Character{
     private int health = 150;
     private int defence = 10;
     private int roll;
-    private String[] type;
+    private String type = "Stamina";
 
     @Override
     public void setHealth(int health){
-        this. health = health;
+        this.health = health;
     }
 
     @Override
@@ -35,7 +35,18 @@ public class Guardian extends Character{
     public int getRolls(){
         return roll;
     }
+    
+    @Override
+    public void setType(String type) {
+      this.type = type;
+    }
 
+    @Override
+    public String getType() {
+        return type;
+    }
+
+    @Override
     public int takeDamage(int damage){
         return 0;
     }
