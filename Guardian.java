@@ -48,7 +48,7 @@ public class Guardian extends Character{
 
     @Override
     public int takeDamage(int damage){
-        return 0;
+        return health-=damage;
     }
 
     public int basicAttack() {
