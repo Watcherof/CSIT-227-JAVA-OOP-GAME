@@ -11,7 +11,7 @@ public class Combat implements CombatInterface {
         System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
 
 
-        scan.close();
+        //scan.close();
 
         return result;
     }

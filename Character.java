@@ -9,7 +9,7 @@ public class Character implements CharacterInterface{
     }
 
     @Override
-    public int getHealth(int damageTaken) {
+    public int getHealth() {
         return 0;
     }
 
@@ -29,7 +29,7 @@ public class Character implements CharacterInterface{
     }
 
     @Override
-    public int getDefence(int damageTaken) {
+    public int getDefence() {
       return 0;
     }
 
