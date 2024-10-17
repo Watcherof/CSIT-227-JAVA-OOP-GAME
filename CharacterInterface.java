@@ -8,7 +8,7 @@ public interface CharacterInterface{
     public void setDefence(int defence);
     public int takeDamage(int damage);
     public int getDefence(int damageTaken);
-    public int basicAttack(int roll);
+    public int basicAttack();
     public int skill(int roll);
     public int ult(int roll);
     public int switchCharacter(int roll);
