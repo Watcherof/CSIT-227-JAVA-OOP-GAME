@@ -27,7 +27,8 @@ public class Main {
         System.out.print("Choose mode (1-PVP/2-PVE): ");
         chooseMode = scan.nextInt();
         
-
+        ////////ABJKSDHDWWADUHWADHAWKDHAKWUDH///////////////awdwjaladijwdliwajdlia/////////////aiwjdwalidjwalijd/
+        /////////adjwadliwajdjadwalidjawdlililwalidlijwalijwal
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
             ////////////PLAYER 1
