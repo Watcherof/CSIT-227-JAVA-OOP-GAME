@@ -19,6 +19,8 @@ public class General extends Character {
         return damage;
     }
 
+    // TODO skills ult chare 
+
     @Override
     public void setDefence(int defence){
         this.defence = defence;

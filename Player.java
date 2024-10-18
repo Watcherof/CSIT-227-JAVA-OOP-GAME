@@ -24,6 +24,7 @@ public class Player {
     
 
     public void wish() {
+        System.out.println("============== Player: " + player + "=============");
         Combat combat = new Combat();
         points = combat.wish();
     }

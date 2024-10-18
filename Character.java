@@ -40,6 +40,8 @@ public class Character implements CharacterInterface{
 
     @Override
     public int skill(int roll) {
+      // generate rng 
+      // return dmg
       return 0;
     }
 
