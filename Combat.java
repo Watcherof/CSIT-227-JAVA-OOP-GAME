@@ -38,8 +38,6 @@ public class Combat extends Character implements CombatInterface {
         String type = g1.getType();
         int i = 0;
 
-
-    
         do {
             System.out.println("Your current character: " + chars[i] + " (Health: " + health + " | Defence: " + defence + " | " + type + ": " + res[0] + ")");
             System.out.println("\nChoose Attack: ");

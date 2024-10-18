@@ -5,7 +5,6 @@ public class General extends Character {
     private int roll;
     private String type = "Stamina";
 
-    
     public void getStats() {
         Stats stats = new Stats(100, 7);
     }
