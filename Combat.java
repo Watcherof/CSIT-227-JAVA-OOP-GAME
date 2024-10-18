@@ -35,9 +35,9 @@ public class Combat extends Character implements CombatInterface {
         Scanner scan = new Scanner(System.in);
         int choice;
         General g1 = new General();
-        String type = " ";
+        String type = g1.getType();
         int i = 0;
-        
+
 
     
         do {
@@ -63,7 +63,6 @@ public class Combat extends Character implements CombatInterface {
                         displayWithDelay("You now have " + res[i] + " stamina/energy left.", 150);
                     }
                     break;
-            
                 case 2:
                     if (res[i] < 3) {
                         System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!"); 
