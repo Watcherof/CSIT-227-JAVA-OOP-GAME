@@ -30,9 +30,12 @@ public class Main {
 
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
+            ////////////PLAYER 1
             c1.characterSelection();
+            // choose char 
             c1.selectCharacters();
             c1.displayCharacters(c1.getChosenCharacters());
+            // tarongon ang pvp kana ///////////////
             player1.chars();
             player1.wish();
             player2.wish();

@@ -35,13 +35,9 @@ public class Combat extends Character implements CombatInterface {
         Scanner scan = new Scanner(System.in);
         int choice;
         General g1 = new General();
-        String type = " ";
+        String type = g1.getType();
         int i = 0;
-        
-        if (i == 0) {
-            type = g1.getType();
-        }
-    
+
         do {
             System.out.println("Your current character: " + chars[i] + " (Health: " + health + " | Defence: " + defence + " | " + type + ": " + res[0] + ")");
             System.out.println("\nChoose Attack: ");
@@ -54,7 +50,6 @@ public class Combat extends Character implements CombatInterface {
             System.out.print("\nYour Choice: ");
     
             choice = scan.nextInt();
-            
             switch (choice) {
                 case 1:
                     if (res[i] < 2) {
@@ -62,11 +57,10 @@ public class Combat extends Character implements CombatInterface {
                     } else {
                         res[i] -= 2;  
                         displayWithDelay(chars[i] + " charges towards the enemies with a swift basic attack!", 150); 
-                        displayWithDelay("They hit the enemies, dealing " + getRandomBetween(0, 10) + " damage.", 150);  // 0-10 damage range
+                        displayWithDelay("They hit the enemies, dealing " + g1.basicAttack() + " damage.", 150);  // 0-10 damage range
                         displayWithDelay("You now have " + res[i] + " stamina/energy left.", 150);
                     }
                     break;
-            
                 case 2:
                     if (res[i] < 3) {
                         System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!"); 

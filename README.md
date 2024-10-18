@@ -10,3 +10,4 @@ Choose attack:
 3 Ultimate
 4 Switch Character
 Your choice: ___
+UPDATE SKIILS AND ULT IN 

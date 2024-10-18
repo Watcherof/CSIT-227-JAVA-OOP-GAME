@@ -5,7 +5,6 @@ public class General extends Character {
     private int roll;
     private String type = "Stamina";
 
-    
     public void getStats() {
         Stats stats = new Stats(100, 7);
     }
@@ -18,6 +17,8 @@ public class General extends Character {
 
         return damage;
     }
+
+    // TODO skills ult chare 
 
     @Override
     public void setDefence(int defence){
