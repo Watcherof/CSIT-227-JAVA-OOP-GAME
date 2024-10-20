@@ -34,24 +34,24 @@ public class Character implements CharacterInterface{
     }
 
     @Override
-    public int basicAttack() {
+    public int basicAttack(String chars, int res) {
        return 0;
     }
 
     @Override
-    public int skill(int roll) {
+    public int skill(String chars, int res) {
       // generate rng 
       // return dmg
       return 0;
     }
 
     @Override
-    public int ult(int roll) {
+    public int ult(String chars,int res) {
         return 0;
     }
 
     @Override
-    public int switchCharacter(int roll) {
+    public int switchCharacter(String chars,int roll) {
         return 0;
     }
 
@@ -78,6 +78,27 @@ public class Character implements CharacterInterface{
         Random random = new Random();
         // Generate random number between min (inclusive) and max (inclusive)
         return random.nextInt((max - min) + 1) + min;
+    }
+
+    
+
+    @Override
+    public void displayWithDelay(String text, int delayInMillis) {
+      String[] words = text.split(" ");  // Split text into words
+      for (String word : words) {
+          System.out.print(word + " ");   // Print each word followed by a space
+          try {
+              Thread.sleep(delayInMillis); // Delay between each word
+          } catch (InterruptedException ex) {
+              Thread.currentThread().interrupt(); 
+          }
+      }
+      System.out.println(); 
+  }
+
+    @Override
+    public void choices(String chars, int res) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

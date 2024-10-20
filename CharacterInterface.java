@@ -8,9 +8,11 @@ public interface CharacterInterface{
     public void setDefence(int defence);
     public int takeDamage(int damage);
     public int getDefence();
-    public int basicAttack();
-    public int skill(int roll);
-    public int ult(int roll);
-    public int switchCharacter(int roll);
+    public int basicAttack(String chars, int res);
+    public int skill(String chars,int res);
+    public int ult(String chars,int res);
+    public int switchCharacter(String chars,int res);
     public int getRandomBetween(int min, int max);
+    public void choices(String chars, int res);
+    void displayWithDelay(String name,int mili);
 }

@@ -237,6 +237,7 @@ public class Story implements StoryInterface {
     
 
 
+
     @Override 
     public void tellStoryEnd(String name) {
         displayWithDelay(name + ": Finally, it’s over! We did it, guys!", 300);

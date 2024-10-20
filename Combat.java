@@ -1,18 +1,5 @@
 import java.util.*;
 public class Combat extends Character implements CombatInterface {
-    
-    public void displayWithDelay(String text, int delayInMillis) {
-        String[] words = text.split(" ");  // Split text into words
-        for (String word : words) {
-            System.out.print(word + " ");   // Print each word followed by a space
-            try {
-                Thread.sleep(delayInMillis); // Delay between each word
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt(); 
-            }
-        }
-        System.out.println(); 
-    }
     @Override
     public int[] wish() {
         System.out.println("\nPress Enter key to wish...");
@@ -26,88 +13,118 @@ public class Combat extends Character implements CombatInterface {
         return result;
     }
 
-     
 
-    @Override
-    // need pani i change
-    public void display(String[] chars, int health, int defence) {
-        int[] res = wish();  // Assume res[0] is stamina
-        Scanner scan = new Scanner(System.in);
-        int choice;
-        General g1 = new General();
-        String type = g1.getType();
-        int i = 0;
-
-        do {
-            System.out.println("Your current character: " + chars[i] + " (Health: " + health + " | Defence: " + defence + " | " + type + ": " + res[0] + ")");
-            System.out.println("\nChoose Attack: ");
-            System.out.println("1) Basic Attack (Cost: 2 Stamina)");
-            System.out.println("2) Skill (Cost: 3 Stamina)");
-            System.out.println("3) Ultimate Skill (Cost: 5 Stamina)");
-            System.out.println("4) Switch Character");
-            System.out.println("5) Reroll(For demonstration)");
-            System.out.println("6) End Turn");
-            System.out.print("\nYour Choice: ");
-    
-            choice = scan.nextInt();
-            switch (choice) {
-                case 1:
-                    if (res[i] < 2) {
-                        System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");  
-                    } else {
-                        res[i] -= 2;  
-                        displayWithDelay(chars[i] + " charges towards the enemies with a swift basic attack!", 150); 
-                        displayWithDelay("They hit the enemies, dealing " + g1.basicAttack() + " damage.", 150);  // 0-10 damage range
-                        displayWithDelay("You now have " + res[i] + " stamina/energy left.", 150);
-                    }
-                    break;
-                case 2:
-                    if (res[i] < 3) {
-                        System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!"); 
-                    } else {
-                        res[i] -= 3; 
-                        displayWithDelay(chars[i] + " focuses intensely, channeling a devastating skill!", 150); 
-                        displayWithDelay("Critical damage is inflicted upon the enemies dealing " + getRandomBetween(11,15) + " to tne enemies!", 150);
-                        displayWithDelay("You now have " + res[i] + " stamina/energy left.", 150);
-                    }
-                    break;
-            
-                case 3:
-                    if (res[i] < 5) {
-                        System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
-                    } else {
-                        res[i] -= 5;  
-                        displayWithDelay(chars[i] + " unsheathes dual swords, unleashing their ultimate technique!", 150);  
-                        displayWithDelay("The skill's damage is doubled as the dual swords tear through the battlefield, dealing " + getRandomBetween(16,25 ) , 150);
-                        displayWithDelay("You now have " + res[i] + " stamina/energy left.", 150);
-                    }
-                    break;
-            
-                case 4:
-                    if (res[i] < 1) {
-                        displayWithDelay("Insufficient Stamina or Energy to switch! Please END TURN!", 150); 
-                    } else {
-                        res[i] -= 1;
-                        displayWithDelay(chars[i] + " calls for reinforcements! A new character is ready to fight!", 150); 
-                        displayWithDelay("You now have " + res[i] + " stamina/energy left.", 150);
-                      
-                    }
-                    break;
-                case 5:
-                    res = wish(); 
-                    break;
-                default:
-                    displayWithDelay(chars[i] + " decides to regroup and ends their turn.", 150);  
-                    break;
+        @Override
+        // need pani i change
+        public void display(String[] chars) {
+            int[] res = wish();  // Assume res[0] is stamina
+            Scanner scan = new Scanner(System.in);
+            int choice;
+            Character g1 = null;
+            int i, track = 0;
+            if (chars[0].equalsIgnoreCase("guardians")) {
+                g1 = new Guardian();
+            } else if (chars[0].equalsIgnoreCase("general")) {
+                g1 = new General();
             }
-            
-            
-        } while (choice != 6);
+            Character m1 = null;
 
-    }
+            if (chars[1].equalsIgnoreCase("ember witch")) {
+                m1 = new EmberWitch();
+            } else if (chars[1].equalsIgnoreCase("aquamancer")) {
+                m1 = new Aquamancer();
+            }
+            Character r1 = null;
+            if (chars[2].equalsIgnoreCase("shadow strider")) {
+                r1 = new ShadowStrider();
+            } else if (chars[2].equalsIgnoreCase("verdant warden")) {
+                r1 = new VerdantWarden();
+            }
+
+
+            do {
+                //String[] types = {g1.getType(), m1.getType(), r1.getType()};
+                switch (track) {
+                    case 0:
+                        i = 0;
+                        g1.choices(chars[i],  res[i]);
+                        break;
+                    case 1:
+                        i = 1;
+                        m1.choices(chars[i], res[i]);
+                        break;
+                    case 2:
+                        i = 2;
+                        r1.choices(chars[i], res[i]);
+                        break;
+                    default:
+                        i = 0;
+                        track = 0;
+                        g1.choices(chars[i], res[i]);
+                        break;
+                }
+
+                choice = scan.nextInt();
+                switch (choice) {
+                    case 1:
+                            if(i == 0){
+                                g1.basicAttack(chars[i], res[i]);
+                            }else if(i == 1){
+                                m1.basicAttack(chars[i], res[i]);
+                            }else if(i == 3){
+                                r1.basicAttack(chars[i], res[i]);
+                            }
+                            res[i] -= 2;
+                        break;
+                    case 2:
+                            if(i ==0){
+                                g1.skill(chars[i], res[i]);
+                                res[i]-=3;
+                            }else if(i == 1){
+                                m1.skill(chars[i],res[i]);
+                                res[i]-=5;
+                            }else if(i == 3){
+                                r1.skill(chars[i], res[i]);
+                                res[i] -= 5;
+                            }
+                        break;
+                    case 3:
+                        if(i == 0){       
+                        g1.ult(chars[i], res[i]);
+                        res[i]-=5;
+                        }else if(i == 1){
+                            m1.ult(chars[i],res[i]);
+                            res[i] -= 8;
+                        }else if(i == 3){
+                            r1.ult(chars[i], res[i]);
+                            res[i] -= 8;
+                        }
+                        break;
+                    case 4:
+                        // naay bug sa verdant warden dili ma switch
+                        if(i == 0){
+                            g1.switchCharacter(chars[i], res[i]);
+                        }else if(i == 1){
+                            m1.switchCharacter(chars[i], res[i]);
+                        }else{
+                            r1.switchCharacter(chars[i], res[i]);
+                           }    
+                        track++;
+                        break;
+                    case 5:
+                        res = wish(); // Reroll stamina/energy
+                        break;
+                    default:
+                        displayWithDelay(chars[i] + " decides to regroup and ends their turn.", 150);
+                        break;
+                }
+            } while (choice != 6);
+        }
     
 
-    private int[] generateNumbers() {
+    
+    @Override
+    public int[] generateNumbers() {
         Random random = new Random();
         int[] numbers = new int[4];
         int sum = 10; // We want the sum of the four numbers to be exactly 10
