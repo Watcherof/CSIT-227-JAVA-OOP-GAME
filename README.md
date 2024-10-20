@@ -1,13 +1,9 @@
 # CSIT-227-JAVA-OOP-GAME
 Echoes of War: The Guardian's Path
 TARGET OUT COME BY FRIDAY
-Make a wish
-You have receive 3 stamina, 2 mana , 4 spirits, 5 energy;
-Your current Character: Guardian (Health: 150 | Defence: 4 | stamina 3);
-Choose attack: 
-1 Basic Attack
-2 Skill
-3 Ultimate
-4 Switch Character
-Your choice: ___
-UPDATE SKIILS AND ULT IN 
+IMPLEMENT THE HEALING SYSTEM AND THE SHIELD SYSTEM
+BUG IN TRYING TO SWITCH FROM MAGE CLASS TO VERDANT WARDEN
+(EXAMPLE: CURRENT CHAR:AQUAMANCER CHOICE = 4)
+ERROR sya dha pero kung shadow strider dili find the bug
+IMPLEMENT NA ANG BATTLE SYSTEM SA PLAYER 1 OG PLAYER 2 
+KAILANGAN MA HUMAN BY FRIDAY

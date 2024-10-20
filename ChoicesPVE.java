@@ -175,17 +175,18 @@ public class ChoicesPVE implements ChoicesInterface {
     @Override
     public void characterSelection() {
         System.out.println("====================Player 1======================");
-        System.out.println("╔════════════════════════════════════════════════╗");
-        System.out.println("║               CHOOSE YOUR CHARACTERS           ║");
-        System.out.println("╠════════════════════════════════════════════════╣");
-        System.out.println("║   ATTACK              ║           SUPPORT      ║");
-        System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║  1 - General          ║  2 - Guardians         ║");
-        System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║  3 - Ember Witch      ║  4 - Aquamancer        ║");
-        System.out.println("╠═══════════════════════╬════════════════════════╣");
-        System.out.println("║  5 - Shadow Strider   ║  6 -Verdant Warden     ║");
-        System.out.println("╚═══════════════════════╩════════════════════════╝");
+        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+        System.out.println("║                CHOOSE YOUR CHARACTERS                        ║");
+        System.out.println("╠═════════════╦══════════════════════════╦═════════════════════╣");
+        System.out.println("║    CLASS    ║          ATTACK          ║        SUPPORT      ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║   Warrior   ║  1 - General             ║  2 - Guardians      ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║    Mage     ║  3 - Ember Witch         ║  4 - Aquamancer     ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║   Ranger    ║  5 - Shadow Strider      ║  6 - Verdant Warden ║");
+        System.out.println("╚═════════════╩══════════════════════════╩═════════════════════╝");
     }
+    
 
 }

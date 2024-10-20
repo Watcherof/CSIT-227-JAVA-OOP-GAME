@@ -6,4 +6,5 @@ public interface StoryInterface {
     void pause(int milli);
     void tellCharLoreAttack();
     void tellCharLoreSupport();
+
 }
