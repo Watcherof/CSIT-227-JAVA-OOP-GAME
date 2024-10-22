@@ -1,6 +1,8 @@
 public interface ChoicesInterface{
     boolean isValidCharacter(String choice);
-    void characterSelection();
+    void characterSelectionPVE(String name);
+    void characterSelectionPVP1();
+    void characterSelectionPVP2();
     void selectCharacters();
     void setChosenCharacter(String chosenCharacter);
     void displayCharacters(String[] characters);
