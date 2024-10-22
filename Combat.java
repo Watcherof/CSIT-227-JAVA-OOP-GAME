@@ -13,113 +13,132 @@ public class Combat extends Character implements CombatInterface {
         return result;
     }
 
+   
 
-        @Override
-        // need pani i change
-        public void display(String[] chars) {
-            int[] res = wish();  // Assume res[0] is stamina
-            Scanner scan = new Scanner(System.in);
-            int choice;
-            Character g1 = null;
-            int i, track = 0;
-            if (chars[0].equalsIgnoreCase("guardians")) {
-                g1 = new Guardian();
-            } else if (chars[0].equalsIgnoreCase("general")) {
-                g1 = new General();
-            }
-            Character m1 = null;
+    @Override
+    public int combat(String[] chars) {
+        int[] res = wish();  // Assume res[0] is stamina or energy
+        Scanner scan = new Scanner(System.in);
+        Character g1 = null, m1 = null, r1 = null;
+        int i = 0, track = 0, choice, damage = 0;
 
-            if (chars[1].equalsIgnoreCase("ember witch")) {
-                m1 = new EmberWitch();
-            } else if (chars[1].equalsIgnoreCase("aquamancer")) {
-                m1 = new Aquamancer();
-            }
-            Character r1 = null;
-            if (chars[2].equalsIgnoreCase("shadow strider")) {
-                r1 = new ShadowStrider();
-            } else if (chars[2].equalsIgnoreCase("verdant warden")) {
-                r1 = new VerdantWarden();
-            }
-
-
-            do {
-                //String[] types = {g1.getType(), m1.getType(), r1.getType()};
-                switch (track) {
-                    case 0:
-                        i = 0;
-                        g1.choices(chars[i],  res[i]);
-                        break;
-                    case 1:
-                        i = 1;
-                        m1.choices(chars[i], res[i]);
-                        break;
-                    case 2:
-                        i = 2;
-                        r1.choices(chars[i], res[i]);
-                        break;
-                    default:
-                        i = 0;
-                        track = 0;
-                        g1.choices(chars[i], res[i]);
-                        break;
-                }
-
-                choice = scan.nextInt();
-                switch (choice) {
-                    case 1:
-                            if(i == 0){
-                                g1.basicAttack(chars[i], res[i]);
-                            }else if(i == 1){
-                                m1.basicAttack(chars[i], res[i]);
-                            }else if(i == 3){
-                                r1.basicAttack(chars[i], res[i]);
-                            }
-                            res[i] -= 2;
-                        break;
-                    case 2:
-                            if(i ==0){
-                                g1.skill(chars[i], res[i]);
-                                res[i]-=3;
-                            }else if(i == 1){
-                                m1.skill(chars[i],res[i]);
-                                res[i]-=5;
-                            }else if(i == 3){
-                                r1.skill(chars[i], res[i]);
-                                res[i] -= 5;
-                            }
-                        break;
-                    case 3:
-                        if(i == 0){       
-                        g1.ult(chars[i], res[i]);
-                        res[i]-=5;
-                        }else if(i == 1){
-                            m1.ult(chars[i],res[i]);
-                            res[i] -= 8;
-                        }else if(i == 3){
-                            r1.ult(chars[i], res[i]);
-                            res[i] -= 8;
-                        }
-                        break;
-                    case 4:
-                        // naay bug sa verdant warden dili ma switch
-                        if(i == 0){
-                            g1.switchCharacter(chars[i], res[i]);
-                        }else if(i == 1){
-                            m1.switchCharacter(chars[i], res[i]);
-                        }else{
-                            r1.switchCharacter(chars[i], res[i]);
-                           }    
-                        track++;
-                        break;
-                    case 5:
-                        res = wish(); // Reroll stamina/energy
-                        break;
-                    default:
-                        displayWithDelay(chars[i] + " decides to regroup and ends their turn.", 150);
-                        break;
-                }
-            } while (choice != 6);
+        // Initialize characters based on the chosen characters
+        if (chars[0].equalsIgnoreCase("guardians")) {
+            g1 = new Guardian();
+        } else if (chars[0].equalsIgnoreCase("general")) {
+            g1 = new General();
         }
+
+        if (chars[1].equalsIgnoreCase("ember witch")) {
+            m1 = new EmberWitch();
+        } else if (chars[1].equalsIgnoreCase("aquamancer")) {
+            m1 = new Aquamancer();
+        }
+
+        if (chars[2].equalsIgnoreCase("shadow strider")) {
+            r1 = new ShadowStrider();
+        } else if (chars[2].equalsIgnoreCase("verdant warden")) {
+            r1 = new VerdantWarden();
+        }
+
+        do {
+            switch (track) {
+                case 0:
+                    i = 0;
+                    g1.choices(chars[i], res[i]);
+                    break;
+                case 1:
+                    i = 1;
+                    m1.choices(chars[i], res[i]);
+                    break;
+                case 2:
+                    i = 2;
+                    r1.choices(chars[i], res[i]);
+                    break;
+                default:
+                    i = 0;
+                    track = 0;
+                    g1.choices(chars[i], res[i]);
+                    break;
+            }
+
+            choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    // Basic attack
+                    if (i == 0) {
+                        damage = g1.basicAttack(chars[i], res[i]);
+                    } else if (i == 1) {
+                        damage = m1.basicAttack(chars[i], res[i]);
+                    } else if (i == 2) {
+                        damage = r1.basicAttack(chars[i], res[i]);
+                    }
+                    res[i] -= 2;
+                    break;
+                case 2:
+                    // Skill attack
+                    if (i == 0) {
+                        damage = g1.skill(chars[i], res[i]);
+                        res[i] -= 3;
+                    } else if (i == 1) {
+                        damage = m1.skill(chars[i], res[i]);
+                        res[i] -= 5;
+                    } else if (i == 2) {
+                        damage = r1.skill(chars[i], res[i]);
+                        res[i] -= 5;
+                    }
+                    break;
+
+                case 3:
+                    // Ultimate attack
+                    if (i == 0) {
+                        damage = g1.ult(chars[i], res[i]);
+                        res[i] -= 5;
+                    } else if (i == 1) {
+                        damage = m1.ult(chars[i], res[i]);
+                        res[i] -= 8;
+                    } else if (i == 2) {
+                        damage = r1.ult(chars[i], res[i]);
+                        res[i] -= 8;
+                    }
+                    break;
+
+                case 4:
+                    // Switch character
+                    if (i == 0) {
+                        g1.switchCharacter(chars[i], res[i]);
+                    } else if (i == 1) {
+                        m1.switchCharacter(chars[i], res[i]);
+                    } else {
+                        r1.switchCharacter(chars[i], res[i]);
+                    }
+                    track++;  // Move to the next character
+                    break;
+
+                case 5:
+                    // Reroll stamina/energy
+                    res = wish();
+                    displayWithDelay("Rerolling resources: " + chars[i] + " now has " + res[i] + " stamina/energy.", 1000);
+                    break;
+
+                case 6:
+                    // End turn
+                    displayWithDelay(chars[i] + " decides to regroup and ends their turn.", 150);
+                    return 0;
+
+                default:
+                    displayWithDelay("Invalid choice. Please select an action.", 300);
+                    break;
+            }
+        } while (g1.getHealth() > 0 || m1.getHealth() > 0 || r1.getHealth() > 0 || choice == 6);
+        if (g1.getHealth() == 0 && m1.getHealth() == 0 && r1.getHealth() == 0) {
+            return -21;  // Indicate player has lost
+        }
+        return damage;
+    }
+
+    
+    
     
 
     

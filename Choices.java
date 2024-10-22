@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-public class ChoicesPVE implements ChoicesInterface {
+public class Choices implements ChoicesInterface {
 
-    public ChoicesPVE(int player) {
+    public Choices(int player) {
     }
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
@@ -16,6 +16,7 @@ public class ChoicesPVE implements ChoicesInterface {
         return chosenCharacters;
     }
 
+   
     // Setter 
     @Override
     public void setChosenCharacter(String chosenCharacter) {
@@ -173,8 +174,41 @@ public class ChoicesPVE implements ChoicesInterface {
     }
 
     @Override
-    public void characterSelection() {
-        System.out.println("====================Player 1======================");
+    public void characterSelectionPVE(String name) {
+        System.out.println("=======================Player " + name +" ========================");
+        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+        System.out.println("║                CHOOSE YOUR CHARACTERS                        ║");
+        System.out.println("╠═════════════╦══════════════════════════╦═════════════════════╣");
+        System.out.println("║    CLASS    ║          ATTACK          ║        SUPPORT      ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║   Warrior   ║  1 - General             ║  2 - Guardians      ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║    Mage     ║  3 - Ember Witch         ║  4 - Aquamancer     ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║   Ranger    ║  5 - Shadow Strider      ║  6 - Verdant Warden ║");
+        System.out.println("╚═════════════╩══════════════════════════╩═════════════════════╝");
+    }
+
+    @Override
+    public void characterSelectionPVP1() {
+        System.out.println("========================= Player 1 =============================");
+        System.out.println("╔══════════════════════════════════════════════════════════════╗");
+        System.out.println("║                CHOOSE YOUR CHARACTERS                        ║");
+        System.out.println("╠═════════════╦══════════════════════════╦═════════════════════╣");
+        System.out.println("║    CLASS    ║          ATTACK          ║        SUPPORT      ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║   Warrior   ║  1 - General             ║  2 - Guardians      ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║    Mage     ║  3 - Ember Witch         ║  4 - Aquamancer     ║");
+        System.out.println("╠═════════════╬══════════════════════════╬═════════════════════╣");
+        System.out.println("║   Ranger    ║  5 - Shadow Strider      ║  6 - Verdant Warden ║");
+        System.out.println("╚═════════════╩══════════════════════════╩═════════════════════╝");
+    }
+
+    @Override
+    public void characterSelectionPVP2() {
+        
+        System.out.println("========================= Player 2 =============================");
         System.out.println("╔══════════════════════════════════════════════════════════════╗");
         System.out.println("║                CHOOSE YOUR CHARACTERS                        ║");
         System.out.println("╠═════════════╦══════════════════════════╦═════════════════════╣");

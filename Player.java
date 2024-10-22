@@ -1,13 +1,15 @@
 public class Player {
     int player = 0;
     int[] points;
+    Combat player1Combat = new Combat();
+    Combat player2Combat = new Combat();
 
     public Player(int player) {
         this.player = player;
     }
 
     public void chars() {
-        ChoicesPVE choicesPVE = new ChoicesPVE(player);
+        Choices choicesPVE = new Choices(player);
         String[] chars = choicesPVE.getChosenCharacters();
 
         Characters[] characters = new Characters[3];
@@ -39,4 +41,9 @@ public class Player {
         System.out.println("You currently have: ");
         System.out.println("Mana: " + points[0] + ", Stamina: " + points[1] + ", Spirit: " + points[2] + ", Energy: " + points[3]);
     }
+
+
+    
+
+
 }
