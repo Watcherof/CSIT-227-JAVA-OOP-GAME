@@ -13,6 +13,6 @@ public interface CharacterInterface{
     public int ult(String chars,int res);
     public int switchCharacter(String chars,int res);
     public int getRandomBetween(int min, int max);
-    public void choices(String chars, int res);
+    public void choices(String chars, int res,int damage);// dili pani final
     void displayWithDelay(String name,int mili);
 }

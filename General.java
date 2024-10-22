@@ -1,6 +1,6 @@
 public class General extends Character {
-    private int health = 100;
-    private int defence = 7;
+    public int health = 100;
+    public int defence = 7;
     private int roll;
     private String type = "Stamina";
 
@@ -48,25 +48,20 @@ public class General extends Character {
         return type;
     }
 
+
+ 
     @Override
     public int takeDamage(int damage) {
-        health -= damage;
-        if (health < 0) {
-            health = 0;  // Prevent health from going below 0
-        }
-        System.out.println("General took " + damage + " damage.");
-        System.out.println("General's current health: " + health);
-        return health;
+      int effectiveDamage = damage - this.defence; 
+      this.health -= damage;
+      
+      if (this.health < 0) {
+        this.health = 0;  // Ensure health doesn't go below 0
+      }
+      return this.health;
     }
+    
 
-    public void heal(int amount) {
-        health += amount;
-        if (health > 100) {  // Assuming the maximum health is 100
-            health = 100;
-        }
-        System.out.println("General heals for " + amount + " health points.");
-        System.out.println("General's current health: " + health);
-    }
 
     @Override
     public int basicAttack(String chars, int res) {
@@ -130,8 +125,8 @@ public class General extends Character {
     }
 
     @Override
-    public void choices(String chars, int res) {
-        System.out.println("\nYour current character: " + chars + " (Health: " + health + " | Defence: " + defence + " | " + type + ": " + res + ")");
+    public void choices(String chars, int res,int damage) {
+        System.out.println("\nYour current character: " + chars + " (Health: " + takeDamage(damage) + " | Defence: " + defence + " | " + type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Stamina)");
         System.out.println("2) Skill (Cost: 3 Stamina)");

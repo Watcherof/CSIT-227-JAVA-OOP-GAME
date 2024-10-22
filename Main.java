@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Player player1 = new Player(1);
-        Player player2 = new Player(2);  // Un-comment this if you plan to use Player 2 instance
+        //Player player1 = new Player(1);
+        //Player player2 = new Player(2);  
         Combat player1Combat = new Combat();
         Combat player2Combat = new Combat();
         Choices c1 = new Choices(1);
@@ -28,18 +28,18 @@ public class Main {
         System.out.print("Choose mode (1-PVP/2-PVE): ");
         chooseMode = scan.nextInt();
 
-        // Character selection process for PVP and PVE
+       
         if (chooseMode == 1) {
             System.out.println("You have chosen player versus player!");
-            c1.characterSelectionPVE(mc);
+            c1.characterSelectionPVP1();
             c1.selectCharacters();
             c1.displayCharacters(c1.getChosenCharacters());
 
             System.out.println("Player 1 has chosen. Press Enter for Player 2 to choose.");
-            scan.nextLine(); // Wait for Enter
-            scan.nextLine(); // Wait for Enter
+            scan.nextLine(); 
+            scan.nextLine(); 
 
-            c2.characterSelectionPVE(mc);
+            c2.characterSelectionPVP2();
             c2.selectCharacters();
             c2.displayCharacters(c2.getChosenCharacters());
         } else if (chooseMode == 2) {
@@ -63,32 +63,37 @@ public class Main {
         }
 
         // BATTLE SECTION (PVP/PVE)
+
+        // TEMp
             if (chooseMode == 1) {
                 System.out.println("Combat starts!");
                 boolean gameOver = false;
                 int currentPlayer = 1;
+                int player1Damage,player2Damage;
                     while (!gameOver) {
                         if (currentPlayer == 1) {
-                            // Player 1's Turn
                             System.out.println("Player 1's turn:");
-                            int player1Damage = player1Combat.combat(c1.getChosenCharacters());
+                            player1Damage = player1Combat.combat(c1.getChosenCharacters());
                             if (player1Damage == -21) {
                                 System.out.println("Player 1's characters are all defeated! Player 2 wins!");
                                 gameOver = true;
                                 break;
-                            }
-                            ++currentPlayer; 
+                            }else{
+                                player2Combat.damageTaken(c2.getChosenCharacters(), player1Damage);
+                                ++currentPlayer;
+                            } 
                         } 
                         if(currentPlayer == 2) {
-                            // Player 2's Turn
                             System.out.println("Player 2's turn:");
-                            int player2Damage = player2Combat.combat(c2.getChosenCharacters());
+                            player2Damage = player2Combat.combat(c2.getChosenCharacters());
                             if (player2Damage == -21) {
                                 System.out.println("Player 2's characters are all defeated! Player 1 wins!");
                                 gameOver = true;
                                 break;
+                            }else{
+                                player1Combat.damageTaken(c1.getChosenCharacters(), player2Damage);
+                                --currentPlayer;
                             }
-                            --currentPlayer; 
                         }
                     }
                 }else if (chooseMode == 2) {

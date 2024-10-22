@@ -57,7 +57,7 @@ public class Character implements CharacterInterface{
 
     @Override
     public int takeDamage(int damage) {
-       return damage;
+       return 0;
     }
 
     @Override
@@ -97,7 +97,7 @@ public class Character implements CharacterInterface{
   }
 
     @Override
-    public void choices(String chars, int res) {
+    public void choices(String chars, int res,int damage) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
