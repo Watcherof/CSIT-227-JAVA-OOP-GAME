@@ -126,7 +126,7 @@ public class EmberWitch extends Character {
     }
     
     @Override
-    public void choices(String chars,  int res){
+    public void choices(String chars,  int res,int damage){
         System.out.println("\nYour current character: " + chars + " (Health: " + health + " | Defence: " + defence + " | " + type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Mana or Energy)");

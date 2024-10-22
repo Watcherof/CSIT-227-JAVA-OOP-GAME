@@ -9,12 +9,35 @@ public class Guardian extends Character{
         Stats stats = new Stats(150, 7);
     }
 
-
+    @Override
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
 
     @Override
-    public int takeDamage(int damage){
-        int health = getHealth();
-        return health-=damage;
+    public int getDefence() {
+        return defence;
+    }
+
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    @Override
+    public int getHealth() {
+        return health;
+    }
+
+    @Override
+    public int takeDamage(int damage) {
+        int effectiveDamage = Math.max(damage - defence, 0); // Ensure that damage doesn't go below 0
+        this.health -= damage;
+        
+        if (this.health < 0) {
+            this.health = 0; // Ensure health doesn't go below 0
+        }
+        return this.health;
     }
 
 
@@ -88,8 +111,8 @@ public class Guardian extends Character{
         return 0;
     }
     @Override
-    public void choices(String chars, int res){
-        System.out.println("\nYour current character: " + chars + " (Health: " + health + " | Defence: " + defence + " | " + type + ": " + res + ")");
+    public void choices(String chars, int res,int damage){
+        System.out.println("\nYour current character: " + chars + " (Health: " + this.health + " | Defence: " + defence + " | " + type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Stamina)");
         System.out.println("2) Skill (Cost: 3 Stamina)");
