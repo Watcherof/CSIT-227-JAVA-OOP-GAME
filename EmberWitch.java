@@ -83,7 +83,7 @@ public class EmberWitch extends Characters{
 
     @Override
     public void choices( int res,int damage,int h) {
-        System.out.println("\nYour current character: " + super.getName() + " (Health: " + h + " | Defence: " + defence + " | " + type + ": " + this.res + ")");
+        System.out.println("\nYour current character: " + super.getName() + " (Health: " + h + " | Defence: " + defence + " | " + type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Mana )");
         System.out.println("2) Skill (Cost: 5 Mana)");

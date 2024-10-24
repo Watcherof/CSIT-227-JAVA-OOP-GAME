@@ -61,6 +61,14 @@ public class Player extends Choices { // Player class extending Choices
         }
     }
 
+    
+    public void printAllCharacterStatus() {
+        for (int i = 0; i < characters.length; i++) {
+            System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
+                + (characters[i].isAlive() ? characters[i].getHealth() + " HP" : "Dead"));
+        }
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generate random numbers that sum up to 10
@@ -99,7 +107,8 @@ public class Player extends Choices { // Player class extending Choices
         Scanner scan = new Scanner(System.in); // Create a Scanner for user input
         Characters g1 = null, m1 = null, r1 = null; // Initialize character instances
         int i = 0, track = 0, choice, damage = 0; // Initialize variables
-        int accumulatedDmg = 0; // Variable to accumulate damage
+        int accumulatedDmg; // Variable to accumulate damage
+        int a  = 0;
         do {
             ////TODO
             // MAKE A CONDITIONAL STATEMENT(if else) in this part so that
@@ -107,7 +116,7 @@ public class Player extends Choices { // Player class extending Choices
             g1 = new General(res[0]); // Create a General character with stamina
             m1 = new EmberWitch(res[1]); // Create an EmberWitch character with mana
             r1 = new ShadowStrider(res[2]); // Create a ShadowStrider character with spirit
-
+            accumulatedDmg = 0;
             // Access the opponent's current character's health
             Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
             Characters mc = current.getCurrentCharacter(); // Get the current character of the player
@@ -115,39 +124,44 @@ public class Player extends Choices { // Player class extending Choices
                 case 0:
                     i = 0; // Use the first character
                     System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    g1.choices(res[i], accumulatedDmg, mc.getHealth()); // Display choices for General
+                    mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for General
                     break;
                 case 1:
                     i = 1; // Use the second character
                     System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    m1.choices(res[i], accumulatedDmg, mc.getHealth()); // Display choices for EmberWitch
+                    mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for EmberWitch
                     break;
                 case 2:
                     i = 2; // Use the third character
                     System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    r1.choices(res[i], accumulatedDmg, mc.getHealth()); // Display choices for ShadowStrider
+                    mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for ShadowStrider
                     break;
                 default:
                     i = 0; // Reset to first character
                     track = 0; // Reset track
                     System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    g1.choices(res[i], accumulatedDmg, mc.getHealth()); // Display choices for General
+                    g1.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for General
                     break;
             }
+
 
             // Get the player's choice
             choice = scan.nextInt(); // Read user input for choice
 
             // Perform the attack based on the choice
             if (choice < 4) {
-                damage = performAttack(i, g1, m1, r1, res, choice, opponent); // Perform the attack
+                damage = performAttack(i, res,choice, opponent,mc); // Perform the attack
                 accumulatedDmg += damage; // Accumulate damage
             }
 
             // Handle switching characters and other choices
             switch (choice) {
                 case 4: // Switch character
-                    track++;  // Move to the next character
+                    System.out.println("Choose a char to switch to: ");
+                    current.printAllCharacterStatus();
+                     a = scan.nextInt() - 1;
+                    current.switchCharacter(a);
+                    //track++;  // Move to the next character
                     System.out.println("CHAR CHANGED"); // Notify character change
                     break;
 
@@ -174,48 +188,47 @@ public class Player extends Choices { // Player class extending Choices
     }
 
     // Method to perform the chosen attack
-    private int performAttack(int i, Characters g1, Characters m1, Characters r1, int[] res, int choice, Player opponent) {
+    private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current) {
         int damage = 0; // Initialize damage variable
         switch (choice) {
             case 1: // Basic attack
                 if (i == 0) {
-                    g1.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with General
+                    current.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with General
                     res[i] -= 2; // Deduct resources
                 } else if (i == 1) {
-                    m1.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with EmberWitch
+                    current.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with EmberWitch
                     res[i] -= 2; // Deduct resources
                 } else if (i == 2) {
-                    r1.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with ShadowStrider
+                    current.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with ShadowStrider
                     res[i] -= 2; // Deduct resources
                 }
                 break;
 
             case 2: // Skill attack
                 if (i == 0) {
-                    g1.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with General
-                    res[i] -= 3; // Deduct resources
+                    current.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with General
+                    res[i] -= 5; // Deduct resources
                 } else if (i == 1) {
-                    m1.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with EmberWitch
+                    current.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with EmberWitch
                     res[i] -= 5; // Deduct resources
                 } else if (i == 2) {
-                    r1.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with ShadowStrider
+                    current.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with ShadowStrider
                     res[i] -= 5; // Deduct resources
                 }
                 break;
 
             case 3: // Ultimate attack
                 if (i == 0) {
-                     g1.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with General
-                     res[i] -= 8;
+                    current.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with General
+                    res[i] -=8;
                 } else if (i == 1) {
-                    m1.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with EmberWitch
-                    res[i] -= 8;
+                    current.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with EmberWitch
+                    res[i] -=8;
                 } else if (i == 2) {
-                    r1.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with ShadowStrider
-                    res[i] -= 8;
+                    current.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with ShadowStrider
+                    res[i] -=8;
                 }
                 break;
-
             default: // Invalid choice
                 System.out.println("Invalid choice for attack."); // Print error message
                 break;
