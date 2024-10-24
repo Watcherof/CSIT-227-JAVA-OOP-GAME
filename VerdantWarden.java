@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class VerdantWarden extends Characters {
 
     public VerdantWarden( int res) {
@@ -74,8 +74,13 @@ public class VerdantWarden extends Characters {
     }
 
     @Override
-    public int getRandomBetween(int min, int max) {
-        throw new UnsupportedOperationException("Not supported yet.");
+     public int getRandomBetween(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("Min should be less than or equal to Max");
+        }
+        Random random = new Random();
+        // Generate random number between min (inclusive) and max (inclusive)
+        return random.nextInt((max - min) + 1) + min;
     }
 
     @Override

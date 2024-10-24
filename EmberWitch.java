@@ -10,7 +10,7 @@ public class EmberWitch extends Characters{
         if (res < 0) {
             res = 0;
         }
-        int damage = getRandomBetween(0, 15); // Higher range for magic damage
+        int damage = getRandomBetween(0, 10); // Higher range for magic damage
         if (res < 2) {
             System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
             return;
@@ -19,11 +19,12 @@ public class EmberWitch extends Characters{
             displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);
             displayWithDelay("You now have " + res + " mana left.", 150);
         }
+        opponent.takeDamage(damage);
     }
 
     @Override
     public void skill(int res, Characters opponent) {
-        int damage = getRandomBetween(0, 10);
+        int damage = getRandomBetween(0, 15);
 
         if (res < 0) {
             res = 0;

@@ -54,7 +54,7 @@ public class GameLogic {
                 System.out.println("-----------------------");
                 player1.combat(player1, player2); // Player 1 attacks
                 currentPlayer = 2; // Switch to Player 2
-            } else {
+            } else { // Player 2's turn
                 if (player2.hasAliveCharacters()) { // Check if Player 2 has alive characters
                     System.out.println("-----------------------");
                     System.out.println("Player 2 turn");
@@ -63,6 +63,13 @@ public class GameLogic {
                 currentPlayer = 1; // Switch back to Player 1
             }
         }
+        // Determine and display the winner
+        if (player1.hasAliveCharacters()) {
+            System.out.println("Player 1 wins!");
+        } else {
+            System.out.println("Player 2 wins!");
+        }
+        
     }
 
     // Placeholder for PVE combat logic

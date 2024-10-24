@@ -7,7 +7,7 @@ public class Player extends Choices { // Player class extending Choices
     private final boolean[] classChosen = new boolean[3]; // Track chosen classes: [0] Warrior, [1] Mage, [2] Ranger
     private Characters[] characters; // Array of available characters
     private int index; // Index of the currently active character
-
+    private final String[] type = {"Stamina","Mana","Spirit"};
     // Constructor
     public Player(String name, Characters[] characters) {
         this.name = name; // Initialize player's name
@@ -62,12 +62,19 @@ public class Player extends Choices { // Player class extending Choices
     }
 
     
-    public void printAllCharacterStatus() {
+    public void printAllCharacterStatus(int[] res) {
         for (int i = 0; i < characters.length; i++) {
-            System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
-                + (characters[i].isAlive() ? characters[i].getHealth() + " HP" : "Dead"));
+            if (characters[i].isAlive()) {
+                // If character is alive, print health and resource
+                System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
+                    + characters[i].getHealth() + " HP, " + this.type[i] + ": " + res[i]);
+            } else {
+                // If character is dead, print "Dead" instead of health
+                System.out.println((i + 1) + ". " + characters[i].getName() + ": Dead, " + this.type[i] +": " + res[i]);
+            }
         }
     }
+    
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,87 +112,83 @@ public class Player extends Choices { // Player class extending Choices
     public int combat(Player current, Player opponent) {
         int[] res = wish();  // Assume res[0] is stamina or energy
         Scanner scan = new Scanner(System.in); // Create a Scanner for user input
-        Characters g1 = null, m1 = null, r1 = null; // Initialize character instances
-        int i = 0, track = 0, choice, damage = 0; // Initialize variables
-        int accumulatedDmg; // Variable to accumulate damage
-        int a  = 0;
+        Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
+        Characters mc = current.getCurrentCharacter(); // Get the current character of the player
+        int accumulatedDmg = 0; // Variable to accumulate damage
+        int choice, damage = 0;
+        int a = 0; // Track current character index
+    
         do {
-            ////TODO
-            // MAKE A CONDITIONAL STATEMENT(if else) in this part so that
-            // IF A USER WANTS TO PICK GUARDIAN g1 will be g1 = new Guardian(res[0])
-            g1 = new General(res[0]); // Create a General character with stamina
-            m1 = new EmberWitch(res[1]); // Create an EmberWitch character with mana
-            r1 = new ShadowStrider(res[2]); // Create a ShadowStrider character with spirit
-            accumulatedDmg = 0;
-            // Access the opponent's current character's health
-            Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
-            Characters mc = current.getCurrentCharacter(); // Get the current character of the player
-            switch (track) {
-                case 0:
-                    i = 0; // Use the first character
-                    System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for General
-                    break;
-                case 1:
-                    i = 1; // Use the second character
-                    System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for EmberWitch
-                    break;
-                case 2:
-                    i = 2; // Use the third character
-                    System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for ShadowStrider
-                    break;
-                default:
-                    i = 0; // Reset to first character
-                    track = 0; // Reset track
-                    System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth()); // Print enemy health
-                    g1.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for General
-                    break;
-            }
-
+            System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth());
+            mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for current character
 
             // Get the player's choice
             choice = scan.nextInt(); // Read user input for choice
-
+    
             // Perform the attack based on the choice
             if (choice < 4) {
-                damage = performAttack(i, res,choice, opponent,mc); // Perform the attack
+                damage = performAttack(a, res, choice, opponent, mc); // Perform the attack
                 accumulatedDmg += damage; // Accumulate damage
+    
+                // Check if the opponent's character is dead
+                if (!opponentCurrent.isAlive()) {
+                    System.out.println(opponentCurrent.getName() + " has been defeated!");
+                    // Automatically switch to the next alive opponent character
+                    boolean switched = opponent.switchToNextAliveCharacter();
+                    if (!switched) {
+                        // No more alive characters, opponent loses
+                        System.out.println(opponent.getName() + " has no characters left!");
+                        return 1; // Return 1 to indicate win
+                    }
+                    opponentCurrent = opponent.getCurrentCharacter(); // Update the opponent's current character
+                }
             }
-
+    
             // Handle switching characters and other choices
             switch (choice) {
                 case 4: // Switch character
-                    System.out.println("Choose a char to switch to: ");
-                    current.printAllCharacterStatus();
-                     a = scan.nextInt() - 1;
-                    current.switchCharacter(a);
-                    //track++;  // Move to the next character
-                    System.out.println("CHAR CHANGED"); // Notify character change
+                    System.out.println("Choose a character to switch to: ");
+                    current.printAllCharacterStatus(res);
+                    a = scan.nextInt() - 1;
+                    if (!current.switchCharacter(a)) {
+                        System.out.println("Cannot switch to that character. Try again.");
+                    } else {
+                        mc = current.getCurrentCharacter(); // Update current character
+                    }
                     break;
-
+    
                 case 5: // Reroll stamina/energy
                     res = wish(); // Reroll resources
                     break;
-
+    
                 case 6: // End turn
-                    displayWithDelay(" decides to regroup and ends their turn.", 150); // Notify end of turn
+                    displayWithDelay(" decides to regroup and ends their turn.", 150);
                     return 0; // Return to end turn
-
+    
                 default:
                     if (choice < 1 || choice > 6) {
                         displayWithDelay("Invalid choice. Please select an action.", 300); // Error message for invalid choice
                     }
                     break;
             }
-        } while (g1.getHealth() > 0 || m1.getHealth() > 0 || r1.getHealth() > 0 || choice == 6);
-
-        if (g1.getHealth() == 0 && m1.getHealth() == 0 && r1.getHealth() == 0) {
-            return -21;  // Indicate player has lost
-        }
+    
+        } while (current.hasAliveCharacters() && opponent.hasAliveCharacters());
+    
         return damage; // Return damage dealt
     }
+    
+    // Switch to the next alive character in the opponent's team
+    public boolean switchToNextAliveCharacter() {
+        for (int i = 0; i < characters.length; i++) {
+            if (characters[i].isAlive()) {
+                index = i; // Switch to the next alive character
+                System.out.println("Switching to " + characters[i].getName());
+                return true; // Successful switch
+            }
+        }
+        return false; // No alive characters left
+    }
+    
 
     // Method to perform the chosen attack
     private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current) {
