@@ -23,7 +23,6 @@ public class GameLogic {
 
             System.out.println("Player 1 has chosen. Press Enter for Player 2 to choose.");
             scan.nextLine(); // Consume the newline character
-            scan.nextLine(); // Wait for Enter
 
             c2.characterSelectionPVP2(); // Player 2 selects characters
             Characters[] player2Characters = c2.getChosenChars(); // Get selected characters
