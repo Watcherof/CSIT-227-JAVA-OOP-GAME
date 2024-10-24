@@ -151,8 +151,6 @@ public class Choices implements ChoicesInterface {
                     if(isNumberAndValid(choice)){
                         int num = Integer.parseInt(choice);
                         choice = allCharacters[num-1];
-                    }else{
-                        System.out.println("Invalid Input!!!");
                     } 
                     if (i == 0 && isWarriorCharacter(choice)) { // If selecting a Warrior
                         selectedCharacters[i] = getCharacter(choice); // Get and store the character instance
