@@ -21,7 +21,7 @@ public class General extends Characters{
             displayWithDelay("They hit the enemies, dealing " + damage + " damage.", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        opponent.takeDamage(damage);
+        opponent.takeDamage(100);
     }
 
     @Override
@@ -72,8 +72,8 @@ public class General extends Characters{
 
    
     @Override
-    public void choices( int res,int damage,int h) {
-        System.out.println("\nYour current character: " + super.getName() + " (Health: " + h + " | Defence: " + defence + " | " + type + ": " + res + ")");
+    public void choices( int res) {
+        System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Stamina)");
         System.out.println("2) Skill (Cost: 3 Stamina)");

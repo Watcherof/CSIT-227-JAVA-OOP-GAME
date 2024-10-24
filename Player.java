@@ -1,14 +1,13 @@
-import java.util.Random; // Importing Random for generating random numbers
-import java.util.Scanner; // Importing Scanner for user input
+import java.util.Random; 
+import java.util.Scanner;
 
-public class Player extends Choices { // Player class extending Choices
-    private String name; // Player's name
+public class Player extends Choices { 
+    private String name;
     private final Characters[] chosenCharacters = new Characters[3]; // Array to store selected Characters
-    private final boolean[] classChosen = new boolean[3]; // Track chosen classes: [0] Warrior, [1] Mage, [2] Ranger
-    private Characters[] characters; // Array of available characters
+    private final Characters[] characters; // Array of available characters
     private int index; // Index of the currently active character
     private final String[] type = {"Stamina","Mana","Spirit"};
-    // Constructor
+  
     public Player(String name, Characters[] characters) {
         this.name = name; // Initialize player's name
         this.characters = characters; // Assign the characters array passed to the constructor
@@ -107,6 +106,24 @@ public class Player extends Choices { // Player class extending Choices
         return result; // Return the generated resources
     }
 
+
+    public void clearScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                // For Windows
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                // For Linux/Mac/ANSI-compatible terminals
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            // Fallback to print newlines if clear screen fails
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+        }
+    }
     // Combat method to manage player vs opponent combat
     // NAPAY KUWANG DRE GUYZ ANG PAG INITIALIZE PARA MAKA PILI OG CHARACTERS
     public int combat(Player current, Player opponent) {
@@ -114,30 +131,30 @@ public class Player extends Choices { // Player class extending Choices
         Scanner scan = new Scanner(System.in); // Create a Scanner for user input
         Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
         Characters mc = current.getCurrentCharacter(); // Get the current character of the player
-        int accumulatedDmg = 0; // Variable to accumulate damage
+        //int accumulatedDmg = 0; // Variable to accumulate damage
         int choice, damage = 0;
         int a = 0; // Track current character index
     
         do {
             System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth());
-            mc.choices(res[a], accumulatedDmg, mc.getHealth()); // Display choices for current character
-
+            mc.choices(res[a]); // Display choices for current character
+    
             // Get the player's choice
             choice = scan.nextInt(); // Read user input for choice
     
             // Perform the attack based on the choice
             if (choice < 4) {
                 damage = performAttack(a, res, choice, opponent, mc); // Perform the attack
-                accumulatedDmg += damage; // Accumulate damage
+                //accumulatedDmg += damage; // Accumulate damage
     
                 // Check if the opponent's character is dead
                 if (!opponentCurrent.isAlive()) {
-                    System.out.println(opponentCurrent.getName() + " has been defeated!");
+                    System.out.println("\n" + opponentCurrent.getName() + " has been defeated!");
                     // Automatically switch to the next alive opponent character
                     boolean switched = opponent.switchToNextAliveCharacter();
                     if (!switched) {
                         // No more alive characters, opponent loses
-                        System.out.println(opponent.getName() + " has no characters left!");
+                        System.out.println("\n" + opponent.getName() + " has no characters left!");
                         return 1; // Return 1 to indicate win
                     }
                     opponentCurrent = opponent.getCurrentCharacter(); // Update the opponent's current character
@@ -162,7 +179,7 @@ public class Player extends Choices { // Player class extending Choices
                     break;
     
                 case 6: // End turn
-                    displayWithDelay(" decides to regroup and ends their turn.", 150);
+                    displayWithDelay(mc.getName() + " decides to regroup and ends their turn.", 150);
                     return 0; // Return to end turn
     
                 default:
@@ -171,18 +188,19 @@ public class Player extends Choices { // Player class extending Choices
                     }
                     break;
             }
+            
+        } while (current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6);
     
-        } while (current.hasAliveCharacters() && opponent.hasAliveCharacters());
-    
-        return damage; // Return damage dealt
+        return damage; 
     }
+    
     
     // Switch to the next alive character in the opponent's team
     public boolean switchToNextAliveCharacter() {
         for (int i = 0; i < characters.length; i++) {
             if (characters[i].isAlive()) {
                 index = i; // Switch to the next alive character
-                System.out.println("Switching to " + characters[i].getName());
+                System.out.println("\nEnemy Character is Switching to " + characters[i].getName());
                 return true; // Successful switch
             }
         }
@@ -194,46 +212,26 @@ public class Player extends Choices { // Player class extending Choices
     private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current) {
         int damage = 0; // Initialize damage variable
         switch (choice) {
-            case 1: // Basic attack
-                if (i == 0) {
-                    current.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with General
-                    res[i] -= 2; // Deduct resources
-                } else if (i == 1) {
-                    current.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with EmberWitch
-                    res[i] -= 2; // Deduct resources
-                } else if (i == 2) {
-                    current.basicAttack(res[i], opponent.getCurrentCharacter()); // Perform basic attack with ShadowStrider
-                    res[i] -= 2; // Deduct resources
-                }
+            case 1: 
+                    current.basicAttack(res[i], opponent.getCurrentCharacter()); 
+                    if(res[i] >= 2){
+                        res[i] -= 2; 
+                    }
                 break;
-
             case 2: // Skill attack
-                if (i == 0) {
-                    current.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with General
-                    res[i] -= 5; // Deduct resources
-                } else if (i == 1) {
-                    current.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with EmberWitch
-                    res[i] -= 5; // Deduct resources
-                } else if (i == 2) {
-                    current.skill(res[i], opponent.getCurrentCharacter()); // Perform skill attack with ShadowStrider
-                    res[i] -= 5; // Deduct resources
-                }
+                    current.skill(res[i], opponent.getCurrentCharacter());
+                    if(res[i] >= 5){
+                        res[i] -= 5; 
+                    }
                 break;
-
             case 3: // Ultimate attack
-                if (i == 0) {
-                    current.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with General
-                    res[i] -=8;
-                } else if (i == 1) {
-                    current.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with EmberWitch
-                    res[i] -=8;
-                } else if (i == 2) {
-                    current.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with ShadowStrider
-                    res[i] -=8;
-                }
+                    current.ult(res[i], opponent.getCurrentCharacter());
+                    if(res[i] > 8){
+                        res[i] -=8; 
+                    }
                 break;
             default: // Invalid choice
-                System.out.println("Invalid choice for attack."); // Print error message
+                System.out.println("Invalid choice for attack.");
                 break;
         }
         return damage; // Return damage dealt
@@ -243,13 +241,13 @@ public class Player extends Choices { // Player class extending Choices
     public void displayWithDelay(String text, int delayInMillis) {
         String[] words = text.split(" "); // Split text into words
         for (String word : words) {
-            System.out.print(word + " "); // Print each word
+            System.out.print(word + " ");
             try {
-                Thread.sleep(delayInMillis); // Delay between words
+                Thread.sleep(delayInMillis);
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); // Restore interrupted status
+                Thread.currentThread().interrupt(); 
             }
         }
-        System.out.println(); // Print a newline after the text
+        System.out.println();
     }
 }

@@ -60,7 +60,7 @@ public abstract class Characters {
     public abstract void ult(int res, Characters opponent);
     public abstract void switchCharacter(int res);
     public abstract int getRandomBetween(int min, int max);
-    public abstract void choices(int res, int damage, int health);
+    public abstract void choices(int res);
 
     // Method to display text with a delay between words
     public void displayWithDelay(String text, int delayInMillis) {

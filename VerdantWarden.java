@@ -1,7 +1,6 @@
 import java.util.*;
 public class VerdantWarden extends Characters {
-
-    public VerdantWarden( int res) {
+    public VerdantWarden(int res) {
         super("Verdant Warden", 85, 3, "Spirit", res);
     }
 
@@ -84,8 +83,8 @@ public class VerdantWarden extends Characters {
     }
 
     @Override
-    public void choices( int res,int damage, int h) {
-        System.out.println("\nYour current character: " + super.getName() + " (Health: " + h + " | Defence: " + defence + " | " + type + ": " + res + ")");
+    public void choices( int res) {
+        System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Spirit )");
         System.out.println("2) Skill (Cost: 5 Spirit)");

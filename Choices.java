@@ -130,7 +130,7 @@ public class Choices implements ChoicesInterface {
         } else if (characterName.equalsIgnoreCase("Shadow Strider")) {
             return new ShadowStrider(0); // Return a new Shadow Strider character
         } else if (characterName.equalsIgnoreCase("Verdant Warden")) {
-            // return new VerdantWarden // Uncomment and return the Verdant Warden character
+            return new VerdantWarden(0);
         }
         // Return null if no matching character is found
         return null;
