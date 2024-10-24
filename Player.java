@@ -229,7 +229,6 @@ public class Player extends Choices { // Player class extending Choices
                     res[i] -=8;
                 }
                 break;
-
             default: // Invalid choice
                 System.out.println("Invalid choice for attack."); // Print error message
                 break;
