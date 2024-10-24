@@ -9,7 +9,6 @@ public class ShadowStrider extends Characters{
     
     @Override
     public void basicAttack(int res, Characters opponent) {     
-        
         if (res < 0) {
         res = 0;
     }
@@ -26,10 +25,27 @@ public class ShadowStrider extends Characters{
         opponent.takeDamage(damage);
     }
 
+
     @Override
     public void skill(int res, Characters opponent) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (res < 0) {
+            res = 0;
+        }
+    
+        int damage = getRandomBetween(15, 25); // Higher damage range for a ranger/archer type
+        if (res < 5) {
+            System.out.println("Insufficient Spirit or Energy! Please Switch Character or END TURN!");
+            return;
+        } else {
+
+            displayWithDelay(super.getName() + " readies their bow, swiftly nocking multiple arrows at once!", 150);
+            displayWithDelay("They release a flurry of arrows, each one striking enemies across the battlefield!", 150);
+            displayWithDelay("A rain of arrows falls upon the enemies, dealing " + damage + " damage to each of them.", 150);
+            displayWithDelay("You now have " + res + " stamina/energy left.", 150);
+        }
+        opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity
     }
+    
 
     @Override
     public void ult(int res, Characters opponent) {
@@ -53,7 +69,7 @@ public class ShadowStrider extends Characters{
 
     @Override
     public void choices( int res,int damage, int h) {
-        System.out.println("\nYour current character: " + super.getName() + " (Health: " + h + " | Defence: " + defence + " | " + type + ": " + this.res + ")");
+        System.out.println("\nYour current character: " + super.getName() + " (Health: " + h + " | Defence: " + defence + " | " + type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Spirit )");
         System.out.println("2) Skill (Cost: 5 Spirit)");
