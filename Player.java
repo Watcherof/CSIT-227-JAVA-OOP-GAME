@@ -78,21 +78,25 @@ public class Player extends Choices {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generate random numbers that sum up to 10
+   
+
     public int[] generateNumbers() {
         Random random = new Random(); // Create a Random object
-        int[] numbers = new int[4]; // Array to hold four numbers
-        int sum = 10; // We want the sum of the four numbers to be exactly 10
-
-        // Generate three random numbers between 0 and the remaining sum
-        for (int i = 0; i < 3; i++) {
-            numbers[i] = random.nextInt(Math.min(sum + 1, 11)); // Ensure sum does not exceed 10
+        int[] numbers = new int[3]; // Array to hold three numbers
+        int sum = 10; // We want the sum of the three numbers to be exactly 10
+    
+        // Generate two random numbers between 0 and the remaining sum
+        for (int i = 0; i < 2; i++) {
+            numbers[i] = random.nextInt(Math.min(sum + 1, 11)); // Ensure number does not exceed remaining sum or 10
             sum -= numbers[i]; // Subtract the generated number from the sum
         }
-
-        // The fourth number should be the remainder of the sum to ensure total sum is 10
-        numbers[3] = sum; // Assign remaining sum to the fourth number
+    
+        // The third number should be the remainder of the sum to ensure total sum is 10
+        numbers[2] = sum; // Assign remaining sum to the third number
+    
         return numbers; // Return the generated numbers
     }
+    
 
     // Wish method to receive random resources
     public int[] wish() {
@@ -101,7 +105,7 @@ public class Player extends Choices {
         scan.nextLine(); // Wait for user to press Enter
         int[] result = generateNumbers(); // Generate random resource numbers
         System.out.println("You received: "); // Print received resources
-        System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2] + ", Energy: " + result[3]);
+        System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2]);
 
         return result; // Return the generated resources
     }
@@ -236,7 +240,7 @@ public class Player extends Choices {
                 break;
             case 3: // Ultimate attack
                     current.ult(res[i], opponent.getCurrentCharacter());
-                    if(res[i] > 8){
+                    if(res[i] >= 8){
                         res[i] -=8; 
                     }
                 break;

@@ -14,7 +14,7 @@ public class GameLogic {
     // Method to start the game based on player name and game mode
     public void startGame(String playerName, int gameMode) throws InterruptedException {
         // Character selection based on mode
-        if (gameMode == 1) { // PVP Mode
+        if (gameMode == 1) {//pvp
             System.out.println("You have chosen player versus player!");
             c1.characterSelectionPVP1(); // Player 1 selects characters
             Characters[] player1Characters = c1.getChosenChars(); // Get selected characters
@@ -74,9 +74,6 @@ public class GameLogic {
             System.out.println("║              Player 2 wins!            ║");
             System.out.println("╚════════════════════════════════════════╝");
         }
-        
-        
-        
     }
 
     // Placeholder for PVE combat logic

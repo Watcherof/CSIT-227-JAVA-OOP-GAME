@@ -28,8 +28,7 @@ public class EmberWitch extends Characters{
 
     @Override
     public void skill(int res, Characters opponent) {
-        int damage = getRandomBetween(0, 15);
-
+        int damage = getRandomBetween(10, 15);
         if (res < 0) {
             res = 0;
         }
@@ -38,11 +37,7 @@ public class EmberWitch extends Characters{
             return;
         } else {
             displayWithDelay(super.getName() + " conjures a stunning spell and launches it at the enemies!", 150);
-            displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);
-            res -= 5;
-            // Guaranteed stun
-            displayWithDelay("The enemies are stunned and unable to move!", 150);
-            
+            displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);            
             displayWithDelay("You now have " + res + " mana left.", 150);
         }
         opponent.takeDamage(damage);
@@ -59,11 +54,7 @@ public class EmberWitch extends Characters{
             return;
         } else {
             displayWithDelay(super.getName() + " channels a powerful surge of magic, unleashing it in a massive explosion that engulfs all enemies!", 150);
-            displayWithDelay("The spell hits all enemies, dealing " + damage + " magic damage to each.", 150);
-            res -= 8;
-            // Guaranteed stun
-            displayWithDelay("The enemies are caught in the blast and are stunned, unable to retaliate!", 150);
-            
+            displayWithDelay("The spell hits all enemies, dealing " + damage + " magic damage to each.", 150);            
             displayWithDelay("You now have " + res + " mana left.", 150);
         }
         opponent.takeDamage(damage);
