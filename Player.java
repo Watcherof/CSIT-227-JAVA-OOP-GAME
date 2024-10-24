@@ -206,10 +206,13 @@ public class Player extends Choices { // Player class extending Choices
             case 3: // Ultimate attack
                 if (i == 0) {
                      g1.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with General
+                     res[i] -= 8;
                 } else if (i == 1) {
                     m1.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with EmberWitch
+                    res[i] -= 8;
                 } else if (i == 2) {
                     r1.ult(res[i], opponent.getCurrentCharacter()); // Perform ultimate attack with ShadowStrider
+                    res[i] -= 8;
                 }
                 break;
 
