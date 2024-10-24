@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class Guardian extends Characters{
 
     public Guardian(int res) {
@@ -24,7 +24,7 @@ public class Guardian extends Characters{
             displayWithDelay("They deal " + damage + " damage to the enemy and provide a protective stance for allies!", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        opponent.takeDamage(damage + 4);
+        opponent.takeDamage(damage);
     }
 
     @Override
@@ -72,8 +72,13 @@ public class Guardian extends Characters{
 
     @Override
     public int getRandomBetween(int min, int max) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+       if (min > max) {
+           throw new IllegalArgumentException("Min should be less than or equal to Max");
+       }
+       Random random = new Random();
+       // Generate random number between min (inclusive) and max (inclusive)
+       return random.nextInt((max - min) + 1) + min;
+   }
 
         @Override
         public void choices( int res,int damage,int h) {

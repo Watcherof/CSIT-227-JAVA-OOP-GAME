@@ -46,12 +46,12 @@ public abstract class Characters {
 
     // Method to take damage, applying defence
     public int takeDamage(int damage) {
-        int damageTaken = Math.max(damage - defence, 0); // Calculate damage after defence
-        this.health -= damageTaken; // Subtract damage taken from health
+        //int damageTaken = Math.max(damage - defence, 0); // Calculate damage after defence
+        this.health -= damage; // Subtract damage taken from health
         if (health < 0) {
             health = 0; // Ensure health does not drop below 0
         }
-        return damageTaken; // Return the amount of damage taken
+        return damage; // Return the amount of damage taken
     }
 
     // Abstract methods for character actions to be implemented by subclasses

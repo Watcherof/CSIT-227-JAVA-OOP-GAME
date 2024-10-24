@@ -21,7 +21,7 @@ public class General extends Characters{
             displayWithDelay("They hit the enemies, dealing " + damage + " damage.", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        opponent.takeDamage(damage + 7);
+        opponent.takeDamage(damage);
     }
 
     @Override
