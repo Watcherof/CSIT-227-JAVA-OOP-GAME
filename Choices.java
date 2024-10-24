@@ -6,7 +6,8 @@ public class Choices implements ChoicesInterface {
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
     private final String[] validRangerCharacters = {"Shadow Strider", "Verdant Warden"};
-    
+    private final String[] allCharacters = {"General", "Guardians", "Ember Witch", "Aquamancer", "Shadow Strider", "Verdant Warden"};
+
     public final String[] chosenCharacters = new String[3]; // Array to store selected characters
     private final boolean[] classChosen = new boolean[3]; // Track if a class has already been chosen
 
@@ -54,6 +55,16 @@ public class Choices implements ChoicesInterface {
                (isWarriorCharacter(character) && classChosen[0]) ||
                (isRangerCharacter(character) && classChosen[2]);
     }
+
+    //check if string is number
+    public static boolean isNumberAndValid(String str) { 
+        try {  
+          int num = Integer.parseInt(str);
+          return (num >= 1 && num <= 6);
+        } catch(NumberFormatException e){  
+          return false;  
+        }  
+      }
 
     // Mark the class as chosen based on the selected character
     private void markClassAsChosen(String character) {
@@ -135,9 +146,14 @@ public class Choices implements ChoicesInterface {
         for (int i = 0; i < classes.length; i++) {
             while (true) {
                 System.out.print("Choose a character from " + classes[i] + ": ");
-                String choice = scanner.nextLine(); // Read user input for character choice
+                String choice = scanner.nextLine(); // Read user input for character choice 
                 try {
-                    if (i == 0 && isWarriorCharacter(choice)) { // If selecting a Warrior
+                    if(isNumberAndValid(choice)){
+                        int num = Integer.parseInt(choice);
+                        choice = allCharacters[num-1];
+                    }else{
+                        System.out.println("Invalid Number!!!");
+                    } if (i == 0 && isWarriorCharacter(choice)) { // If selecting a Warrior
                         selectedCharacters[i] = getCharacter(choice); // Get and store the character instance
                         setChosenCharacter(choice); // Track the chosen character
                         break; // Exit the loop if valid
