@@ -43,14 +43,27 @@ public class ShadowStrider extends Characters{
             displayWithDelay("A rain of arrows falls upon the enemies, dealing " + damage + " damage to each of them.", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity
+        opponent.takeDamage(damage);
     }
     
 
     @Override
     public void ult(int res, Characters opponent) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (res < 0) {
+            res = 0;
+        }
+        int damage = 30;
+        if (res < 8) {
+            System.out.println("Insufficient Spirit or Energy! Please switch character or END TURN!");
+            return;
+        } else {
+            displayWithDelay(super.getName() + " harnesses the power of the storm, nocking arrows imbued with fury!", 150);
+            displayWithDelay("A barrage of arrows rains down, each striking true and dealing " + damage + " damage to all enemies!", 150);
+            displayWithDelay("You have " + res + " stamina/energy left.", 150);
+        }
+        opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity
     }
+    
 
     @Override
     public void switchCharacter(int res) {

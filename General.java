@@ -76,7 +76,7 @@ public class General extends Characters{
         System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Stamina)");
-        System.out.println("2) Skill (Cost: 3 Stamina)");
+        System.out.println("2) Skill (Cost: 5 Stamina)");
         System.out.println("3) Ultimate Skill (Cost: 8 Stamina)");
         System.out.println("4) Switch Character");
         System.out.println("5) Reroll (For demonstration)");
