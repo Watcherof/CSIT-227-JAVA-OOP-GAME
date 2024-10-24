@@ -1,132 +1,79 @@
-public class General extends Character {
-    public int health = 100;
-    public int defence = 7;
-    private int roll;
-    private String type = "Stamina";
+import java.util.Random;
 
-    public void getStats() {
-        Stats stats = new Stats(100, 7);
+public class General extends Characters{
+
+    public General(int res){
+        super("General",100,7,"Stamina",res);
     }
 
     @Override
-    public void setDefence(int defence) {
-        this.defence = defence;
-    }
-
-    @Override
-    public int getDefence() {
-        return defence;
-    }
-
-    @Override
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override
-    public void setRolls(int roll) {
-        this.roll = roll;
-    }
-
-    @Override
-    public int getRolls() {
-        return roll;
-    }
-
-    @Override
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public String getType() {
-        return type;
-    }
-
-
- 
-    @Override
-    public int takeDamage(int damage) {
-      int effectiveDamage = damage - this.defence; 
-      this.health -= damage;
-      
-      if (this.health < 0) {
-        this.health = 0;  // Ensure health doesn't go below 0
-      }
-      return this.health;
-    }
-    
-
-
-    @Override
-    public int basicAttack(String chars, int res) {
-        if (res < 0) {
+    public void basicAttack( int res, Characters opponent) {        
+            if (res < 0) {
             res = 0;
         }
         int damage = getRandomBetween(0, 4);
         if (res < 2) {
             displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
-            return 0;
+            return;
         } else {
             res -= 2;
-            displayWithDelay(chars + " charges towards the enemies with a swift basic attack!", 150);
+            displayWithDelay(super.getName()+ " charges towards the enemies with a swift basic attack!", 150);
             displayWithDelay("They hit the enemies, dealing " + damage + " damage.", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        return damage;
+        opponent.takeDamage(damage + 7);
     }
 
     @Override
-    public int skill(String chars, int res) {
+    public void skill( int res, Characters opponent) {
         int damage = getRandomBetween(11, 15);
         if (res < 3) {
             displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
-            return 0;
+            return;
         } else {
             res -= 3;
-            displayWithDelay(chars + " focuses intensely, channeling a devastating skill!", 150);
+            displayWithDelay(super.getName() + " focuses intensely, channeling a devastating skill!", 150);
             displayWithDelay("Critical damage is inflicted upon the enemies dealing " + damage + " damage!", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        return damage;
+        opponent.takeDamage(damage);
     }
 
     @Override
-    public int ult(String chars, int res) {
+    public void ult( int res, Characters opponent) {
         int damage = getRandomBetween(16, 25);
         if (res < 8) {
             displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
-            return 0;
+            return;
         } else {
             res -= 8;
-            displayWithDelay(chars + " unsheathes dual swords, unleashing their ultimate technique!", 150);
+            displayWithDelay(super.getName() + " unsheathes dual swords, unleashing their ultimate technique!", 150);
             displayWithDelay("The skill's damage is doubled as the dual swords tear through the battlefield, dealing " + damage + " damage!", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        return damage;
+        opponent.takeDamage(damage);
     }
 
     @Override
-    public int switchCharacter(String chars, int res) {
-        if (res < 1) {
-            displayWithDelay("Insufficient Stamina or Energy to switch! Please END TURN!", 150);
-            return 0;
-        } else {
-            res -= 1;
-            displayWithDelay(chars + " calls for reinforcements! A new character is ready to fight!", 150);
-            displayWithDelay("You now have " + res + " stamina/energy left.", 150);
+    public void switchCharacter( int res) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'switchCharacter'");
+    }
+
+    @Override
+     public int getRandomBetween(int min, int max) {
+        if (min > max) {
+            throw new IllegalArgumentException("Min should be less than or equal to Max");
         }
-        return 0;
+        Random random = new Random();
+        // Generate random number between min (inclusive) and max (inclusive)
+        return random.nextInt((max - min) + 1) + min;
     }
 
+   
     @Override
-    public void choices(String chars, int res,int damage) {
-        System.out.println("\nYour current character: " + chars + " (Health: " + takeDamage(damage) + " | Defence: " + defence + " | " + type + ": " + res + ")");
+    public void choices( int res,int damage,int h) {
+        System.out.println("\nYour current character: " + super.getName() + " (Health: " + h + " | Defence: " + defence + " | " + type + ": " + this.res + ")");
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Stamina)");
         System.out.println("2) Skill (Cost: 3 Stamina)");
@@ -136,4 +83,8 @@ public class General extends Character {
         System.out.println("6) End Turn");
         System.out.print("\nYour Choice: ");
     }
+ 
+
+ 
+    
 }
