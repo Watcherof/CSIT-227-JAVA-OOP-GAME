@@ -7,7 +7,7 @@ public class General extends Characters{
     }
 
     @Override
-    public void basicAttack( int res, Characters opponent) {        
+    public void basicAttack(int res, Characters opponent) {        
             if (res < 0) {
             res = 0;
         }
@@ -21,7 +21,7 @@ public class General extends Characters{
             displayWithDelay("They hit the enemies, dealing " + damage + " damage.", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
         }
-        opponent.takeDamage(100);
+        opponent.takeDamage(damage);
     }
 
     @Override
