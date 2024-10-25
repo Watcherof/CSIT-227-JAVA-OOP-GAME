@@ -19,7 +19,11 @@ public class EmberWitch extends Characters{
             displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);
             displayWithDelay("You now have " + res + " mana left.", 150);
         }
+
         opponent.takeDamage(damage);
+
+
+
     }
 
     @Override

@@ -140,12 +140,22 @@ public class Player extends Choices {
         int a = 0; // Track current character index
     
         do {
-            System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth());
-            mc.choices(res[a]); // Display choices for current character
-    
-            // Get the player's choice
-            choice = scan.nextInt(); // Read user input for choice
-    
+            while(true){
+                try{
+                System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth());
+                mc.choices(res[a]); // Display choices for current character
+                    // Get the player's choice
+                    choice = scan.nextInt(); // Read user input for choice
+                    if(choice >= 1 && choice<=6){
+                        break;
+                    }else{
+                        System.out.println("Invalid choice. Enter a number from 1 - 6!!!");
+                    }
+                }catch(Exception e){
+                    System.out.println("Invalid choice. Enter a number!!!");
+                    scan.next();
+                }
+            }
             // Perform the attack based on the choice
             if (choice < 4) {
                 damage = performAttack(a, res, choice, opponent, mc); // Perform the attack
