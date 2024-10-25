@@ -4,6 +4,8 @@ public abstract class Characters {
     protected int defence;      // Character's defence points
     protected String type;      // Type of character (e.g., Mage, Warrior)
     protected int res;          // Resource or special attribute related to the character's skills
+    protected int shield;       // Shield value 
+
 
     // Constructor to initialize character attributes
     public Characters(String name, int health, int defence, String type, int res) {
@@ -34,6 +36,14 @@ public abstract class Characters {
         return defence;
     }
 
+    public void setShield(int shield) {
+        this.shield = shield;
+    }
+
+    public int getShield() {
+        return shield;
+    }
+
     // Getter for character's resource
     public int getRes() {
         return res;
@@ -47,7 +57,21 @@ public abstract class Characters {
     // Method to take damage, applying defence
     public int takeDamage(int damage) {
         //int damageTaken = Math.max(damage - defence, 0); // Calculate damage after defence
-        this.health -= damage; // Subtract damage taken from health
+        if (shield > 0) {
+            if (shield > damage) {
+                shield -= damage;
+                System.out.println("Shield blocked the attack!");
+                damage = 0;
+            } else {
+                damage -= shield;
+                shield = 0;
+                health -= damage;
+                System.out.println("Shield broken!");
+            }
+        } else {
+            this.health -= damage; // Subtract damage taken from healt
+        }
+
         if (health < 0) {
             health = 0; // Ensure health does not drop below 0
         }

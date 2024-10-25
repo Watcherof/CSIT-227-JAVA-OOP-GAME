@@ -82,7 +82,11 @@ public class ShadowStrider extends Characters{
 
     @Override
     public void choices( int res) {
-        System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+        if (super.getShield() > 0) {
+            System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
+        } else {
+            System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+        }
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Spirit )");
         System.out.println("2) Skill (Cost: 5 Spirit)");
