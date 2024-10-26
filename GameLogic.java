@@ -65,18 +65,24 @@ public class GameLogic {
         }
     }
 
-    // Method for PVP combat logic
+// Method for PVP combat logic
     private void combatPVP() {
         System.out.println("Combat starts!");
         int currentPlayer = 1; // Track which player's turn it is
+        int roundCounter = 1;   // Initialize round counter
 
         // Game loop for combat
         while (player1.hasAliveCharacters() && player2.hasAliveCharacters()) { // Continue until one player has no alive characters
-            System.out.println("-----------------------");
-            if (currentPlayer == 1) { 
+            clearScreen(); // Clear the screen before each round
+            
+            System.out.println("╔═════════════════════════════════════╗");
+            System.out.println("║              ROUND " + roundCounter + "                ║");
+            System.out.println("╚═════════════════════════════════════╝");
+
+            if (currentPlayer == 1) {
                 System.out.println("Player 1 turn");
                 System.out.println("-----------------------");
-                player1.combat(player1, player2); 
+                player1.combat(player1, player2);
                 currentPlayer = 2; 
             } else { // Player 2's turn
                 if (player2.hasAliveCharacters()) {
@@ -85,19 +91,33 @@ public class GameLogic {
                     player2.combat(player2, player1); // Player 2 attacks
                 }
                 currentPlayer = 1; // Switch back to Player 1
+                roundCounter++; // Increment the round counter after each turn
             }
         }
+
         // Determine and display the winner
         if (player1.hasAliveCharacters()) {
             System.out.println("\n╔════════════════════════════════════════╗");
             System.out.println("║              Player 1 wins!            ║");
             System.out.println("╚════════════════════════════════════════╝");
+            System.out.println("Player 1 defeated player 2 in " + roundCounter + " rounds!");
         } else {
             System.out.println("\n╔════════════════════════════════════════╗");
             System.out.println("║              Player 2 wins!            ║");
             System.out.println("╚════════════════════════════════════════╝");
+            System.out.println("Player 2 defeated player 1 in " + roundCounter + " rounds!");
         }
     }
+
+    public void clearScreen() {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (Exception ex) {
+            System.out.println("Could not clear the screen.");
+        }
+    }
+
+
 
     // Placeholder for PVE combat logic
     private void combatPVE() {

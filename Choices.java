@@ -220,4 +220,19 @@ public class Choices implements ChoicesInterface {
         System.out.println("╚═════════════╩══════════════════════════╩═════════════════════╝");
         System.out.println(); // Add an empty line for formatting
     }
+
+
+
+    public void displayWithDelay(String text, int delayInMillis) {
+        String[] words = text.split(" ");  // Split text into words
+        for (String word : words) {
+            System.out.print(word + " ");   // Print each word followed by a space
+            try {
+                Thread.sleep(delayInMillis); // Pause for the specified delay
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt(); // Restore interrupt status if interrupted
+            }
+        }
+        System.out.println(); // Print a newline after the text
+    }
 }

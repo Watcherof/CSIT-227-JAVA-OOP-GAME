@@ -52,7 +52,6 @@ public class Aquamancer extends Characters {
             displayWithDelay("Insufficient Mana or Energy to perform the AoE Heal! Please END TURN!", 150);
             return;
         }
-        res -= 8;
     
         // Display the AoE heal message
         displayWithDelay(super.getName() + "channels their power and releases a wave of healing energy!", 150);

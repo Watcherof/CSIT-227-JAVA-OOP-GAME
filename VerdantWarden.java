@@ -17,6 +17,7 @@ public class VerdantWarden extends Characters {
             return; // No damage if not enough resources
         } else {
             // Display the attack message
+            res -= 2;
             displayWithDelay(super.getName() + " calls upon nature's strength, drawing their bow to unleash a vibrant arrow!", 150);
             displayWithDelay("The arrow flies true, dealing " + damage + " damage to the enemies.", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
@@ -59,6 +60,7 @@ public class VerdantWarden extends Characters {
             return;
         } else {
             // Display the ultimate attack and healing messages
+            res -= 8;
             displayWithDelay(super.getName() + " calls upon the power of nature, preparing their ultimate technique!", 150);
             displayWithDelay("They unleash a devastating strike, dealing " + damage + " damage to a single target!", 150);
             displayWithDelay("In addition, all allies receive " + healAmount + " health and gain a shield of " + shieldAmount + " points!", 150);

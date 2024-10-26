@@ -95,7 +95,6 @@ public class Player extends Choices {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generate random numbers that sum up to 10
-   
 
     public int[] generateNumbers() {
         Random random = new Random(); // Create a Random object
@@ -117,7 +116,7 @@ public class Player extends Choices {
 
     // Wish method to receive random resources
     public int[] wish() {
-        System.out.println("\nPress Enter key to wish..."); // Prompt for user input
+        displayWithDelay("\nPress Enter key to wish...",100); // Prompt for user input
         Scanner scan = new Scanner(System.in); // Create a Scanner for input
         scan.nextLine(); // Wait for user to press Enter
         int[] result = generateNumbers(); // Generate random resource numbers
@@ -135,10 +134,9 @@ public class Player extends Choices {
         Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
         Characters mc = current.getCurrentCharacter(); // Get the current character of the player
         //int accumulatedDmg = 0; // Variable to accumulate damage
-        int choice, damage = 0;
+        int choice = 0, damage = 0;
         int a = 0; // Track current character index
-    
-        do {
+        while (current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6) {
             while(true){
                 try{
                     System.out.println("\n===== Enemy Current Character =====");
@@ -151,8 +149,7 @@ public class Player extends Choices {
                     } else {
                         System.out.println("===================================");
                     }
-
-                    mc.choices(res[a]); // Display choices for current character
+                    mc.choices(res[this.index]); // Display choices for current character
                     // Get the player's choice
                     choice = scan.nextInt(); // Read user input for choice
                     if(choice >= 1 && choice<=6){
@@ -169,15 +166,14 @@ public class Player extends Choices {
             if (choice < 4) {
                 damage = performAttack(a, res, choice, opponent, mc); // Perform the attack
                 //accumulatedDmg += damage; // Accumulate damage
-    
                 // Check if the opponent's character is dead
                 if (!opponentCurrent.isAlive()) {
-                    System.out.println("\n" + opponentCurrent.getName() + " has been defeated!");
+                    displayWithDelay("\n" + opponentCurrent.getName() + " has been defeated!",150);
                     // Automatically switch to the next alive opponent character
                     boolean switched = opponent.switchToNextAliveCharacter();
                     if (!switched) {
                         // No more alive characters, opponent loses
-                        System.out.println("\n" + opponent.getName() + " has no characters left!");
+                        displayWithDelay("\n" + opponent.getName() + " has no characters left!",150);
                         return 1; // Return 1 to indicate win
                     }
                     opponentCurrent = opponent.getCurrentCharacter(); // Update the opponent's current character
@@ -191,8 +187,8 @@ public class Player extends Choices {
                     current.printAllCharacterStatus(res);
                     a = scan.nextInt() - 1;
                     if (!current.switchCharacter(a)) {
-                        System.out.println("Cannot switch to that character. Try again.");
-                    } else {
+                        System.out.print("HELLO WORLD");
+                    }else{
                         mc = current.getCurrentCharacter(); // Update current character
                     }
                     break;
@@ -210,9 +206,8 @@ public class Player extends Choices {
                         displayWithDelay("Invalid choice. Please select an action.", 300); // Error message for invalid choice
                     }
                     break;
-            }
-            
-        } while (current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6);
+            }   
+        }
     
         return damage; 
     }
@@ -223,7 +218,7 @@ public class Player extends Choices {
         for (int i = 0; i < characters.length; i++) {
             if (characters[i].isAlive()) {
                 index = i; // Switch to the next alive character
-                System.out.println("\nEnemy Character is Switching to " + characters[i].getName());
+                displayWithDelay("\nEnemy Character is Switching to " + characters[i].getName(),150);
                 return true; // Successful switch
             }
         }
@@ -233,7 +228,6 @@ public class Player extends Choices {
 
     // Method to perform the chosen attack
     private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current) {
-        Scanner scan = new Scanner(System.in); // Create a Scanner for user input
         int damage = 0; // Initialize damage variable
         switch (choice) {
             case 1: 

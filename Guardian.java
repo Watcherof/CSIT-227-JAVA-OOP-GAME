@@ -17,8 +17,6 @@ public class Guardian extends Characters{
             return;
         } else {
             res -= 2; // Cost for the basic attack
-           
-    
             // Display the supportive action message
             displayWithDelay(super.getName() + " swings their weapon to strike the enemy while shielding allies!", 150);
             displayWithDelay("They deal " + damage + " damage to the enemy and provide a protective stance for allies!", 150);
@@ -30,11 +28,9 @@ public class Guardian extends Characters{
     @Override
     // TODO IMPLEMENT SHIDEL SYSTEM
     public void skill(int res, Characters opponent) {
-        if (res < 3) {
+        if (res < 5) {
             System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
-            return;
         } else {
-            res -= 3;
             System.out.println("Which character do you want to be shielded? ");
         }
     }
@@ -57,13 +53,9 @@ public class Guardian extends Characters{
 
     @Override
     public void switchCharacter(int res) {
-        if (res < 1) {
-            displayWithDelay("Insufficient Stamina or Energy to switch! Please END TURN!", 150);
-        } else {
-            res -=1;
             displayWithDelay(super.getName() + " calls for reinforcements! A new character is ready to fight!", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
-        }
+
     }
    
 

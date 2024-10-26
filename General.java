@@ -27,11 +27,11 @@ public class General extends Characters{
     @Override
     public void skill( int res, Characters opponent) {
         int damage = getRandomBetween(11, 15);
-        if (res < 3) {
+        if (res < 5) {
             displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
-            res -= 3;
+            res -= 5;
             displayWithDelay(super.getName() + " focuses intensely, channeling a devastating skill!", 150);
             displayWithDelay("Critical damage is inflicted upon the enemies dealing " + damage + " damage!", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
