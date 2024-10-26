@@ -40,6 +40,7 @@ public class Guardian extends Characters{
     }
 
     @Override
+    // AOE SHIELD NI 
     public void ult(int res, Characters opponent) {
         int damage = getRandomBetween(16, 25);
         if (res < 8) {

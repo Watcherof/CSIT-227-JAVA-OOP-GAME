@@ -50,16 +50,16 @@ public class Player extends Choices {
         return false; // No alive characters found
     }
 
-    // Method to take damage
-    public void damageTaken(int damage) {
-        Characters currentCharacter = getCurrentCharacter(); // Get the current character
-        if (currentCharacter != null && currentCharacter.isAlive()) {
-            currentCharacter.takeDamage(damage); // Apply damage to the current character
-            System.out.println(currentCharacter.getName() + " takes " + damage + " damage."); // Print damage info
-        } else {
-            System.out.println("Current character is already dead or invalid."); // Error message
-        }
-    }
+    // // Method to take damage
+    // public void damageTaken(int damage) {
+    //     Characters currentCharacter = getCurrentCharacter(); // Get the current character
+    //     if (currentCharacter != null && currentCharacter.isAlive()) {
+    //         currentCharacter.takeDamage(damage); // Apply damage to the current character
+    //         System.out.println(currentCharacter.getName() + " takes " + damage + " damage."); // Print damage info
+    //     } else {
+    //         System.out.println("Current character is already dead or invalid."); // Error message
+    //     }
+    // }
 
     
     public void printAllCharacterStatus(int[] res) {
@@ -127,24 +127,6 @@ public class Player extends Choices {
         return result; // Return the generated resources
     }
 
-
-    public void clearScreen() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                // For Windows
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                // For Linux/Mac/ANSI-compatible terminals
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
-            }
-        } catch (Exception e) {
-            // Fallback to print newlines if clear screen fails
-            for (int i = 0; i < 50; i++) {
-                System.out.println();
-            }
-        }
-    }
     // Combat method to manage player vs opponent combat
     // NAPAY KUWANG DRE GUYZ ANG PAG INITIALIZE PARA MAKA PILI OG CHARACTERS
     public int combat(Player current, Player opponent) {
@@ -159,11 +141,17 @@ public class Player extends Choices {
         do {
             while(true){
                 try{
+                    System.out.println("\n===== Enemy Current Character =====");
+                    System.out.println("Name   : " + opponentCurrent.getName());
+                    System.out.println("Health : " + opponentCurrent.getHealth());
+                    
                     if (opponentCurrent.getShield() > 0) {
-                        System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + " | Health: " + opponentCurrent.getHealth() + ", Shield: " + opponentCurrent.getShield());
+                        System.out.println("Shield : " + opponentCurrent.getShield());
+                        System.out.println("===================================");
                     } else {
-                        System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + " | Health: " + opponentCurrent.getHealth());
+                        System.out.println("===================================");
                     }
+
                     mc.choices(res[a]); // Display choices for current character
                     // Get the player's choice
                     choice = scan.nextInt(); // Read user input for choice
