@@ -30,17 +30,13 @@ public class Guardian extends Characters{
     @Override
     // TODO IMPLEMENT SHIDEL SYSTEM
     public void skill(int res, Characters opponent) {
-        int damage = 2;
         if (res < 3) {
             System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
             return;
         } else {
-                res -= 3;
-            displayWithDelay(super.getName() + " focuses intensely, channeling a devastating skill!", 150);
-            displayWithDelay("Critical damage is inflicted upon the enemies dealing " + damage + " damage!", 150);
-            displayWithDelay("You now have " + res + " stamina/energy left.", 150);
+            res -= 3;
+            System.out.println("Which character do you want to be shielded? ");
         }
-        opponent.takeDamage(damage);
     }
 
     @Override
@@ -82,7 +78,11 @@ public class Guardian extends Characters{
 
         @Override
         public void choices( int res) {
-        System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+            if (super.getShield() > 0) {
+                System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
+            } else {
+                System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+            }
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Stamina)");
         System.out.println("2) Skill (Cost: 5 Stamina)");

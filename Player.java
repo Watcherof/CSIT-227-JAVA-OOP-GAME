@@ -66,8 +66,15 @@ public class Player extends Choices {
         for (int i = 0; i < characters.length; i++) {
             if (characters[i].isAlive()) {
                 // If character is alive, print health and resource
-                System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
+                if (characters[i].getShield() > 0) {
+                    System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
+                    + characters[i].getHealth() + " HP, " + this.type[i] + ": " + res[i] + " Shield: " + characters[i].getShield());
+                } else {
+                    System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
                     + characters[i].getHealth() + " HP, " + this.type[i] + ": " + res[i]);
+                }
+                
+                
             } else {
                 // If character is dead, print "Dead" instead of health
                 System.out.println((i + 1) + ". " + characters[i].getName() + ": Dead, " + this.type[i] +": " + res[i]);
@@ -152,8 +159,12 @@ public class Player extends Choices {
         do {
             while(true){
                 try{
-                System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + ": " + opponentCurrent.getHealth());
-                mc.choices(res[a]); // Display choices for current character
+                    if (opponentCurrent.getShield() > 0) {
+                        System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + " | Health: " + opponentCurrent.getHealth() + ", Shield: " + opponentCurrent.getShield());
+                    } else {
+                        System.out.println("\nEnemy Current Character: " + opponentCurrent.getName() + " | Health: " + opponentCurrent.getHealth());
+                    }
+                    mc.choices(res[a]); // Display choices for current character
                     // Get the player's choice
                     choice = scan.nextInt(); // Read user input for choice
                     if(choice >= 1 && choice<=6){
@@ -234,6 +245,7 @@ public class Player extends Choices {
 
     // Method to perform the chosen attack
     private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current) {
+        Scanner scan = new Scanner(System.in); // Create a Scanner for user input
         int damage = 0; // Initialize damage variable
         switch (choice) {
             case 1: 
@@ -245,18 +257,14 @@ public class Player extends Choices {
             case 2: // Skill attack
                     current.skill(res[i], opponent.getCurrentCharacter());
                     if(res[i] >= 5){
+                        skillSpecialCases(i, res, choice, opponent, current);
                         res[i] -= 5; 
                     }
                 break;
             case 3: // Ultimate attack
                     current.ult(res[i], opponent.getCurrentCharacter());
                     if(res[i] >= 8){
-                        if (current.getName().equals("Aquamancer")) { // naa diri ang heal sa aquamancer gi implement
-                            int healAmount = current.getRandomBetween(20, 30);
-                            healAllCharacters(healAmount);
-                            displayWithDelay("All allies are healed for " + healAmount + " health points!", 150);
-                            displayWithDelay("You now have " + (res[i]-8) + " mana/energy left.", 150);
-                        }
+                        ultSpecialCases(i, res, choice, opponent, current);
                         res[i] -=8; 
                     }
                 break;
@@ -279,6 +287,29 @@ public class Player extends Choices {
             }
         }
         System.out.println();
+    }
+
+    private void skillSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current) {
+        Scanner scan = new Scanner(System.in);
+        if (current.getName().equals("Guardian")) { // naa diri ang heal sa aquamancer gi implement
+            int shieldAmount = current.getRandomBetween(10, 15);
+            printAllCharacterStatus(res);
+            System.out.println();
+            int shieldChoice = scan.nextInt() - 1;
+            characters[shieldChoice].setShield(shieldAmount);
+            displayWithDelay(current.getName() + " focuses intensely, channeling a protective shield!", 150);
+            displayWithDelay(characters[shieldChoice].getName() + " is protected by a shield that has " + shieldAmount + " health points.", 150);
+            displayWithDelay("You now have " + (res[i]-5) + " stamina/energy left.", 150);
+        }
+    }
+
+    private void ultSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current) {
+        if (current.getName().equals("Aquamancer")) { // naa diri ang heal sa aquamancer gi implement
+            int healAmount = current.getRandomBetween(20, 30);
+            healAllCharacters(healAmount);
+            displayWithDelay("All allies are healed for " + healAmount + " health points!", 150);
+            displayWithDelay("You now have " + (res[i]-8) + " mana/energy left.", 150);
+        }
     }
 
 }
