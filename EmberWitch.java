@@ -53,6 +53,7 @@ public class EmberWitch extends Characters{
             System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
             return;
         } else {
+            res -= 8;
             displayWithDelay(super.getName() + " channels a powerful surge of magic, unleashing it in a massive explosion that engulfs all enemies!", 150);
             displayWithDelay("The spell hits all enemies, dealing " + damage + " magic damage to each.", 150);            
             displayWithDelay("You now have " + res + " mana left.", 150);

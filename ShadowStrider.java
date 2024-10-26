@@ -12,12 +12,12 @@ public class ShadowStrider extends Characters{
         if (res < 0) {
         res = 0;
     }
-        int damage = getRandomBetween(5, 20); // Higher damage range for a ranger/archer type
+        int damage = getRandomBetween(5, 15); // Higher damage range for a ranger/archer type
         if (res < 2) {
             System.out.println("Insufficient Spirit or Energy! Please Switch Character or END TURN!");
             return;
         } else {
-            res -= 2;
+            res -=2;
             displayWithDelay(super.getName() + " swiftly draws their bow and aims for a precise shot!", 150);
             displayWithDelay("They unleash the arrow, dealing " + damage + " damage to the enemies.", 150);
             displayWithDelay("You now have " + res + " stamina/energy left.", 150);
@@ -37,7 +37,7 @@ public class ShadowStrider extends Characters{
             System.out.println("Insufficient Spirit or Energy! Please Switch Character or END TURN!");
             return;
         } else {
-
+            res -= 5;
             displayWithDelay(super.getName() + " readies their bow, swiftly nocking multiple arrows at once!", 150);
             displayWithDelay("They release a flurry of arrows, each one striking enemies across the battlefield!", 150);
             displayWithDelay("A rain of arrows falls upon the enemies, dealing " + damage + " damage to each of them.", 150);
@@ -57,6 +57,7 @@ public class ShadowStrider extends Characters{
             System.out.println("Insufficient Spirit or Energy! Please switch character or END TURN!");
             return;
         } else {
+            res -=8;
             displayWithDelay(super.getName() + " harnesses the power of the storm, nocking arrows imbued with fury!", 150);
             displayWithDelay("A barrage of arrows rains down, each striking true and dealing " + damage + " damage to all enemies!", 150);
             displayWithDelay("You have " + res + " stamina/energy left.", 150);
