@@ -31,13 +31,19 @@ public class Player extends Choices {
 
     // Switch character if valid
         public boolean switchCharacter(int index) {
+
             if (index >= 0 && index < characters.length && characters[index].isAlive()) {
+                System.out.print("\nSwitching character from " + getCurrentCharacter().getName() + " to ");
                 this.index = index; // Update index for current character
+                System.out.print(getCurrentCharacter().getName() + "\n");
                 return true; // Successfully switched
-            } else {
-                System.out.println("Cannot switch to that character. Either it's dead or invalid.");
-                return false;
+            } else if(index > 2 && hasAliveCharacters()){
+                displayWithDelay("Invalid input! please enter 1,2 or 3 only!",100);
+
+            }else{
+                displayWithDelay("Cannot switch to character because character is dead!",100);
             }
+            return false;
         }
     
 
@@ -187,11 +193,7 @@ public class Player extends Choices {
                     System.out.println("Choose a character to switch to: ");
                     current.printAllCharacterStatus(res);
                     a = scan.nextInt() - 1;
-                    if (!current.switchCharacter(a)) {
-                        System.out.print("HELLO WORLD");
-                    }else{
-                        mc = current.getCurrentCharacter(); // Update current character
-                    }
+                    current.switchCharacter(a);
                     break;
     
                 case 5: // Reroll stamina/energy
