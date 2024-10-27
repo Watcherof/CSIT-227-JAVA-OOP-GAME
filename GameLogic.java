@@ -32,7 +32,6 @@ public class GameLogic {
                     scan.next(); // Clear invalid input
                 }
             }
-
             return mode;
         }
     public void startGame(String playerName, int gameMode) throws InterruptedException {
@@ -216,4 +215,5 @@ public class GameLogic {
             }
         }
     }
+    
 }
