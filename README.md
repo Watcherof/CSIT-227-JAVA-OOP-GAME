@@ -9,15 +9,6 @@ IMPLEMENT NA ANG BATTLE SYSTEM SA PLAYER 1 OG PLAYER 2
 KAILANGAN MA HUMAN BY FRIDAY
 
     
-    
-    // public void damageTaken(String[] chars, int damage) {
-    //     Characters currentCharacter = null;
-    //     // Determine which character is currently active for the player taking damage
-    //     if (chars[0].equalsIgnoreCase("general")) {
-    //         currentCharacter = new General(0);
-    //     } else{
-    //         //currentCharacter = new Guardian();
-    //     }
-    //     // Check if the current character is not null before taking damage
-    //       currentCharacter.takeDamage(damage);
-    // }
+If a character is  dead make sure that it wont get resources anymore
+
+Average round /Minimum rounds for a player to be defeated is 13 without shields and heals 

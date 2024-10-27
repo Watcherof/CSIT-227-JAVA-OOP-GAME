@@ -75,9 +75,17 @@ public class GameLogic {
         while (player1.hasAliveCharacters() && player2.hasAliveCharacters()) { // Continue until one player has no alive characters
             clearScreen(); // Clear the screen before each round
             
-            System.out.println("╔═════════════════════════════════════╗");
-            System.out.println("║              ROUND " + roundCounter + "                ║");
-            System.out.println("╚═════════════════════════════════════╝");
+
+            if(roundCounter < 10){
+                System.out.println("╔═════════════════════════════════════╗");
+                System.out.println("║              ROUND " + roundCounter + "                ║");
+                System.out.println("╚═════════════════════════════════════╝");
+            }else{
+                System.out.println("╔══════════════════════════════════════╗");
+                System.out.println("║              ROUND " + roundCounter + "                ║");
+                System.out.println("╚══════════════════════════════════════╝");
+            }
+
 
             if (currentPlayer == 1) {
                 System.out.println("Player 1 turn");
