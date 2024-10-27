@@ -35,7 +35,7 @@ public class Player extends Choices {
             if (index >= 0 && index < characters.length && characters[index].isAlive()) {
                 System.out.print("\nSwitching character from " + getCurrentCharacter().getName() + " to ");
                 this.index = index; // Update index for current character
-                System.out.print(getCurrentCharacter().getName() + "\n");
+                System.out.print(getCurrentCharacter().getName() + "\n");// if you dont do .getName() it will print the memory reference
                 return true; // Successfully switched
             } else if(index > 2 && hasAliveCharacters()){
                 displayWithDelay("Invalid input! please enter 1,2 or 3 only!",100);
