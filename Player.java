@@ -20,7 +20,7 @@ public class Player extends Choices {
     }
 
     public Characters getCurrentCharacter() {
-        return characters[index]; // Return the currently active character
+        return characters[this.index]; // Return the currently active character
     }
 
     // Method to return chosen Characters
@@ -30,15 +30,16 @@ public class Player extends Choices {
 
 
     // Switch character if valid
-    public boolean switchCharacter(int index) {
-        if (index >= 0 && index < characters.length && characters[index].isAlive()) {
-            this.index = index; // Switch to the new character if it's alive
-            return true; // Successful switch
-        } else {
-            System.out.println("Cannot switch to that character. Either it's dead or invalid."); // Error message
-            return false; // Unsuccessful switch
+        public boolean switchCharacter(int index) {
+            if (index >= 0 && index < characters.length && characters[index].isAlive()) {
+                this.index = index; // Update index for current character
+                return true; // Successfully switched
+            } else {
+                System.out.println("Cannot switch to that character. Either it's dead or invalid.");
+                return false;
+            }
         }
-    }
+    
 
     // Check if the player has any alive characters
     public boolean hasAliveCharacters() {
@@ -132,11 +133,12 @@ public class Player extends Choices {
         int[] res = wish();  // Assume res[0] is stamina or energy
         Scanner scan = new Scanner(System.in); // Create a Scanner for user input
         Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
-        Characters mc = current.getCurrentCharacter(); // Get the current character of the player
         //int accumulatedDmg = 0; // Variable to accumulate damage
+        Characters mc; // Get the current character of the player
         int choice = 0, damage = 0;
-        int a = 0; // Track current character index
-        while (current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6) {
+        int a = this.index; // like this because if we end turn the res will not be updated together with the current player
+       do{
+              mc = current.getCurrentCharacter(); // Get the current character of the player
             while(true){
                 try{
                     System.out.println("\n===== Enemy Current Character =====");
@@ -165,7 +167,6 @@ public class Player extends Choices {
             // Perform the attack based on the choice
             if (choice < 4) {
                 damage = performAttack(a, res, choice, opponent, mc); // Perform the attack
-                //accumulatedDmg += damage; // Accumulate damage
                 // Check if the opponent's character is dead
                 if (!opponentCurrent.isAlive()) {
                     displayWithDelay("\n" + opponentCurrent.getName() + " has been defeated!",150);
@@ -207,7 +208,7 @@ public class Player extends Choices {
                     }
                     break;
             }   
-        }
+        } while(current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6);
     
         return damage; 
     }

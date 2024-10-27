@@ -14,6 +14,7 @@ public class Aquamancer extends Characters {
             System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
             return;
         }
+        res -=2;
         int damage = getRandomBetween(0, 5); // Damage dealt by the attack
         // Display the attack message
         displayWithDelay(super.getName() + " conjures a concentrated energy blast and launches it at the enemies!", 150);
@@ -34,7 +35,7 @@ public class Aquamancer extends Characters {
             System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
             return;
         }
-    
+        res -= 5;
         int damage = 1; // Damage dealt by the attack
         int shieldAmount = getRandomBetween(1, 3); // Amount of shield provided to an ally
         // Display the attack and support messages

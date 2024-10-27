@@ -15,6 +15,7 @@ public class EmberWitch extends Characters{
             System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
             return;
         } else {
+            res -= 2;
             displayWithDelay(super.getName() + " conjures a powerful spell and launches it at the enemies!", 150);
             displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);
             displayWithDelay("You now have " + res + " mana left.", 150);
@@ -36,6 +37,7 @@ public class EmberWitch extends Characters{
             System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
             return;
         } else {
+            res -= 5;
             displayWithDelay(super.getName() + " conjures a stunning spell and launches it at the enemies!", 150);
             displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);            
             displayWithDelay("You now have " + res + " mana left.", 150);
