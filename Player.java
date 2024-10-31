@@ -30,21 +30,25 @@ public class Player extends Choices {
 
 
     // Switch character if valid
-        public boolean switchCharacter(int index) {
+    public boolean switchCharacter(int index) {
 
-            if (index >= 0 && index < characters.length && characters[index].isAlive()) {
-                System.out.print("\nSwitching character from " + getCurrentCharacter().getName() + " to ");
-                this.index = index; // Update index for current character
-                System.out.print(getCurrentCharacter().getName() + "\n");// if you dont do .getName() it will print the memory reference
-                return true; // Successfully switched
-            } else if(index > 2 && hasAliveCharacters()){
-                displayWithDelay("Invalid input! please enter 1,2 or 3 only!",100);
-
-            }else{
-                displayWithDelay("Cannot switch to character because character is dead!",100);
-            }
-            return false;
+        // Check if the index is valid and the character is alive
+        if (index >= 0 && index < characters.length && characters[index].isAlive()) {
+            String currentCharacterName = getCurrentCharacter().getName();
+            String newCharacterName = characters[index].getName();
+            displayWithDelay("\nSwitching character from " + currentCharacterName + " to " + newCharacterName + "...", 150);
+            this.index = index; 
+            return true; 
+        } 
+        else if (index > 2 && hasAliveCharacters()) {
+            displayWithDelay("Invalid input! Please enter 1, 2, or 3 only!", 100);
+        } 
+        else {
+            displayWithDelay("Cannot switch to character because the character is dead!", 100);
         }
+        return false;
+    }
+    
     
 
     // Check if the player has any alive characters
@@ -135,7 +139,7 @@ public class Player extends Choices {
 
     // Combat method to manage player vs opponent combat
     // NAPAY KUWANG DRE GUYZ ANG PAG INITIALIZE PARA MAKA PILI OG CHARACTERS
-    public int combat(Player current, Player opponent) {
+    public void combat(Player current, Player opponent) {
         int[] res = wish();  // Assume res[0] is stamina or energy
         Scanner scan = new Scanner(System.in); // Create a Scanner for user input
         Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
@@ -157,7 +161,7 @@ public class Player extends Choices {
                     } else {
                         System.out.println("===================================");
                     }
-                    mc.choices(res[this.index]); // Display choices for current character
+                    mc.choices(res[this.index],1); // Display choices for current character
                     // Get the player's choice
                     choice = scan.nextInt(); // Read user input for choice
                     if(choice >= 1 && choice<=6){
@@ -172,37 +176,44 @@ public class Player extends Choices {
             }
             // Perform the attack based on the choice
             if (choice < 4) {
-                damage = performAttack(a, res, choice, opponent, mc); // Perform the attack
+                damage = performAttack(a, res, choice, opponent, mc,1); // Perform the attack
                 // Check if the opponent's character is dead
                 if (!opponentCurrent.isAlive()) {
                     displayWithDelay("\n" + opponentCurrent.getName() + " has been defeated!",150);
                     // Automatically switch to the next alive opponent character
                     boolean switched = opponent.switchToNextAliveCharacter();
+                    // if !switched = if characters are dead
                     if (!switched) {
                         // No more alive characters, opponent loses
                         displayWithDelay("\n" + opponent.getName() + " has no characters left!",150);
-                        return 1; // Return 1 to indicate win
+                        return; // Return 1 to indicate win
                     }
                     opponentCurrent = opponent.getCurrentCharacter(); // Update the opponent's current character
                 }
             }
-    
             // Handle switching characters and other choices
             switch (choice) {
                 case 4: // Switch character
-                    System.out.println("Choose a character to switch to: ");
-                    current.printAllCharacterStatus(res);
-                    a = scan.nextInt() - 1;
-                    current.switchCharacter(a);
+                    boolean isEnabled = true;
+                    while(isEnabled){
+                        try {
+                        System.out.println("Choose a character to switch to: ");
+                        current.printAllCharacterStatus(res);
+                        a = scan.nextInt() - 1;
+                        current.switchCharacter(a);    
+                        isEnabled = false;    
+                        } catch (Exception e) {
+                            System.out.println("Invalid choice! Please try again"  + e);
+                            scan.next();
+                        }
+                    }
                     break;
-    
                 case 5: // Reroll stamina/energy
                     res = wish(); // Reroll resources
                     break;
-    
                 case 6: // End turn
                     displayWithDelay(mc.getName() + " decides to regroup and ends their turn.", 150);
-                    return 0; // Return to end turn
+                    return; // Return to end turn
     
                 default:
                     if (choice < 1 || choice > 6) {
@@ -210,44 +221,145 @@ public class Player extends Choices {
                     }
                     break;
             }   
+            boolean resourcesExhausted = true;
+    
+            // Check if all characters have resources below 2
+            for (int r : res) {
+                if (r >= 2) {
+                    resourcesExhausted = false;
+                    break;
+                }
+            }
+            if (resourcesExhausted) {
+                displayWithDelay(current.getName() + " has exhausted all resources now it is " + opponent.getName() + " turn",250);
+                return ; // End turn if all resources are used up
+            }
+
         } while(current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6);
-    
-        return damage; 
     }
+
+    // current kay AI ; Opponent kay user
+    public void computerCombat(Player current, Player opponent) {
+        Random rand = new Random();
+        int[] res = wish();  // Generate resources (e.g., stamina/energy for each character)
+        Characters currentCharacter;
+        Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
+        int currentCharacterIndex = this.index; // Track current character index for resources
+        int lastCharacterIndex = -1; // Track the last character index used
+        boolean actionPerformed = false;
     
+        while (current.hasAliveCharacters() && opponent.hasAliveCharacters()) {
     
-    // Switch to the next alive character in the opponent's team
-    public boolean switchToNextAliveCharacter() {
-        for (int i = 0; i < characters.length; i++) {
-            if (characters[i].isAlive()) {
-                index = i; // Switch to the next alive character
-                displayWithDelay("\nEnemy Character is Switching to " + characters[i].getName(),150);
-                return true; // Successful switch
+            System.out.println("\n===== Enemy Current Character =====");
+            System.out.println("Name   : " + opponentCurrent.getName());
+            System.out.println("Health : " + opponentCurrent.getHealth());
+            
+            if (opponentCurrent.getShield() > 0) {
+                System.out.println("Shield : " + opponentCurrent.getShield());
+                System.out.println("===================================");
+            } else {
+                System.out.println("===================================");
+            }
+    
+            currentCharacter = current.getCurrentCharacter();
+            int availableResource = res[currentCharacterIndex]; // Use local index to get resources for current character
+            currentCharacter.choices(res[currentCharacterIndex], 2);
+            // Determine the attack based on available resources and use performAttack
+            if (availableResource >= 8) {
+                displayWithDelay("Computer chooses ultimate attack!", 250);
+                performAttack(currentCharacterIndex, res, 3, opponent, currentCharacter,2); // Ultimate attack
+                actionPerformed = true;
+            } else if (availableResource >= 5) {
+                displayWithDelay("Computer chooses a skill!", 250);
+                performAttack(currentCharacterIndex, res, 2, opponent, currentCharacter,2); // Skill attack
+                actionPerformed = true;
+            } else if (availableResource >= 2) {
+                displayWithDelay("Computer chooses basic attack!", 250);
+                performAttack(currentCharacterIndex, res, 1, opponent, currentCharacter,2); // Basic attack
+                actionPerformed = true;
+            }
+            // Add a 2-second pause after each attack
+            try {
+                Thread.sleep(2000); // 2000 milliseconds = 2 seconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }  
+            if (!opponentCurrent.isAlive()) {
+                displayWithDelay("\n" + opponentCurrent.getName() + " has been defeated!",150);
+                // Automatically switch to the next alive opponent character
+                boolean switched = opponent.switchToNextAliveCharacter();
+                if (!switched) {
+                    // No more alive characters, opponent loses
+                    displayWithDelay("\n" + opponent.getName() + " has no characters left!",150);
+                   return;
+                }
+                opponentCurrent = opponent.getCurrentCharacter(); // Update the opponent's current character
+            }
+            // If the current character can't act, switch to the next alive character
+            if (!actionPerformed) {
+                boolean switched = false;
+                // Attempt to switch characters
+                for (int i = 0; i < 3; i++) {
+                    // Generate a random index (1, 2, or 3)
+                    int newIndex = rand.nextInt(3); // Generates 0, 1, or 2
+                    // Ensure the new index is not the same as the last character index
+                    if (newIndex != lastCharacterIndex) {
+                        if (current.switchCharacter(newIndex)) { // Switch character
+                            currentCharacterIndex = newIndex; // Update index to match the new character
+                            lastCharacterIndex = currentCharacterIndex; // Update the last used character
+                            switched = true;
+                            break;
+                        }
+                    }
+                }
+    
+                if (!switched) {
+                    System.out.println(current.getName() + " has no more characters with resources to act.");
+                    return; // End turn if no action was possible
+                }
+            }
+            // Reset actionPerformed for the next character's turn and check resource exhaustion
+            actionPerformed = false;
+            boolean resourcesExhausted = true;
+    
+            // Check if all characters have resources below 2
+            for (int r : res) {
+                if (r >= 2) {
+                    resourcesExhausted = false;
+                    break;
+                }
+            }
+            if (resourcesExhausted) {
+                displayWithDelay(current.getName() + " has exhausted all resources now it is " + opponent.getName() + " turn",250);
+                return; // End turn if all resources are used up
             }
         }
-        return false; // No alive characters left
+      
     }
+    
+    
+    
     
 
     // Method to perform the chosen attack
-    private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current) {
+    private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current,int gameMode) {
         int damage = 0; // Initialize damage variable
         switch (choice) {
             case 1: 
-                    current.basicAttack(res[i], opponent.getCurrentCharacter()); 
+                    current.basicAttack(res[i], opponent.getCurrentCharacter(),gameMode); 
                     if(res[i] >= 2){
                         res[i] -= 2; 
                     }
                 break;
             case 2: // Skill attack
-                    current.skill(res[i], opponent.getCurrentCharacter());
+                    current.skill(res[i], opponent.getCurrentCharacter(),gameMode);
                     if(res[i] >= 5){
-                        skillSpecialCases(i, res, choice, opponent, current);
+                        skillSpecialCases(i, res, choice, opponent, current,gameMode);
                         res[i] -= 5; 
                     }
                 break;
             case 3: // Ultimate attack
-                    current.ult(res[i], opponent.getCurrentCharacter());
+                    current.ult(res[i], opponent.getCurrentCharacter(),gameMode);
                     if(res[i] >= 8){
                         ultSpecialCases(i, res, choice, opponent, current);
                         res[i] -=8; 
@@ -259,6 +371,23 @@ public class Player extends Choices {
         }
         return damage; // Return damage dealt
     }
+
+
+
+        
+    // Switch to the next alive character in the opponent's team
+    public boolean switchToNextAliveCharacter() {
+        for (int i = 0; i < characters.length; i++) {
+            if (characters[i].isAlive()) {
+                index = i; // Switch to the next alive character
+                displayWithDelay("\nEnemy Character is Switching to " + characters[i].getName(),150);
+                return true; // Successful switch
+            }
+        }
+        return false; // No alive characters left
+    }
+
+
 
     // Display text with a delay for dramatic effect
     public void displayWithDelay(String text, int delayInMillis) {
@@ -274,7 +403,7 @@ public class Player extends Choices {
         System.out.println();
     }
 
-    private void skillSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current) {
+    private void skillSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current,int gameMode) {
         Scanner scan = new Scanner(System.in);
         if (current.getName().equals("Guardian")) { // naa diri ang heal sa aquamancer gi implement
             int shieldAmount = current.getRandomBetween(10, 15);
@@ -284,7 +413,11 @@ public class Player extends Choices {
             characters[shieldChoice].setShield(shieldAmount);
             displayWithDelay(current.getName() + " focuses intensely, channeling a protective shield!", 150);
             displayWithDelay(characters[shieldChoice].getName() + " is protected by a shield that has " + shieldAmount + " health points.", 150);
-            displayWithDelay("You now have " + (res[i]-5) + " stamina/energy left.", 150);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + (res[i]-5) + " mana left.", 150);
+            }else{
+                displayWithDelay("Computer has " + (res[i]-5) + " mana left.", 150);
+            }
         }
     }
 

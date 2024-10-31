@@ -10,6 +10,7 @@ public class GameLogic {
     private Scanner scan = new Scanner(System.in);
     private Player player1; 
     private Player player2 = null; 
+    private Player computer = null;
 
 
         public int chooseMode() {
@@ -20,7 +21,6 @@ public class GameLogic {
                 try {
                     System.out.print("Choose mode (1 - PVP / 2 - PVE): ");
                     mode = scan.nextInt();
-
                     // Check if mode is valid (1 or 2)
                     if (mode == 1 || mode == 2) {
                         isEnabled = false; // Exit loop if a valid mode is selected
@@ -28,12 +28,13 @@ public class GameLogic {
                         System.out.println("Invalid selection. Please enter 1 for PVP or 2 for PVE.");
                     }
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter a numeric value (1 or 2).");
+                    System.out.println("Invalid input. Please enter a number.");
                     scan.next(); // Clear invalid input
                 }
             }
             return mode;
         }
+        // ang try catch ani nana sa chooseMode()
     public void startGame(String playerName, int gameMode) throws InterruptedException {
         // Character selection based on mode
         if (gameMode == 1) {//pvp
@@ -41,7 +42,7 @@ public class GameLogic {
             c1.characterSelectionPVP1(); // Player 1 selects characters
             Characters[] player1Characters = c1.getChosenChars(); // Get selected characters
             player1 = new Player("Player 1", player1Characters); // Create Player 1
-            player1.displayCharacters(c1.getChosenCharacters()); // Display selected characters
+            player1.displayCharacters(c1.getChosenCharacters(),gameMode); // Display selected characters
 
             System.out.println("Player 1 has chosen. Press Enter for Player 2 to choose.");
             scan.nextLine(); // Consume the newline character
@@ -50,23 +51,32 @@ public class GameLogic {
             c2.characterSelectionPVP2(); // Player 2 selects characters
             Characters[] player2Characters = c2.getChosenChars(); // Get selected characters
             player2 = new Player("Player 2", player2Characters); // Create Player 2
-            player2.displayCharacters(c2.getChosenCharacters()); // Display selected characters
+            player2.displayCharacters(c2.getChosenCharacters(),gameMode); // Display selected characters
             combatPVP(); // Start PVP combat
         } else if (gameMode == 2) { 
             System.out.println("You have chosen player vs environment!");
             c1.characterSelectionPVE(playerName);
-            c1.selectCharacters(); 
-            player1 = new Player(playerName, c1.getChosenChars()); 
-            player1.displayCharacters(c1.getChosenCharacters());
-            combatPVE(); 
-        } else {
-            System.out.println("Invalid game mode selected.");
+            Characters[] playerCharacters = c1.selectCharacters(); 
+            player1 = new Player(playerName, playerCharacters); 
+            player1.displayCharacters(c1.getChosenCharacters(),1);
+            System.out.println("Player " + playerName + " has chosen. Press enter for Computer to choose.");
+            scan.nextLine();//consume the newline cahr
+            scan.nextLine();// w8 4 enter
+
+
+            Characters[] computerCharacters = c2.computerSelectCharacter();
+            computer = new Player("computer", computerCharacters);
+            computer.displayCharacters(c2.getChosenCharacters(),gameMode);
+            System.out.println("Enter to start combat");
+            scan.nextLine();
+            combatPVE(playerName); 
+        }else{
+            System.out.println("Invalid choice! Please choose 1 or 2");
         }
     }
 
 // Method for PVP combat logic
     private void combatPVP() {
-        System.out.println("Combat starts!");
         int currentPlayer = 1; // Track which player's turn it is
         int roundCounter = 1;   // Initialize round counter
 
@@ -116,6 +126,44 @@ public class GameLogic {
         }
     }
 
+    
+    // Placeholder for PVE combat logic
+    private void combatPVE(String playerName) {
+       
+        int currentPlayer = 1; // Track which player's turn it is
+        int roundCounter = 1;   // Initialize round counter
+        // Implement PVE combat logic here
+        while(player1.hasAliveCharacters() && computer.hasAliveCharacters()){
+            clearScreen();
+
+            if(roundCounter < 10){
+                System.out.println("╔═════════════════════════════════════╗");
+                System.out.println("║              ROUND " + roundCounter + "                ║");
+                System.out.println("╚═════════════════════════════════════╝");
+            }else{
+                System.out.println("╔══════════════════════════════════════╗");
+                System.out.println("║              ROUND " + roundCounter + "                ║");
+                System.out.println("╚══════════════════════════════════════╝");
+            }
+   
+            if (currentPlayer == 1) {
+                System.out.println("Player " + playerName + " turn");
+                System.out.println("-----------------------");
+                player1.combat(player1, computer);
+                currentPlayer = 2; 
+            } else { // Player 2's turn
+                if (computer.hasAliveCharacters()) {
+                    System.out.println("Computers turn");
+                    System.out.println("-----------------------");
+                    computer.computerCombat(computer, player1); // Player 2 attacks
+                }
+                currentPlayer = 1; // Switch back to Player 1
+                roundCounter++; // Increment the round counter after each turn
+            }
+        }
+    }
+
+
     public void clearScreen() {
         try {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -126,10 +174,6 @@ public class GameLogic {
 
 
 
-    // Placeholder for PVE combat logic
-    private void combatPVE() {
-        // Implement PVE combat logic here
-    }
 
     public void readStory(String playerName, String kingdom, String warrior, String ranger, String mage) throws InterruptedException {
         System.out.print("Do you want to read the story? (1-YES/2-NO): ");

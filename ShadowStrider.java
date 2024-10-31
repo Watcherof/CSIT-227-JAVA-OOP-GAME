@@ -2,13 +2,13 @@ import java.util.Random;
 
 public class ShadowStrider extends Characters{
 
-    public ShadowStrider(int res) {
-        super("Shadow Strider", 65, 2, "Spirit", res);
+    public ShadowStrider() {
+        super("Shadow Strider", 65, 2, "Spirit");
     }
 
     
     @Override
-    public void basicAttack(int res, Characters opponent) {     
+    public void basicAttack(int res, Characters opponent,int gameMode) {     
         if (res < 0) {
         res = 0;
     }
@@ -20,14 +20,19 @@ public class ShadowStrider extends Characters{
             res -=2;
             displayWithDelay(super.getName() + " swiftly draws their bow and aims for a precise shot!", 150);
             displayWithDelay("They unleash the arrow, dealing " + damage + " damage to the enemies.", 150);
-            displayWithDelay("You now have " + res + " stamina/energy left.", 150);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + res + " mana left.", 150);
+            }else{
+                displayWithDelay("Computer has " + res + " mana left.", 150);
+            }
+            
         }
         opponent.takeDamage(damage);
     }
 
 
     @Override
-    public void skill(int res, Characters opponent) {
+    public void skill(int res, Characters opponent,int gameMode) {
         if (res < 0) {
             res = 0;
         }
@@ -41,14 +46,18 @@ public class ShadowStrider extends Characters{
             displayWithDelay(super.getName() + " readies their bow, swiftly nocking multiple arrows at once!", 150);
             displayWithDelay("They release a flurry of arrows, each one striking enemies across the battlefield!", 150);
             displayWithDelay("A rain of arrows falls upon the enemies, dealing " + damage + " damage to each of them.", 150);
-            displayWithDelay("You now have " + res + " stamina/energy left.", 150);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + res + " mana left.", 150);
+            }else{
+                displayWithDelay("Computer has " + res + " mana left.", 150);
+            }
         }
         opponent.takeDamage(damage);
     }
     
 
     @Override
-    public void ult(int res, Characters opponent) {
+    public void ult(int res, Characters opponent,int gameMode) {
         if (res < 0) {
             res = 0;
         }
@@ -60,7 +69,11 @@ public class ShadowStrider extends Characters{
             res -=8;
             displayWithDelay(super.getName() + " harnesses the power of the storm, nocking arrows imbued with fury!", 150);
             displayWithDelay("A barrage of arrows rains down, each striking true and dealing " + damage + " damage to all enemies!", 150);
-            displayWithDelay("You have " + res + " stamina/energy left.", 150);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + res + " mana left.", 150);
+            }else{
+                displayWithDelay("Computer has " + res + " mana left.", 150);
+            }
         }
         opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity
     }
@@ -82,11 +95,19 @@ public class ShadowStrider extends Characters{
         }
 
     @Override
-    public void choices( int res) {
-        if (super.getShield() > 0) {
-            System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
-        } else {
-            System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+    public void choices( int res,int gameMode) {
+        if(gameMode == 1){
+            if (super.getShield() > 0) {
+                System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
+            } else {
+                System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+            }
+        }else{
+            if (super.getShield() > 0) {
+                System.out.println("\nComputer current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
+            } else {
+                System.out.println("\nComputer current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+            }
         }
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Spirit )");
@@ -94,8 +115,10 @@ public class ShadowStrider extends Characters{
         System.out.println("3) Ultimate Skill (Cost: 8 Spirit)");
         System.out.println("4) Switch Character");
         System.out.println("5) Reroll (For demonstration)");
-        System.out.println("6) End Turn");
-        System.out.print("\nYour Choice: ");
+        System.out.println("6) End Turn");             
+        if(gameMode == 1){
+            System.out.print("\nYour Choice: ");
+        }
     }
     
 }

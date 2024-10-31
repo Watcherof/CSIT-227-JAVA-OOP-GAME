@@ -3,17 +3,15 @@ public abstract class Characters {
     protected int health;       // Character's health points
     protected int defence;      // Character's defence points
     protected String type;      // Type of character (e.g., Mage, Warrior)
-    protected int res;          // Resource or special attribute related to the character's skills
     protected int shield;       // Shield value 
 
 
     // Constructor to initialize character attributes
-    public Characters(String name, int health, int defence, String type, int res) {
+    public Characters(String name, int health, int defence, String type) {
         this.name = name;       // Set character's name
         this.health = health;   // Set character's initial health
         this.defence = defence; // Set character's defence value
         this.type = type;       // Set character's type
-        this.res = res;         // Set character's resource value
     }
 
     // Getter for character's name
@@ -44,10 +42,7 @@ public abstract class Characters {
         return shield;
     }
 
-    // Getter for character's resource
-    public int getRes() {
-        return res;
-    }
+
 
     // Method to check if the character is alive
     public boolean isAlive() {
@@ -79,12 +74,12 @@ public abstract class Characters {
     }
 
     // Abstract methods for character actions to be implemented by subclasses
-    public abstract void basicAttack(int res, Characters opponent);
-    public abstract void skill(int res, Characters opponent);
-    public abstract void ult(int res, Characters opponent);
+    public abstract void basicAttack(int res, Characters opponent,int gameMode);
+    public abstract void skill(int res, Characters opponent,int gameMode);
+    public abstract void ult(int res, Characters opponent,int gameMode);
     public abstract void switchCharacter(int res);
     public abstract int getRandomBetween(int min, int max);
-    public abstract void choices(int res);
+    public abstract void choices(int res,int gameMode);
 
     // Method to display text with a delay between words
     public void displayWithDelay(String text, int delayInMillis) {
