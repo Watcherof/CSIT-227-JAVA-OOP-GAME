@@ -239,7 +239,8 @@ public class Choices implements ChoicesInterface {
     }
 
     // Helper method to display the character menu
-    private void displayCharacterMenu() {
+    @Override
+    public void displayCharacterMenu() {
         System.out.println("╔══════════════════════════════════════════════════════════════╗");
         System.out.println("║                CHOOSE YOUR CHARACTERS                        ║");
         System.out.println("╠═════════════╦══════════════════════════╦═════════════════════╣");

@@ -12,4 +12,5 @@ public interface ChoicesInterface {
     boolean isWarriorCharacter(String character);
     boolean isRangerCharacter(String character);
     void displayCharacters(String[] characters,int gamemode);
+    void displayCharacterMenu();
 }
