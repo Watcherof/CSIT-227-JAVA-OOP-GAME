@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Choices implements ChoicesInterface {
@@ -120,21 +121,47 @@ public class Choices implements ChoicesInterface {
     public Characters getCharacter(String characterName) {
         // Logic to create a character instance based on the name
         if (characterName.equalsIgnoreCase("General")) {
-            return new General(0); // Return a new General character
+            return new General(); // Return a new General character
         } else if (characterName.equalsIgnoreCase("Guardians")) {
-            return new Guardian(0); // Return a new Guardian character
+            return new Guardian(); // Return a new Guardian character
         } else if (characterName.equalsIgnoreCase("Ember Witch")) {
-            return new EmberWitch(0); // Return a new Ember Witch character
+            return new EmberWitch(); // Return a new Ember Witch character
         } else if (characterName.equalsIgnoreCase("Aquamancer")) {
-            return new Aquamancer(0); // Return a new Aquamancer character
+            return new Aquamancer(); // Return a new Aquamancer character
         } else if (characterName.equalsIgnoreCase("Shadow Strider")) {
-            return new ShadowStrider(0); // Return a new Shadow Strider character
+            return new ShadowStrider(); // Return a new Shadow Strider character
         } else if (characterName.equalsIgnoreCase("Verdant Warden")) {
-            return new VerdantWarden(0);
+            return new VerdantWarden();
         }
         // Return null if no matching character is found
         return null;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////
+    public Characters[] computerSelectCharacter() {
+        Random random = new Random();
+        Characters[] selectedCharacters = new Characters[3];
+        
+        // Loop through classes in order: Warrior, Mage, Ranger
+        String[] classes = {"Warrior", "Mage", "Ranger"};
+        for (int i = 0; i < classes.length; i++) {
+            String chosenCharacter;
+            do {
+                if (i == 0) { // Warrior class
+                    chosenCharacter = validWarriorCharacters[random.nextInt(validWarriorCharacters.length)];
+                } else if (i == 1) { // Mage class
+                    chosenCharacter = validMageCharacters[random.nextInt(validMageCharacters.length)];
+                } else { // Ranger class
+                    chosenCharacter = validRangerCharacters[random.nextInt(validRangerCharacters.length)];
+                }
+            } while (isClassAlreadyChosen(chosenCharacter)); // Ensure the character class isn't already chosen
+            selectedCharacters[i] = getCharacter(chosenCharacter); // Get the character instance
+            setChosenCharacter(chosenCharacter); // Track the chosen character
+        }
+        return selectedCharacters; // Return the array of character instances
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public Characters[] selectCharacters() {
@@ -176,9 +203,15 @@ public class Choices implements ChoicesInterface {
         return selectedCharacters; // Return the array of character instances
     }
 
+
+
     @Override
-    public void displayCharacters(String[] characters) {
-        System.out.println("You have chosen the following characters:\n");
+    public void displayCharacters(String[] characters,int gameMode) {
+        if(gameMode == 1){
+            System.out.println("You have chosen the following characters:\n");
+        }else{
+            System.out.println("Computer have chosen the following characters:\n");
+        }
         for (String character : characters) { // Iterate over chosen characters
             if (character != null) {
                 System.out.println("- " + character); // Print each chosen character

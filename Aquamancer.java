@@ -1,12 +1,12 @@
 import java.util.*;
 public class Aquamancer extends Characters {
 
-    public Aquamancer(int res) {
-        super("Aquamancer", 80, 5, "Mana", res);
+    public Aquamancer() {
+        super("Aquamancer", 80, 5, "Mana");
     }
 
     @Override
-    public void basicAttack(int res, Characters opponent) {
+    public void basicAttack(int res, Characters opponent,int gameMode) {
         if (res < 0) {
             res = 0;
         }
@@ -19,14 +19,19 @@ public class Aquamancer extends Characters {
         // Display the attack message
         displayWithDelay(super.getName() + " conjures a concentrated energy blast and launches it at the enemies!", 150);
         displayWithDelay("The blast strikes the enemies, dealing " + damage + " magic damage.", 150);
-        displayWithDelay("You now have " + res + " mana left.", 150);
+        if(gameMode == 1){
+            displayWithDelay("You now have " + res + " mana left.", 150);
+        }else{
+            displayWithDelay("Computer has " + res + " mana left.", 150);
+        }
+        
         opponent.takeDamage(damage);
     }
 
     @Override
     //TODO    
     // Implement additional logic to apply the shieldAmount to an ally's shield here
-    public void skill(int res, Characters opponent) {
+    public void skill(int res, Characters opponent,int gameMode) {
         if (res < 0) {
             res = 0;
         }
@@ -42,13 +47,17 @@ public class Aquamancer extends Characters {
         displayWithDelay(super.getName() + " weaves a magical spell and launches it at the enemies!", 150);
         displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);
         displayWithDelay("In addition, " + super.getName() + " grants a protective shield of " + shieldAmount + " points to an ally!", 150);
-        displayWithDelay("You now have " + res + " mana left.", 150);
+        if(gameMode == 1){
+            displayWithDelay("You now have " + res + " mana left.", 150);
+        }else{
+            displayWithDelay("Computer has " + res + " mana left.", 150);
+        }
     }
 
     @Override
     // TODO
     // IMPLEMENT THE AOE ULT which is heal
-    public void ult(int res, Characters opponent) {
+    public void ult(int res, Characters opponent,int gameMode) {
         if (res < 8) { 
             displayWithDelay("Insufficient Mana or Energy to perform the AoE Heal! Please END TURN!", 150);
             return;
@@ -76,11 +85,19 @@ public class Aquamancer extends Characters {
 
 
     @Override
-    public void choices( int res) {
-        if (super.getShield() > 0) {
-            System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
-        } else {
-            System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+    public void choices( int res,int gameMode) {
+        if(gameMode == 1){
+            if (super.getShield() > 0) {
+                System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
+            } else {
+                System.out.println("\nYour current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+            }
+        }else{
+            if (super.getShield() > 0) {
+                System.out.println("\nComputer current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + " | Shield: " + super.getShield() + ")");
+            } else {
+                System.out.println("\nComputer current character: " + super.getName() + " (Health: " + super.getHealth() + " | Defence: " + super.getDefence() + " | " + this.type + ": " + res + ")");
+            }
         }
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Mana )");
@@ -89,7 +106,10 @@ public class Aquamancer extends Characters {
         System.out.println("4) Switch Character");
         System.out.println("5) Reroll (For demonstration)");
         System.out.println("6) End Turn");
-        System.out.print("\nYour Choice: ");
+        
+        if(gameMode == 1){
+            System.out.print("\nYour Choice: ");
+        }
     }
   
     
