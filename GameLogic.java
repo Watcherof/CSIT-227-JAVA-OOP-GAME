@@ -215,7 +215,7 @@ public class GameLogic {
                 while (repeatReading) {
                     System.out.print("Enter corresponding letters [M-mage, R-Ranger, W-Warrior]: ");
                     char classChoice = Character.toUpperCase(scan.next().charAt(0));
-    
+
                     switch (classChoice) {
                         case 'W':
                             w1.tellCharLoreAttack();
