@@ -21,9 +21,9 @@ public class ShadowStrider extends Characters{
             displayWithDelay(super.getName() + " swiftly draws their bow and aims for a precise shot!", 150);
             displayWithDelay("They unleash the arrow, dealing " + damage + " damage to the enemies.", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " spirit left.", 150);
             }
             
         }
@@ -47,9 +47,9 @@ public class ShadowStrider extends Characters{
             displayWithDelay("They release a flurry of arrows, each one striking enemies across the battlefield!", 150);
             displayWithDelay("A rain of arrows falls upon the enemies, dealing " + damage + " damage to each of them.", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " spirit left.", 150);
             }
         }
         opponent.takeDamage(damage);
@@ -70,9 +70,9 @@ public class ShadowStrider extends Characters{
             displayWithDelay(super.getName() + " harnesses the power of the storm, nocking arrows imbued with fury!", 150);
             displayWithDelay("A barrage of arrows rains down, each striking true and dealing " + damage + " damage to all enemies!", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " spirit left.", 150);
             }
         }
         opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity

@@ -161,6 +161,18 @@ public class GameLogic {
                 roundCounter++; // Increment the round counter after each turn
             }
         }
+
+        if (player1.hasAliveCharacters()) {
+            System.out.println("\n╔════════════════════════════════════════╗");
+            System.out.println("║               User wins!               ║");
+            System.out.println("╚════════════════════════════════════════╝");
+            System.out.println("Player 1 defeated player 2 in " + roundCounter + " rounds!");
+        } else {
+            System.out.println("\n╔════════════════════════════════════════╗");
+            System.out.println("║              Computer wins!            ║");
+            System.out.println("╚════════════════════════════════════════╝");
+            System.out.println("Player 2 defeated player 1 in " + roundCounter + " rounds!");
+        }
     }
 
 

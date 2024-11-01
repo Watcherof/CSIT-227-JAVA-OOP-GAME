@@ -20,9 +20,9 @@ public class General extends Characters{
             displayWithDelay(super.getName()+ " charges towards the enemies with a swift basic attack!", 150);
             displayWithDelay("They hit the enemies, dealing " + damage + " damage.", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " stamina left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " stamina left.", 150);
             }
             
         }
@@ -40,9 +40,9 @@ public class General extends Characters{
             displayWithDelay(super.getName() + " focuses intensely, channeling a devastating skill!", 150);
             displayWithDelay("Critical damage is inflicted upon the enemies dealing " + damage + " damage!", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " stamina left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " stamina left.", 150);
             }
         }
         opponent.takeDamage(damage);
@@ -59,9 +59,9 @@ public class General extends Characters{
             displayWithDelay(super.getName() + " unsheathes dual swords, unleashing their ultimate technique!", 150);
             displayWithDelay("The skill's damage is doubled as the dual swords tear through the battlefield, dealing " + damage + " damage!", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " stamina left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " stamina left.", 150);
             }
         }
         opponent.takeDamage(damage);
