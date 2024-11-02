@@ -162,10 +162,11 @@ public class GameLogic {
             }
         }
 
+
     // Determine and display the winner
                 if (player1.hasAliveCharacters()) {
                     System.out.println("\n╔════════════════════════════════════════╗");
-                    System.out.println("║                User 1 wins!            ║");
+                    System.out.println("║                User  wins!             ║");
                     System.out.println("╚════════════════════════════════════════╝");
                     System.out.println(player1.getName() + " defeated Computer in " + roundCounter + " rounds!");
                 } else {
@@ -174,6 +175,7 @@ public class GameLogic {
                     System.out.println("╚════════════════════════════════════════╝");
                     System.out.println("Computer defeated "+player1.getName() +  " in " + roundCounter + " rounds!");
                 }
+
     }
 
 
