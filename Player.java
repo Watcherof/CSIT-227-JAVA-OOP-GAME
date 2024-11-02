@@ -25,7 +25,7 @@ public class Player extends Choices {
 
     // Method to return chosen Characters
     public Characters[] getChosenChar() {
-        return this.chosenCharacters; // Return the array of chosen Characters
+        return this.characters; // Return the array of chosen Characters
     }
 
 
@@ -238,6 +238,8 @@ public class Player extends Choices {
         } while(current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6);
     }
 
+
+    
     // current kay AI ; Opponent kay user
     public void computerCombat(Player current, Player opponent) {
         Random rand = new Random();
@@ -249,7 +251,6 @@ public class Player extends Choices {
         boolean actionPerformed = false;
     
         while (current.hasAliveCharacters() && opponent.hasAliveCharacters()) {
-    
             System.out.println("\n===== Enemy Current Character =====");
             System.out.println("Name   : " + opponentCurrent.getName());
             System.out.println("Health : " + opponentCurrent.getHealth());
@@ -284,6 +285,7 @@ public class Player extends Choices {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }  
+
             if (!opponentCurrent.isAlive()) {
                 displayWithDelay("\n" + opponentCurrent.getName() + " has been defeated!",150);
                 // Automatically switch to the next alive opponent character
@@ -336,10 +338,7 @@ public class Player extends Choices {
         }
       
     }
-    
-    
-    
-    
+
 
     // Method to perform the chosen attack
     private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current,int gameMode) {

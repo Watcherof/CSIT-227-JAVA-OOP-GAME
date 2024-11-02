@@ -77,12 +77,7 @@ public class ShadowStrider extends Characters{
         }
         opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity
     }
-    
 
-    @Override
-    public void switchCharacter(int res) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public int getRandomBetween(int min, int max) {

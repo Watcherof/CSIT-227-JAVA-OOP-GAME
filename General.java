@@ -26,7 +26,7 @@ public class General extends Characters{
             }
             
         }
-        opponent.takeDamage(damage);
+        opponent.takeDamage(200);
     }
 
     @Override
@@ -67,11 +67,7 @@ public class General extends Characters{
         opponent.takeDamage(damage);
     }
 
-    @Override
-    public void switchCharacter( int res) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'switchCharacter'");
-    }
+
 
     @Override
      public int getRandomBetween(int min, int max) {

@@ -72,11 +72,7 @@ public class EmberWitch extends Characters{
         opponent.takeDamage(damage);
     }
 
-    @Override
-    public void switchCharacter(int res) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'switchCharacter'");
-    }
+
 
     @Override
       public int getRandomBetween(int min, int max) {

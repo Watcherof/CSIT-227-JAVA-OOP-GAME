@@ -82,16 +82,9 @@ public class VerdantWarden extends Characters {
         opponent.takeDamage(damage);
     }
 
-    @Override
-    public void switchCharacter(int res) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
      public int getRandomBetween(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Min should be less than or equal to Max");
-        }
         Random random = new Random();
         // Generate random number between min (inclusive) and max (inclusive)
         return random.nextInt((max - min) + 1) + min;

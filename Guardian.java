@@ -60,12 +60,7 @@ public class Guardian extends Characters{
         opponent.takeDamage(damage);
     }
 
-    @Override
-    public void switchCharacter(int res) {
-            displayWithDelay(super.getName() + " calls for reinforcements! A new character is ready to fight!", 150);
-            displayWithDelay("You now have " + res + " stamina/energy left.", 150);
 
-    }
    
 
     @Override
