@@ -67,10 +67,6 @@ public class Aquamancer extends Characters {
         displayWithDelay(super.getName() + "channels their power and releases a wave of healing energy!", 150);
     }
 
-    @Override
-    public void switchCharacter(int res) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 
     @Override

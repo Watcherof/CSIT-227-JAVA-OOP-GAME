@@ -21,9 +21,9 @@ public class VerdantWarden extends Characters {
             displayWithDelay(super.getName() + " calls upon nature's strength, drawing their bow to unleash a vibrant arrow!", 150);
             displayWithDelay("The arrow flies true, dealing " + damage + " damage to the enemies.", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " spirit left.", 150);
             }
             
         }
@@ -48,9 +48,9 @@ public class VerdantWarden extends Characters {
             displayWithDelay("Each enemy takes " + damage + " damage from the barrage!", 150);
             displayWithDelay("All allies receive " + healAmount + " health from the soothing energy!", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " spirit left.", 150);
             }
         }
         opponent.takeDamage(damage);
@@ -74,24 +74,17 @@ public class VerdantWarden extends Characters {
             displayWithDelay("They unleash a devastating strike, dealing " + damage + " damage to a single target!", 150);
             displayWithDelay("In addition, all allies receive " + healAmount + " health and gain a shield of " + shieldAmount + " points!", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " spirit left.", 150);
             }
         }  
         opponent.takeDamage(damage);
     }
 
-    @Override
-    public void switchCharacter(int res) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
      public int getRandomBetween(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Min should be less than or equal to Max");
-        }
         Random random = new Random();
         // Generate random number between min (inclusive) and max (inclusive)
         return random.nextInt((max - min) + 1) + min;

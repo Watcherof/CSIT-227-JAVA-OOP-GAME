@@ -77,7 +77,6 @@ public abstract class Characters {
     public abstract void basicAttack(int res, Characters opponent,int gameMode);
     public abstract void skill(int res, Characters opponent,int gameMode);
     public abstract void ult(int res, Characters opponent,int gameMode);
-    public abstract void switchCharacter(int res);
     public abstract int getRandomBetween(int min, int max);
     public abstract void choices(int res,int gameMode);
 

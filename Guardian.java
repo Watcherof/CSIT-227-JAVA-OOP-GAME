@@ -21,9 +21,9 @@ public class Guardian extends Characters{
             displayWithDelay(super.getName() + " swings their weapon to strike the enemy while shielding allies!", 150);
             displayWithDelay("They deal " + damage + " damage to the enemy and provide a protective stance for allies!", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " stamina left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " stamina left.", 150);
             }
             
         }
@@ -52,20 +52,15 @@ public class Guardian extends Characters{
             displayWithDelay(super.getName() + " unsheathes dual swords, unleashing their ultimate technique!", 150);
             displayWithDelay("The skill's damage is doubled as the dual swords tear through the battlefield, dealing " + damage + " damage!", 150);
             if(gameMode == 1){
-                displayWithDelay("You now have " + res + " mana left.", 150);
+                displayWithDelay("You now have " + res + " stamina left.", 150);
             }else{
-                displayWithDelay("Computer has " + res + " mana left.", 150);
+                displayWithDelay("Computer has " + res + " stamina left.", 150);
             }
         }
         opponent.takeDamage(damage);
     }
 
-    @Override
-    public void switchCharacter(int res) {
-            displayWithDelay(super.getName() + " calls for reinforcements! A new character is ready to fight!", 150);
-            displayWithDelay("You now have " + res + " stamina/energy left.", 150);
 
-    }
    
 
     @Override
