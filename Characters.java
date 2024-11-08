@@ -4,6 +4,7 @@ public abstract class Characters {
     protected int defence;      // Character's defence points
     protected String type;      // Type of character (e.g., Mage, Warrior)
     protected int shield;       // Shield value 
+    protected int maxHealth;
 
 
     // Constructor to initialize character attributes
@@ -12,6 +13,7 @@ public abstract class Characters {
         this.health = health;   // Set character's initial health
         this.defence = defence; // Set character's defence value
         this.type = type;       // Set character's type
+        this.maxHealth = health;
     }
 
     // Getter for character's name
@@ -96,5 +98,8 @@ public abstract class Characters {
 
     public void heal(int healAmount) {
         this.health += healAmount;
+        if (this.health > this.maxHealth) {
+            this.health = this.maxHealth;
+        }
     }
 }

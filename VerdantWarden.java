@@ -59,6 +59,7 @@ public class VerdantWarden extends Characters {
     @Override
     // TODO 
     // IMPLEMENT HEALING SHIT HERE TY
+    // attack all && heal all
     public void ult(int res, Characters opponent,int gameMode) {
         int damage = getRandomBetween(10,20); // Damage range for the ultimate skill
         int healAmount = 20; // Fixed healing for allies

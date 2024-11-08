@@ -251,7 +251,7 @@ public class Player extends Choices {
         boolean actionPerformed = false;
     
         while (current.hasAliveCharacters() && opponent.hasAliveCharacters()) {
-            System.out.println("\n===== Enemy Current Character =====");
+            System.out.println("\n=====  " +opponent.getName() + " Current Character =====");
             System.out.println("Name   : " + opponentCurrent.getName());
             System.out.println("Health : " + opponentCurrent.getHealth());
             
@@ -416,8 +416,14 @@ public class Player extends Choices {
                 displayWithDelay("You now have " + (res[i]-5) + " mana left.", 150);
             }else{
                 displayWithDelay("Computer has " + (res[i]-5) + " mana left.", 150);
-            }
+            } 
         }
+        // if (current.getName().equals("Verdant Warden")) {
+        //     int healAmount = current.getRandomBetween(5, 10);
+        //     printAllCharacterStatus(res);
+        //     System.out.println();
+        //     int healChoice = scan.nextInt() - 1;
+        // }
     }
 
     private void ultSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current) {
