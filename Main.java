@@ -8,9 +8,8 @@ import java.util.Scanner;
         String mage = "Ember Witch";
         String kingdom = "Camelot";
 
-        System.out.println("Echoes of War: The Guardian's Path");
-        System.out.print("Enter your name: ");
-        String playerName = scan.nextLine();
+       gameLogic.gameTitle();
+        String playerName = gameLogic.name();
         ///////////////////////////read story
         gameLogic.readStory(playerName, kingdom, warrior, ranger, mage);
         ///////////////////////////////////////
@@ -20,7 +19,7 @@ import java.util.Scanner;
         // Read character lore////////////
         gameLogic.readCharacterLore();
         /////////////////////////////////
-        System.out.println("\nThank You for playing the game:)");
+        gameLogic.thank();
         scan.close(); // Close the scanner to prevent resource leaks
     }
 }

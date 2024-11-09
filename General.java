@@ -26,7 +26,7 @@ public class General extends Characters{
             }
             
         }
-        opponent.takeDamage(200);
+        opponent.takeDamage(damage);
     }
 
     @Override
@@ -96,11 +96,11 @@ public class General extends Characters{
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Stamina)");
-        System.out.println("2) Skill (Cost: 5 Stamina)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Stamina)");
+        System.out.println("1) Basic Attack (Cost: 2 Stamina | Damage: 0 - 4)");
+        System.out.println("2) Skill (Cost: 5 Stamina | Damage: 11- 15)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Stamina | Damage: 16-25)");
         System.out.println("4) Switch Character");
-        System.out.println("5) Reroll (For demonstration)");
+        System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");
 
         if(gameMode == 1){

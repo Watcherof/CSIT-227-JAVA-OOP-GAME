@@ -107,11 +107,11 @@ public class VerdantWarden extends Characters {
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Spirit )");
-        System.out.println("2) Skill (Cost: 5 Spirit)");
+        System.out.println("1) Basic Attack (Cost: 2 Spirit | Damage: 0 - 7 )");
+        System.out.println("2) Skill (Cost: 5 Spirit | Damage: 10 - 15 | Heal(Ally): 10)");
         System.out.println("3) Ultimate Skill (Cost: 8 Spirit)");
         System.out.println("4) Switch Character");
-        System.out.println("5) Reroll (For demonstration)");
+        System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");       
         if(gameMode == 1){
             System.out.print("\nYour Choice: ");
