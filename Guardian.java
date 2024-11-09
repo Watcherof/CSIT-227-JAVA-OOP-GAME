@@ -57,7 +57,7 @@ public class Guardian extends Characters{
                 displayWithDelay("Computer has " + res + " stamina left.", 150);
             }
         }
-        opponent.takeDamage(damage);
+        opponent.takeDamage(200);
     }
 
 

@@ -191,16 +191,37 @@ public class GameLogic {
 
 
     public void readStory(String playerName, String kingdom, String warrior, String ranger, String mage) throws InterruptedException {
-        System.out.print("Do you want to read the story? (1-YES/2-NO): ");
-        int skip = scan.nextInt();
-
-        if (skip == 1) {
-            Thread.sleep(1000);
-            s1.tellStoryIntro(playerName); 
-            Thread.sleep(1000);
-            s1.tellStoryKingdom(kingdom, playerName, warrior, ranger, mage);
-            Thread.sleep(1000);
-            s1.tellStoryEnd(playerName);
+        boolean isEnabled = true;
+        int skip = 0;
+        int flag = 0;
+        while(skip!=2){
+            isEnabled=true;
+            while(isEnabled){
+                try {  
+                if(flag != 1){
+                    System.out.print("Do you want to read the story? (1-YES/2-NO): ");
+                }
+                
+                skip = scan.nextInt();
+                isEnabled = false ;
+                    } catch (Exception e) {
+                        System.out.println("Plase enter a number!");
+                        scan.next();
+                }
+            }
+            if (skip == 1) {
+                Thread.sleep(1000);
+                s1.tellStoryIntro(playerName); 
+                Thread.sleep(1000);
+                s1.tellStoryKingdom(kingdom, playerName, warrior, ranger, mage);
+                Thread.sleep(1000);
+                s1.tellStoryEnd(playerName);
+            }else if(skip == 2){
+                flag = 1;
+                break;
+            }else{
+                System.out.println("Plase only enter 1 or 2!");
+            }
         }
     }
 

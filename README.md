@@ -14,3 +14,27 @@ example
 stamina 2 - mana 6; spirit - 2
 but the user of spirit is dead so it must not count it 
 but in the code it is counted so fix the bug
+
+
+kuwang : 
+pa chuy2
+hanging choices 
+enemy current character health 
+
+damage range in skill showcase 
+player 1 player 2 current char 
+
+
+hidden character / op 
+khai
+
+
+damage 99999999
+health 1000000000000
+cost  0
+
+TODO 
+DEFECE
+
+ENTER UR NAME 
+NULLPOINTEREXCEOTIOn
