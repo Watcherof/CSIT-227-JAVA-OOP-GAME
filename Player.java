@@ -31,7 +31,13 @@ public class Player extends Choices {
 
     // Switch character if valid
     public boolean switchCharacter(int index) {
-
+        if (index == this.index) {
+            displayWithDelay("Cannot change to the same character!", 100);
+            return false;  // Return false as the character hasn't changed
+        }
+        if(index == 4){
+            return false;
+        }
         // Check if the index is valid and the character is alive
         if (index >= 0 && index < characters.length && characters[index].isAlive()) {
             String currentCharacterName = getCurrentCharacter().getName();
@@ -40,14 +46,16 @@ public class Player extends Choices {
             this.index = index; 
             return true; 
         } 
-        else if (index > 2 && hasAliveCharacters()) {
-            displayWithDelay("Invalid input! Please enter 1, 2, or 3 only!", 100);
+        // Check if the index is out of range (not 1, 2, or 3)
+        else if (index < 0 || index > 2) {
+            displayWithDelay("Invalid input! Please enter valid choices (1, 2, or 3).", 100);
         } 
         else {
             displayWithDelay("Cannot switch to character because the character is dead!", 100);
         }
         return false;
     }
+    
     
     
 
@@ -61,37 +69,30 @@ public class Player extends Choices {
         return false; // No alive characters found
     }
 
-    // // Method to take damage
-    // public void damageTaken(int damage) {
-    //     Characters currentCharacter = getCurrentCharacter(); // Get the current character
-    //     if (currentCharacter != null && currentCharacter.isAlive()) {
-    //         currentCharacter.takeDamage(damage); // Apply damage to the current character
-    //         System.out.println(currentCharacter.getName() + " takes " + damage + " damage."); // Print damage info
-    //     } else {
-    //         System.out.println("Current character is already dead or invalid."); // Error message
-    //     }
-    // }
-
-    
     public void printAllCharacterStatus(int[] res) {
         for (int i = 0; i < characters.length; i++) {
             if (characters[i].isAlive()) {
-                // If character is alive, print health and resource
+                // If character is alive, print health, defense, resource, and shield
                 if (characters[i].getShield() > 0) {
                     System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
-                    + characters[i].getHealth() + " HP, " + this.type[i] + ": " + res[i] + " Shield: " + characters[i].getShield());
+                        + characters[i].getHealth() + " HP, Defense: " + characters[i].getDefence() 
+                        + ", " + this.type[i] + ": " + res[i] 
+                        + ", Shield: " + characters[i].getShield());
                 } else {
                     System.out.println((i + 1) + ". " + characters[i].getName() + ": " 
-                    + characters[i].getHealth() + " HP, " + this.type[i] + ": " + res[i]);
+                        + characters[i].getHealth() + " HP, Defense: " + characters[i].getDefence() 
+                        + ", " + this.type[i] + ": " + res[i]);
                 }
-                
-                
             } else {
                 // If character is dead, print "Dead" instead of health
-                System.out.println((i + 1) + ". " + characters[i].getName() + ": Dead, " + this.type[i] +": " + res[i]);
+                System.out.println((i + 1) + ". " + characters[i].getName() + ": Dead, " + this.type[i] + ": " + res[i]);
             }
         }
     }
+    
+
+
+    
 
     public void healAllCharacters(int healAmount) {
         for (Characters character : characters) {
@@ -102,7 +103,6 @@ public class Player extends Choices {
     }
 
     
-
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generate random numbers that sum up to 10
@@ -151,7 +151,8 @@ public class Player extends Choices {
               mc = current.getCurrentCharacter(); // Get the current character of the player
             while(true){
                 try{
-                    System.out.println("\n===== Enemy Current Character =====");
+                    System.out.println("\n===================================");
+                    System.out.println(opponent.getName() + " (Enemy) Current Character");
                     System.out.println("Name   : " + opponentCurrent.getName());
                     System.out.println("Health : " + opponentCurrent.getHealth());
                     
@@ -199,9 +200,14 @@ public class Player extends Choices {
                         try {
                         System.out.println("Choose a character to switch to: ");
                         current.printAllCharacterStatus(res);
+                        System.out.print("Your choice: ");
                         a = scan.nextInt() - 1;
-                        current.switchCharacter(a);    
-                        isEnabled = false;    
+                        if(a < 3 && a > -1){
+                        isEnabled = false; 
+                         }      
+                         if(current.switchCharacter(a) == false){//para mo loop balik if mo pili same char in choosing like if user choose to switch to guardian while iyang current char kay guardian mo loop sya balik asking to choose other chars
+                                isEnabled = true;
+                         } 
                         } catch (Exception e) {
                             System.out.println("Invalid choice! Please try again"  + e);
                             scan.next();
@@ -209,7 +215,12 @@ public class Player extends Choices {
                     }
                     break;
                 case 5: // Reroll stamina/energy
-                    res = wish(); // Reroll resources
+                    //res = wish(); // Reroll resources
+                    System.out.println("\n══════════════════════════════════════════════════");
+                    System.out.println("All Character Statuses:");
+                    current.printAllCharacterStatus(res);
+                    System.out.println("══════════════════════════════════════════════════");
+
                     break;
                 case 6: // End turn
                     displayWithDelay(mc.getName() + " decides to regroup and ends their turn.", 150);
@@ -251,7 +262,8 @@ public class Player extends Choices {
         boolean actionPerformed = false;
     
         while (current.hasAliveCharacters() && opponent.hasAliveCharacters()) {
-            System.out.println("\n=====  " +opponent.getName() + " Current Character =====");
+            System.out.println("\n===================================");
+            System.out.println(opponent.getName() + " (User/You) Current Character");
             System.out.println("Name   : " + opponentCurrent.getName());
             System.out.println("Health : " + opponentCurrent.getHealth());
             
@@ -373,7 +385,6 @@ public class Player extends Choices {
 
 
 
-        
     // Switch to the next alive character in the opponent's team
     public boolean switchToNextAliveCharacter() {
         for (int i = 0; i < characters.length; i++) {
@@ -388,24 +399,10 @@ public class Player extends Choices {
 
 
 
-    // Display text with a delay for dramatic effect
-    public void displayWithDelay(String text, int delayInMillis) {
-        String[] words = text.split(" "); // Split text into words
-        for (String word : words) {
-            System.out.print(word + " ");
-            try {
-                Thread.sleep(delayInMillis);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt(); 
-            }
-        }
-        System.out.println();
-    }
-
     private void skillSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current,int gameMode) {
         Scanner scan = new Scanner(System.in);
         if (current.getName().equals("Guardian")) { // naa diri ang heal sa aquamancer gi implement
-            int shieldAmount = current.getRandomBetween(10, 15);
+            int shieldAmount = current.getRandomBetween(5, 10);
             printAllCharacterStatus(res);
             System.out.println();
             int shieldChoice = scan.nextInt() - 1;
@@ -428,7 +425,7 @@ public class Player extends Choices {
 
     private void ultSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current) {
         if (current.getName().equals("Aquamancer")) { // naa diri ang heal sa aquamancer gi implement
-            int healAmount = current.getRandomBetween(20, 30);
+            int healAmount = current.getRandomBetween(10, 25);
             healAllCharacters(healAmount);
             displayWithDelay("All allies are healed for " + healAmount + " health points!", 150);
             displayWithDelay("You now have " + (res[i]-8) + " mana/energy left.", 150);

@@ -8,7 +8,7 @@ public class Guardian extends Characters{
 
     @Override
     public void basicAttack(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(1, 4); // Damage dealt by the basic attack
+        int damage = getRandomBetween(0, 4); // Damage dealt by the basic attack
         if (res < 0) {
             res = 0;
         }
@@ -43,21 +43,21 @@ public class Guardian extends Characters{
     @Override
     // AOE SHIELD NI 
     public void ult(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(16, 25);
+        // int damage = getRandomBetween(16, 25);
         if (res < 8) {
             System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
-            return;
+            
         } else {
             res -= 8;
-            displayWithDelay(super.getName() + " unsheathes dual swords, unleashing their ultimate technique!", 150);
-            displayWithDelay("The skill's damage is doubled as the dual swords tear through the battlefield, dealing " + damage + " damage!", 150);
+            displayWithDelay(super.getName() + " raises their shield, protecting all allies with unwavering resolve!", 150);
+            displayWithDelay("The shield deflects incoming attacks, ensuring the safety of the entire team!", 150);            
             if(gameMode == 1){
                 displayWithDelay("You now have " + res + " stamina left.", 150);
             }else{
                 displayWithDelay("Computer has " + res + " stamina left.", 150);
             }
         }
-        opponent.takeDamage(200);
+        
     }
 
 
@@ -89,11 +89,11 @@ public class Guardian extends Characters{
                 }
             }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Stamina)");
-        System.out.println("2) Skill (Cost: 5 Stamina)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Stamina)");
+        System.out.println("1) Basic Attack (Cost: 2 Stamina | Damage: 0 - 4)");
+        System.out.println("2) Skill (Cost: 5 Stamina | Shield(Single Ally): 5- 10)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Stamina | Shield(All Ally): TBD)");
         System.out.println("4) Switch Character");
-        System.out.println("5) Reroll (For demonstration)");
+        System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");
 
         if(gameMode == 1){

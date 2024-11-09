@@ -30,7 +30,7 @@ public class EmberWitch extends Characters{
 
     @Override
     public void skill(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(10, 15);
+        int damage = getRandomBetween(10, 20);
         if (res < 0) {
             res = 0;
         }
@@ -52,7 +52,7 @@ public class EmberWitch extends Characters{
 
     @Override
     public void ult(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(15, 25);
+        int damage = getRandomBetween(20, 30);
         if (res < 0) {
             res = 0;
         }
@@ -76,9 +76,7 @@ public class EmberWitch extends Characters{
 
     @Override
       public int getRandomBetween(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Min should be less than or equal to Max");
-        }
+
         Random random = new Random();
         // Generate random number between min (inclusive) and max (inclusive)
         return random.nextInt((max - min) + 1) + min;
@@ -100,11 +98,11 @@ public class EmberWitch extends Characters{
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Mana )");
-        System.out.println("2) Skill (Cost: 5 Mana)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Mana)");
+        System.out.println("1) Basic Attack (Cost: 2 Mana | Damage: 0 - 10)");
+        System.out.println("2) Skill (Cost: 5 Mana | Damage: 10 - 20)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Mana | Damage 20 - 30)");
         System.out.println("4) Switch Character");
-        System.out.println("5) Reroll (For demonstration)");
+        System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");
         
         if(gameMode == 1){

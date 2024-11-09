@@ -61,7 +61,7 @@ public class ShadowStrider extends Characters{
         if (res < 0) {
             res = 0;
         }
-        int damage = 30;
+        int damage = getRandomBetween(30, 35);
         if (res < 8) {
             System.out.println("Insufficient Spirit or Energy! Please switch character or END TURN!");
             return;
@@ -81,9 +81,6 @@ public class ShadowStrider extends Characters{
 
     @Override
     public int getRandomBetween(int min, int max) {
-            if (min > max) {
-                throw new IllegalArgumentException("Min should be less than or equal to Max");
-            }
             Random random = new Random();
             // Generate random number between min (inclusive) and max (inclusive)
             return random.nextInt((max - min) + 1) + min;
@@ -105,11 +102,11 @@ public class ShadowStrider extends Characters{
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Spirit )");
-        System.out.println("2) Skill (Cost: 5 Spirit)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Spirit)");
+        System.out.println("1) Basic Attack (Cost: 2 Spirit | Damage: 5 - 15 )");
+        System.out.println("2) Skill (Cost: 5 Spirit | Damage: 15 - 25 )");
+        System.out.println("3) Ultimate Skill (Cost: 8 Spirit | Damage: 30 - 35)");
         System.out.println("4) Switch Character");
-        System.out.println("5) Reroll (For demonstration)");
+        System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");             
         if(gameMode == 1){
             System.out.print("\nYour Choice: ");

@@ -15,7 +15,7 @@ public class Aquamancer extends Characters {
             return;
         }
         res -=2;
-        int damage = getRandomBetween(0, 5); // Damage dealt by the attack
+        int damage = getRandomBetween(0, 3); // Damage dealt by the attack
         // Display the attack message
         displayWithDelay(super.getName() + " conjures a concentrated energy blast and launches it at the enemies!", 150);
         displayWithDelay("The blast strikes the enemies, dealing " + damage + " magic damage.", 150);
@@ -30,7 +30,7 @@ public class Aquamancer extends Characters {
 
     @Override
     //TODO    
-    // Implement additional logic to apply the shieldAmount to an ally's shield here
+    // implement the healing shit here ty
     public void skill(int res, Characters opponent,int gameMode) {
         if (res < 0) {
             res = 0;
@@ -41,17 +41,18 @@ public class Aquamancer extends Characters {
             return;
         }
         res -= 5;
-        int damage = 1; // Damage dealt by the attack
-        int shieldAmount = getRandomBetween(1, 3); // Amount of shield provided to an ally
+       
+        int healAmount = getRandomBetween(1, 3); // Amount of shield provided to an ally
         // Display the attack and support messages
-        displayWithDelay(super.getName() + " weaves a magical spell and launches it at the enemies!", 150);
-        displayWithDelay("The spell strikes the enemies, dealing " + damage + " magic damage.", 150);
-        displayWithDelay("In addition, " + super.getName() + " grants a protective shield of " + shieldAmount + " points to an ally!", 150);
+        displayWithDelay(super.getName() + " weaves a healing spell and releases it to soothe the wounds of an ally!", 150);
+        displayWithDelay("The spell restores " + healAmount + " health, bringing them back from the brink of defeat.", 150);
+        displayWithDelay("In addition, " + super.getName() + " provides a burst of rejuvenation, replenishing the ally's strength!", 150);
         if(gameMode == 1){
             displayWithDelay("You now have " + res + " mana left.", 150);
         }else{
             displayWithDelay("Computer has " + res + " mana left.", 150);
         }
+        //healAlly() or something
     }
 
     @Override
@@ -96,11 +97,11 @@ public class Aquamancer extends Characters {
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Mana )");
-        System.out.println("2) Skill (Cost: 5 Mana)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Mana)");
+        System.out.println("1) Basic Attack (Cost: 2 Mana | Damage: 0 - 3)");
+        System.out.println("2) Skill (Cost: 5 Mana | Heal(Single Ally): 0 - 10)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Mana| Heal(All ally):10 - 25)");
         System.out.println("4) Switch Character");
-        System.out.println("5) Reroll (For demonstration)");
+        System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");
         
         if(gameMode == 1){
