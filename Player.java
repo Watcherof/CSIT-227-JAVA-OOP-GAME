@@ -23,6 +23,10 @@ public class Player extends Choices {
         return characters[this.index]; // Return the currently active character
     }
 
+    public Characters[] getAllCharacters() {
+        return characters;
+    }
+
     // Method to return chosen Characters
     public Characters[] getChosenChar() {
         return this.characters; // Return the array of chosen Characters
@@ -372,7 +376,7 @@ public class Player extends Choices {
             case 3: // Ultimate attack
                     current.ult(res[i], opponent.getCurrentCharacter(),gameMode);
                     if(res[i] >= 8){
-                        ultSpecialCases(i, res, choice, opponent, current);
+                        ultSpecialCases(i, res, choice, opponent, current, gameMode);
                         res[i] -=8; 
                     }
                 break;
@@ -402,33 +406,105 @@ public class Player extends Choices {
     private void skillSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current,int gameMode) {
         Scanner scan = new Scanner(System.in);
         if (current.getName().equals("Guardian")) { // naa diri ang heal sa aquamancer gi implement
-            int shieldAmount = current.getRandomBetween(5, 10);
+            int shieldAmount = current.getRandomBetween(5, 15);
             printAllCharacterStatus(res);
             System.out.println();
+            System.out.print("Your Choice: ");
             int shieldChoice = scan.nextInt() - 1;
-            characters[shieldChoice].setShield(shieldAmount);
+            characters[shieldChoice].setShield(shieldAmount + characters[shieldChoice].getShield());
             displayWithDelay(current.getName() + " focuses intensely, channeling a protective shield!", 150);
             displayWithDelay(characters[shieldChoice].getName() + " is protected by a shield that has " + shieldAmount + " health points.", 150);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + (res[i]-5) + " stamina left.", 150);
+            }else{
+                displayWithDelay("Computer has " + (res[i]-5) + " stamina left.", 150);
+            } 
+        }
+        if (current.getName().equals("Verdant Warden")) {
+            int healAmount = current.getRandomBetween(0, 8);
+            printAllCharacterStatus(res);
+            System.out.println();
+            System.out.print("Your Choice: ");
+            int healChoice = scan.nextInt() - 1;
+            characters[healChoice].heal(healAmount);
+            displayWithDelay(characters[healChoice].getName() + " channels nature's energy, creating a healing aura!", 150);
+            displayWithDelay(characters[healChoice].getName() + " receive " + healAmount + " health from the soothing energy!", 150);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + (res[i]-5) + " spirit left.", 150);
+            }else{
+                displayWithDelay("Computer has " + (res[i]-5) + " spirit left.", 150);
+            } 
+        }
+        if (current.getName().equals("Aquamancer")) {
+            int healAmount = current.getRandomBetween(5, 12);
+            printAllCharacterStatus(res);
+            System.out.println();
+            System.out.print("Your Choice: ");
+            int healChoice = scan.nextInt() - 1;
+            characters[healChoice].heal(healAmount);
+            displayWithDelay(current.getName() + " weaves a healing spell and releases it to soothe the wounds of an ally!", 150);
+            displayWithDelay("The spell provides a burst of rejuvenation and restores " + healAmount + " health, replenishing the ally's strength!", 150);
             if(gameMode == 1){
                 displayWithDelay("You now have " + (res[i]-5) + " mana left.", 150);
             }else{
                 displayWithDelay("Computer has " + (res[i]-5) + " mana left.", 150);
             } 
         }
-        // if (current.getName().equals("Verdant Warden")) {
-        //     int healAmount = current.getRandomBetween(5, 10);
-        //     printAllCharacterStatus(res);
-        //     System.out.println();
-        //     int healChoice = scan.nextInt() - 1;
-        // }
     }
 
-    private void ultSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current) {
+    private void ultSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current, int gameMode) {
         if (current.getName().equals("Aquamancer")) { // naa diri ang heal sa aquamancer gi implement
             int healAmount = current.getRandomBetween(10, 25);
             healAllCharacters(healAmount);
             displayWithDelay("All allies are healed for " + healAmount + " health points!", 150);
-            displayWithDelay("You now have " + (res[i]-8) + " mana/energy left.", 150);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + (res[i]-8) + " mana left.", 150);
+            }else{
+                displayWithDelay("Computer has " + (res[i]-8) + " mana left.", 150);
+            } 
+        }
+        if (current.getName().equals("Verdant Warden")) {
+            int healAmount = current.getRandomBetween(8, 12);
+            int damage = current.getRandomBetween(10, 20);
+            displayWithDelay(current.getName() + " channels nature's energy, unleashing a flurry of arrows!", 150);
+            displayWithDelay("Each enemy takes " + damage + " damage from the barrage!", 150);
+            displayWithDelay("In, addition, all allies receive " + healAmount + " health!", 150);
+            healAllCharacters(healAmount);
+            damageAllEnemies(damage, opponent);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + (res[i]-8) + " spirit left.", 150);
+            }else{
+                displayWithDelay("Computer has " + (res[i]-8) + " spirit left.", 150);
+            } 
+        }
+        if (current.getName().equals("Guardian")) {
+            int shieldAmount = current.getRandomBetween(5, 10);
+            shieldAllAllies(shieldAmount);
+            displayWithDelay(current.getName() + " raises their shield, protecting all allies with unwavering resolve!", 150);
+            displayWithDelay("All allies receive " + shieldAmount + " sheild!", 150);
+            displayWithDelay("The shield deflects incoming attacks, ensuring the safety of the entire team!", 150);     
+            if(gameMode == 1){
+                displayWithDelay("You now have " + (res[i]-8) + " stamina left.", 150);
+            }else{
+                displayWithDelay("Computer has " + (res[i]-8) + " stamina left.", 150);
+            } 
+        }
+    }
+
+    public void damageAllEnemies(int damage, Player opponent) {
+        Characters[] chars = opponent.getAllCharacters();
+        for (Characters character : chars) {
+            if (character.isAlive()) {
+                character.takeDamage(damage);
+            }
+        }
+    }
+
+    public void shieldAllAllies(int shieldAmount) {
+        for (Characters character : characters) {
+            if (character.isAlive()) {
+                character.setShield(shieldAmount + character.getShield());
+            }
         }
     }
 

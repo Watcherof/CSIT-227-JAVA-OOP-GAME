@@ -18,8 +18,8 @@ public class Guardian extends Characters{
         } else {
             res -= 2; // Cost for the basic attack
             // Display the supportive action message
-            displayWithDelay(super.getName() + " swings their weapon to strike the enemy while shielding allies!", 150);
-            displayWithDelay("They deal " + damage + " damage to the enemy and provide a protective stance for allies!", 150);
+            displayWithDelay(super.getName() + " swings their weapon to strike the enemy!", 150);
+            displayWithDelay("They deal " + damage + " damage to the enemy!", 150);
             if(gameMode == 1){
                 displayWithDelay("You now have " + res + " stamina left.", 150);
             }else{
@@ -47,16 +47,8 @@ public class Guardian extends Characters{
         if (res < 8) {
             System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
             
-        } else {
-            res -= 8;
-            displayWithDelay(super.getName() + " raises their shield, protecting all allies with unwavering resolve!", 150);
-            displayWithDelay("The shield deflects incoming attacks, ensuring the safety of the entire team!", 150);            
-            if(gameMode == 1){
-                displayWithDelay("You now have " + res + " stamina left.", 150);
-            }else{
-                displayWithDelay("Computer has " + res + " stamina left.", 150);
-            }
-        }
+        } 
+        
         
     }
 
@@ -90,8 +82,8 @@ public class Guardian extends Characters{
             }
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Stamina | Damage: 0 - 4)");
-        System.out.println("2) Skill (Cost: 5 Stamina | Shield(Single Ally): 5- 10)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Stamina | Shield(All Ally): TBD)");
+        System.out.println("2) Skill (Cost: 5 Stamina | Shield(Single Ally): 5 - 15)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Stamina | Shield(All Allies): 5 - 10)");
         System.out.println("4) Switch Character");
         System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");
@@ -99,6 +91,6 @@ public class Guardian extends Characters{
         if(gameMode == 1){
             System.out.print("\nYour Choice: ");
         }
-        }
+    }
 
 }

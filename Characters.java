@@ -3,7 +3,7 @@ public abstract class Characters {
     protected int health;       // Character's health points
     protected int defence;      // Character's defence points
     protected String type;      // Type of character (e.g., Mage, Warrior)
-    protected int shield;       // Shield value 
+    protected int shield = 0;       // Shield value 
     protected int maxHealth;
 
 

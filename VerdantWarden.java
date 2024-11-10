@@ -34,24 +34,14 @@ public class VerdantWarden extends Characters {
     // TODO
     // HEAL MECHANICS 
     public void skill(int res, Characters opponent,int gameMode) {
-        int damage = 15; // Fixed damage for enemies
-        int healAmount = 10; // Fixed healing for allies
-    
+        int damage = getRandomBetween(10, 15);
         if (res < 5) {
-            System.out.println("Insufficient Spirit or Energy! Please Switch Character or END TURN!");
+            System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
             return;
         } else {
-            res -= 5; // Cost for the skill
-    
-            // Display the AoE attack and healing messages
-            displayWithDelay(super.getName() + " channels nature's energy, unleashing a flurry of arrows!", 150);
-            displayWithDelay("Each enemy takes " + damage + " damage from the barrage!", 150);
-            displayWithDelay("All allies receive " + healAmount + " health from the soothing energy!", 150);
-            if(gameMode == 1){
-                displayWithDelay("You now have " + res + " spirit left.", 150);
-            }else{
-                displayWithDelay("Computer has " + res + " spirit left.", 150);
-            }
+            displayWithDelay(super.getName() + " calls upon the power of nature, preparing their skill!", 150);
+            displayWithDelay("They unleash a devastating strike, dealing " + damage + " damage to a single target!", 150);
+            System.out.println("Which character do you want to be healed?");
         }
         opponent.takeDamage(damage);
     }
@@ -61,26 +51,10 @@ public class VerdantWarden extends Characters {
     // IMPLEMENT HEALING SHIT HERE TY
     // attack all && heal all
     public void ult(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(10,20); // Damage range for the ultimate skill
-        int healAmount = 20; // Fixed healing for allies
-        int shieldAmount = 1; // Fixed shield amount
-
-        if (res < 8) {
-            System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
+        if (res < 8) { 
+            displayWithDelay("Insufficient Mana or Energy to perform the AoE Attack & Heal! Please END TURN!", 150);
             return;
-        } else {
-            // Display the ultimate attack and healing messages
-            res -= 8;
-            displayWithDelay(super.getName() + " calls upon the power of nature, preparing their ultimate technique!", 150);
-            displayWithDelay("They unleash a devastating strike, dealing " + damage + " damage to a single target!", 150);
-            displayWithDelay("In addition, all allies receive " + healAmount + " health and gain a shield of " + shieldAmount + " points!", 150);
-            if(gameMode == 1){
-                displayWithDelay("You now have " + res + " spirit left.", 150);
-            }else{
-                displayWithDelay("Computer has " + res + " spirit left.", 150);
-            }
-        }  
-        opponent.takeDamage(damage);
+        }
     }
 
 
@@ -108,8 +82,8 @@ public class VerdantWarden extends Characters {
         }
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Spirit | Damage: 0 - 7 )");
-        System.out.println("2) Skill (Cost: 5 Spirit | Damage: 10 - 15 | Heal(Ally): 10)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Spirit)");
+        System.out.println("2) Skill (Cost: 5 Spirit | Damage: 10 - 15 | Heal(Ally): 0 - 8)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Spirit) | Damage(All Enemies): 10 - 20 | Heal(All Allies): 8 - 12)");
         System.out.println("4) Switch Character");
         System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");       
