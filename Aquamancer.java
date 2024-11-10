@@ -40,18 +40,7 @@ public class Aquamancer extends Characters {
             System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
             return;
         }
-        res -= 5;
-       
-        int healAmount = getRandomBetween(1, 3); // Amount of shield provided to an ally
-        // Display the attack and support messages
-        displayWithDelay(super.getName() + " weaves a healing spell and releases it to soothe the wounds of an ally!", 150);
-        displayWithDelay("The spell restores " + healAmount + " health, bringing them back from the brink of defeat.", 150);
-        displayWithDelay("In addition, " + super.getName() + " provides a burst of rejuvenation, replenishing the ally's strength!", 150);
-        if(gameMode == 1){
-            displayWithDelay("You now have " + res + " mana left.", 150);
-        }else{
-            displayWithDelay("Computer has " + res + " mana left.", 150);
-        }
+        System.out.println("Which character do you want to be healed?");
         //healAlly() or something
     }
 
@@ -98,7 +87,7 @@ public class Aquamancer extends Characters {
         }
         System.out.println("\nChoose Attack: ");
         System.out.println("1) Basic Attack (Cost: 2 Mana | Damage: 0 - 3)");
-        System.out.println("2) Skill (Cost: 5 Mana | Heal(Single Ally): 0 - 10)");
+        System.out.println("2) Skill (Cost: 5 Mana | Heal(Single Ally): 5 - 12)");
         System.out.println("3) Ultimate Skill (Cost: 8 Mana| Heal(All ally):10 - 25)");
         System.out.println("4) Switch Character");
         System.out.println("5) Show All Character Statuses");
