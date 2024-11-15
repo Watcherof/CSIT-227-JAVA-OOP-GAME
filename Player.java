@@ -36,7 +36,7 @@ public class Player extends Choices {
     // Switch character if valid
     public boolean switchCharacter(int index) {
         if (index == this.index) {
-            displayWithDelay("Cannot change to the same character!\n", 100);
+            displayWithDelay("Cannot change to the same character!", 100);
             return false;  // Return false as the character hasn't changed
         }
         if(index == 4){
