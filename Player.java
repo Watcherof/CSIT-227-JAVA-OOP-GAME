@@ -202,7 +202,7 @@ public class Player extends Choices {
                     boolean isEnabled = true;
                     while(isEnabled){
                         try {
-                        System.out.println("Choose a character to switch to: ");
+                        System.out.println("\nChoose a character to switch to: ");
                         current.printAllCharacterStatus(res);
                         System.out.print("Your choice: ");
                         a = scan.nextInt() - 1;
