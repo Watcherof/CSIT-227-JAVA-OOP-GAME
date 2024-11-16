@@ -1,4 +1,3 @@
-import java.util.*;
 public class Aquamancer extends Characters {
 
     public Aquamancer() {
@@ -6,17 +5,18 @@ public class Aquamancer extends Characters {
     }
 
     @Override
-    public void basicAttack(int res, Characters opponent,int gameMode) {
+    public void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 0) {
             res = 0;
         }
         if (res < 2) {
-            System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         }
-        res -=2;
-        int damage = getRandomBetween(0, 3); // Damage dealt by the attack
+        
+        int damage = getRandomBetween(0, 4); // ensures that if damage is negative ex(1 - 10 = -9) then it would just return 0
         // Display the attack message
+        res -= 2;
         displayWithDelay(super.getName() + " conjures a concentrated energy blast and launches it at the enemies!", 150);
         displayWithDelay("The blast strikes the enemies, dealing " + damage + " magic damage.", 150);
         if(gameMode == 1){
@@ -31,44 +31,26 @@ public class Aquamancer extends Characters {
     @Override
     //TODO    
     // implement the healing shit here ty
-    public void skill(int res, Characters opponent,int gameMode) {
+    public void skill(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 0) {
             res = 0;
         }
     
         if (res < 5) {
-            System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
-            return;
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
         }
-        System.out.println("Which character do you want to be healed?");
+
         //healAlly() or something
     }
 
     @Override
     // TODO
     // IMPLEMENT THE AOE ULT which is heal
-    public void ult(int res, Characters opponent,int gameMode) {
+    public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 8) { 
             displayWithDelay("Insufficient Mana or Energy to perform the AoE Heal! Please END TURN!", 150);
-            return;
         }
-    
-        // Display the AoE heal message
-        displayWithDelay(super.getName() + "channels their power and releases a wave of healing energy!", 150);
     }
-
-
-
-    @Override
-     public int getRandomBetween(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Min should be less than or equal to Max");
-        }
-        Random random = new Random();
-        // Generate random number between min (inclusive) and max (inclusive)
-        return random.nextInt((max - min) + 1) + min;
-    }
-
 
     @Override
     public void choices( int res,int gameMode) {
@@ -86,7 +68,7 @@ public class Aquamancer extends Characters {
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Mana | Damage: 0 - 3)");
+        System.out.println("1) Basic Attack (Cost: 2 Mana | Damage: 0 - 4)");
         System.out.println("2) Skill (Cost: 5 Mana | Heal(Single Ally): 5 - 12)");
         System.out.println("3) Ultimate Skill (Cost: 8 Mana| Heal(All ally):10 - 25)");
         System.out.println("4) Switch Character");

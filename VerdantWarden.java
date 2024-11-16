@@ -1,4 +1,3 @@
-import java.util.*;
 public class VerdantWarden extends Characters {
     public VerdantWarden() {
         super("Verdant Warden", 85, 3, "Spirit");
@@ -7,13 +6,13 @@ public class VerdantWarden extends Characters {
     @Override
     // TODO 
     // ADD HEALING MECHANICS ON THIS HERO
-    public void basicAttack(int res, Characters opponent,int gameMode) {
+    public void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 0) {
             res = 0;
         }
-        int damage = getRandomBetween(0, 7); // Adjusted damage range for a support type with an attack
-        if (res < 2) {
-            System.out.println("Insufficient Spirit or Energy! Please Switch Character or END TURN!");
+        int damage = getRandomBetween(0, 5); 
+         if (res < 2) {
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return; // No damage if not enough resources
         } else {
             // Display the attack message
@@ -33,37 +32,29 @@ public class VerdantWarden extends Characters {
     @Override
     // TODO
     // HEAL MECHANICS 
-    public void skill(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(10, 15);
-        if (res < 5) {
-            System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
-            return;
-        } else {
-            displayWithDelay(super.getName() + " calls upon the power of nature, preparing their skill!", 150);
-            displayWithDelay("They unleash a devastating strike, dealing " + damage + " damage to a single target!", 150);
-            System.out.println("Which character do you want to be healed?");
-        }
-        opponent.takeDamage(damage);
+    public void skill(int res, Characters opponent,int gameMode,int enemyDefence) {
+        // int damage = getRandomBetween(15,20) - enemyDefence;
+         if (res < 5) {
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
+         } 
+        //else {
+        //     displayWithDelay(super.getName() + " calls upon the power of nature, preparing their skill!", 150);
+        //     displayWithDelay("They unleash a devastating strike, dealing " + damage + " damage to a single target!", 150);
+        //     System.out.println("Which character do you want to be healed?");
+        // }
+        // opponent.takeDamage(damage);
     }
 
     @Override
     // TODO 
     // IMPLEMENT HEALING SHIT HERE TY
     // attack all && heal all
-    public void ult(int res, Characters opponent,int gameMode) {
+    public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 8) { 
-            displayWithDelay("Insufficient Mana or Energy to perform the AoE Attack & Heal! Please END TURN!", 150);
-            return;
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
         }
     }
 
-
-    @Override
-     public int getRandomBetween(int min, int max) {
-        Random random = new Random();
-        // Generate random number between min (inclusive) and max (inclusive)
-        return random.nextInt((max - min) + 1) + min;
-    }
 
     @Override
     public void choices( int res,int gameMode) {
@@ -81,9 +72,9 @@ public class VerdantWarden extends Characters {
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Spirit | Damage: 0 - 7 )");
+        System.out.println("1) Basic Attack (Cost: 2 Spirit | Damage: 0 - 10 )");
         System.out.println("2) Skill (Cost: 5 Spirit | Damage: 10 - 15 | Heal(Ally): 0 - 8)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Spirit) | Damage(All Enemies): 10 - 20 | Heal(All Allies): 8 - 12)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Spirit) | Damage(All Enemies): 15 - 17 | Heal(All Allies): 8 - 12)");
         System.out.println("4) Switch Character");
         System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");       

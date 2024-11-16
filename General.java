@@ -1,4 +1,3 @@
-import java.util.Random;
 
 public class General extends Characters{
 
@@ -7,11 +6,11 @@ public class General extends Characters{
     }
 
     @Override
-    public void basicAttack(int res, Characters opponent,int gameMode) {        
+    public void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence) {        
             if (res < 0) {
             res = 0;
         }
-        int damage = getRandomBetween(0, 4);
+        int damage = getRandomBetween(0, 13);
         if (res < 2) {
             displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
@@ -30,8 +29,8 @@ public class General extends Characters{
     }
 
     @Override
-    public void skill( int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(11, 15);
+    public void skill( int res, Characters opponent,int gameMode,int enemyDefence) {
+        int damage = getRandomBetween(13, 25) - enemyDefence;
         if (res < 5) {
             displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
@@ -49,8 +48,8 @@ public class General extends Characters{
     }
 
     @Override
-    public void ult( int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(16, 25);
+    public void ult( int res, Characters opponent,int gameMode,int enemyDefence) {
+        int damage = getRandomBetween(25,30) - enemyDefence;
         if (res < 8) {
             displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
@@ -67,19 +66,6 @@ public class General extends Characters{
         opponent.takeDamage(damage);
     }
 
-
-
-    @Override
-     public int getRandomBetween(int min, int max) {
-        if (min > max) {
-            throw new IllegalArgumentException("Min should be less than or equal to Max");
-        }
-        Random random = new Random();
-        // Generate random number between min (inclusive) and max (inclusive)
-        return random.nextInt((max - min) + 1) + min;
-    }
-
-   
     @Override
     public void choices( int res,int gameMode) {
         if(gameMode == 1){
@@ -96,9 +82,9 @@ public class General extends Characters{
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Stamina | Damage: 0 - 4)");
-        System.out.println("2) Skill (Cost: 5 Stamina | Damage: 11- 15)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Stamina | Damage: 16-25)");
+        System.out.println("1) Basic Attack (Cost: 2 Stamina | Raw Damage: 0 - 13)");
+        System.out.println("2) Skill (Cost: 5 Stamina | Raw Damage: 13 - 25)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Stamina | Raw Damage: 25 - 30)");
         System.out.println("4) Switch Character");
         System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");

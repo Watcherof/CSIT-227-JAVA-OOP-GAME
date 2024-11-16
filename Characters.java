@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public abstract class Characters {
     protected String name;      // Character's name
     protected int health;       // Character's health points
@@ -44,8 +46,6 @@ public abstract class Characters {
         return shield;
     }
 
-
-
     // Method to check if the character is alive
     public boolean isAlive() {
         return health > 0; // Returns true if health is greater than 0
@@ -85,10 +85,9 @@ public abstract class Characters {
     }
 
     // Abstract methods for character actions to be implemented by subclasses
-    public abstract void basicAttack(int res, Characters opponent,int gameMode);
-    public abstract void skill(int res, Characters opponent,int gameMode);
-    public abstract void ult(int res, Characters opponent,int gameMode);
-    public abstract int getRandomBetween(int min, int max);
+    public abstract void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence);
+    public abstract void skill(int res, Characters opponent,int gameMode,int enemyDefence);
+    public abstract void ult(int res, Characters opponent,int gameMode,int enemyDefence);
     public abstract void choices(int res,int gameMode);
 
     // Method to display text with a delay between words
@@ -103,6 +102,12 @@ public abstract class Characters {
             }
         }
         System.out.println(); // Print a newline after the text
+    }
+
+    public int getRandomBetween(int min, int max) {
+        Random random = new Random();
+        // Generate random number between min (inclusive) and max (inclusive)
+        return random.nextInt((max - min) + 1) + min;
     }
 
     public void heal(int healAmount) {

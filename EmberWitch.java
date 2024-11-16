@@ -1,4 +1,3 @@
-import java.util.Random;
 public class EmberWitch extends Characters{
 
     public EmberWitch() {
@@ -6,13 +5,13 @@ public class EmberWitch extends Characters{
     }
 
     @Override
-    public void basicAttack(int res, Characters opponent,int gameMode) {
+    public void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 0) {
             res = 0;
         }
-        int damage = getRandomBetween(0, 10); // Higher range for magic damage
+        int damage = getRandomBetween(0, 15); // ensures that if damage is negative ex(1 - 10 = -9) then it would just return 0
         if (res < 2) {
-            System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
             res -= 2;
@@ -29,13 +28,13 @@ public class EmberWitch extends Characters{
     }
 
     @Override
-    public void skill(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(10, 20);
+    public void skill(int res, Characters opponent,int gameMode,int enemyDefence) {
+        int damage = getRandomBetween(15,25) - enemyDefence;
         if (res < 0) {
             res = 0;
         }
         if (res < 5) {
-            System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
             res -= 5;
@@ -51,13 +50,13 @@ public class EmberWitch extends Characters{
     }
 
     @Override
-    public void ult(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(20, 30);
+    public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
+        int damage = getRandomBetween(25, 35) - enemyDefence;
         if (res < 0) {
             res = 0;
         }
         if (res < 8) {
-            System.out.println("Insufficient Mana! Please Switch Character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
             res -= 8;
@@ -72,15 +71,6 @@ public class EmberWitch extends Characters{
         opponent.takeDamage(damage);
     }
 
-
-
-    @Override
-      public int getRandomBetween(int min, int max) {
-
-        Random random = new Random();
-        // Generate random number between min (inclusive) and max (inclusive)
-        return random.nextInt((max - min) + 1) + min;
-    }
 
     @Override
     public void choices( int res,int gameMode) {
@@ -98,9 +88,9 @@ public class EmberWitch extends Characters{
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Mana | Damage: 0 - 10)");
-        System.out.println("2) Skill (Cost: 5 Mana | Damage: 10 - 20)");
-        System.out.println("3) Ultimate Skill (Cost: 8 Mana | Damage 20 - 30)");
+        System.out.println("1) Basic Attack (Cost: 2 Mana | Damage: 0 - 15)");
+        System.out.println("2) Skill (Cost: 5 Mana | Damage: 15 - 25)");
+        System.out.println("3) Ultimate Skill (Cost: 8 Mana | Damage 25 - 35)");
         System.out.println("4) Switch Character");
         System.out.println("5) Show All Character Statuses");
         System.out.println("6) End Turn");
