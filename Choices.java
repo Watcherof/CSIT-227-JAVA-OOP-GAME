@@ -4,10 +4,10 @@ import java.util.Scanner;
 public class Choices implements ChoicesInterface {
 
     // Arrays to store valid character names for each class
-    private final String[] validMageCharacters = {"Ember Witch", "Aquamancer"};
+    private final String[] validMageCharacters = {"Ember Witch", "Aquamancer", "00Kha1"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
     private final String[] validRangerCharacters = {"Shadow Strider", "Verdant Warden"};
-    private final String[] allCharacters = {"General", "Guardians", "Ember Witch", "Aquamancer", "Shadow Strider", "Verdant Warden"};
+    private final String[] allCharacters = {"General", "Guardians", "Ember Witch", "Aquamancer", "Shadow Strider", "Verdant Warden", "00Kha1"};
 
     public final String[] chosenCharacters = new String[3]; // Array to store selected characters
     private final boolean[] classChosen = new boolean[3]; // Track if a class has already been chosen
@@ -132,6 +132,8 @@ public class Choices implements ChoicesInterface {
             return new ShadowStrider(); // Return a new Shadow Strider character
         } else if (characterName.equalsIgnoreCase("Verdant Warden")) {
             return new VerdantWarden();
+        }   else if (characterName.equalsIgnoreCase("00Kha1")) {
+            return new Khai();
         }
         // Return null if no matching character is found
         return null;

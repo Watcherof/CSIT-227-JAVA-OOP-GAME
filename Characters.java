@@ -54,6 +54,15 @@ public abstract class Characters {
     // Method to take damage, applying defence
     public int takeDamage(int damage) {
         //int damageTaken = Math.max(damage - defence, 0); // Calculate damage after defence
+
+        if (damage == 1111111){                        // for 00Kha1
+            damage = (int)Math.ceil(health * 0.25);         //-|-
+        } else if (damage == 9999999){                      //-|-
+            damage = (int)Math.ceil(health * 0.50);         //-|-
+        } else if (damage == 10101010){                     //-|-
+            damage = health;                                //-|-
+        }                                               // for 00Kha1
+
         if (shield > 0) {
             if (shield > damage) {
                 shield -= damage;
