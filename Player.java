@@ -61,8 +61,6 @@ public class Player extends Choices {
     }
     
     
-    
-
     // Check if the player has any alive characters
     public boolean hasAliveCharacters() {
         for (Characters character : characters) {
@@ -93,24 +91,21 @@ public class Player extends Choices {
             }
         }
     }
-    
 
-
-    
-
-    public void healAllCharacters(int healAmount) {
-        for (Characters character : characters) {
-            if (character.isAlive()) {
-                character.heal(healAmount);
+    // Switch to the next alive character in the opponent's team
+    public boolean switchToNextAliveCharacter() {
+        for (int i = 0; i < characters.length; i++) {
+            if (characters[i].isAlive()) {
+                index = i; // Switch to the next alive character
+                displayWithDelay("\nEnemy Character is Switching to " + characters[i].getName(),150);
+                return true; // Successful switch
             }
         }
+        return false; // No alive characters left
     }
-
-    
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generate random numbers that sum up to 10
-
     public int[] generateNumbers() {
         Random random = new Random(); // Create a Random object
         int[] numbers = new int[3]; // Array to hold three numbers
@@ -142,14 +137,12 @@ public class Player extends Choices {
     }
 
     // Combat method to manage player vs opponent combat
-    // NAPAY KUWANG DRE GUYZ ANG PAG INITIALIZE PARA MAKA PILI OG CHARACTERS
     public void combat(Player current, Player opponent) {
         int[] res = wish();  // Assume res[0] is stamina or energy
         Scanner scan = new Scanner(System.in); // Create a Scanner for user input
         Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
-        //int accumulatedDmg = 0; // Variable to accumulate damage
         Characters mc; // Get the current character of the player
-        int choice = 0, damage = 0;
+        int choice = 0;
         int a = this.index; // like this because if we end turn the res will not be updated together with the current player
        do{
               mc = current.getCurrentCharacter(); // Get the current character of the player
@@ -159,6 +152,7 @@ public class Player extends Choices {
                     System.out.println(opponent.getName() + " (Enemy) Current Character");
                     System.out.println("Name   : " + opponentCurrent.getName());
                     System.out.println("Health : " + opponentCurrent.getHealth());
+                    System.out.println("Defence: " + opponentCurrent.getDefence());
                     
                     if (opponentCurrent.getShield() > 0) {
                         System.out.println("Shield : " + opponentCurrent.getShield());
@@ -169,7 +163,7 @@ public class Player extends Choices {
                     mc.choices(res[this.index],1); // Display choices for current character
                     // Get the player's choice
                     choice = scan.nextInt(); // Read user input for choice
-                    if(choice >= 1 && choice<=6){
+                    if(choice >= 1 && choice<=7){
                         break;
                     }else{
                         System.out.println("Invalid choice. Enter a number from 1 - 6!!!");
@@ -181,7 +175,7 @@ public class Player extends Choices {
             }
             // Perform the attack based on the choice
             if (choice < 4) {
-                damage = performAttack(a, res, choice, opponent, mc,1); // Perform the attack
+                  performAttack(a, res, choice, opponentCurrent,opponent, mc,1); // Perform the attack
                 // Check if the opponent's character is dead
                 if (!opponentCurrent.isAlive()) {
                     displayWithDelay("\n" + opponentCurrent.getName() + " has been defeated!",150);
@@ -213,23 +207,26 @@ public class Player extends Choices {
                                 isEnabled = true;
                          } 
                         } catch (Exception e) {
-                            System.out.println("Invalid choice! Please try again"  + e);
+                            System.out.println("Invalid choice! Please try again");
                             scan.next();
                         }
                     }
                     break;
-                case 5: // Reroll stamina/energy
+                case 5: // print all character status
                     //res = wish(); // Reroll resources
-                    System.out.println("\n══════════════════════════════════════════════════");
-                    System.out.println("All Character Statuses:");
-                    current.printAllCharacterStatus(res);
-                    System.out.println("══════════════════════════════════════════════════");
+                      System.out.println("\n════════════════════════════════════════════════════════════════════");
+                      System.out.println("All Character Statuses:");
+                      current.printAllCharacterStatus(res);
+                     System.out.println("════════════════════════════════════════════════════════════════════");
 
                     break;
                 case 6: // End turn
                     displayWithDelay(mc.getName() + " decides to regroup and ends their turn.", 150);
                     return; // Return to end turn
-    
+                case 7:
+                    //res = wish(); // Reroll resources
+                    res[0] = res[1] = res[2] = 10;
+                    break;
                 default:
                     if (choice < 1 || choice > 6) {
                         displayWithDelay("Invalid choice. Please select an action.", 300); // Error message for invalid choice
@@ -237,7 +234,6 @@ public class Player extends Choices {
                     break;
             }   
             boolean resourcesExhausted = true;
-    
             // Check if all characters have resources below 2
             for (int r : res) {
                 if (r >= 2) {
@@ -249,7 +245,6 @@ public class Player extends Choices {
                 displayWithDelay(current.getName() + " has exhausted all resources now it is " + opponent.getName() + " turn",250);
                 return ; // End turn if all resources are used up
             }
-
         } while(current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6);
     }
 
@@ -270,7 +265,8 @@ public class Player extends Choices {
             System.out.println(opponent.getName() + " (User/You) Current Character");
             System.out.println("Name   : " + opponentCurrent.getName());
             System.out.println("Health : " + opponentCurrent.getHealth());
-            
+            System.out.println("Defence: " + opponentCurrent.getDefence());
+
             if (opponentCurrent.getShield() > 0) {
                 System.out.println("Shield : " + opponentCurrent.getShield());
                 System.out.println("===================================");
@@ -284,20 +280,20 @@ public class Player extends Choices {
             // Determine the attack based on available resources and use performAttack
             if (availableResource >= 8) {
                 displayWithDelay("Computer chooses ultimate attack!", 250);
-                performAttack(currentCharacterIndex, res, 3, opponent, currentCharacter,2); // Ultimate attack
+                performAttack(currentCharacterIndex, res, 3, opponentCurrent,opponent, currentCharacter,2); // Ultimate attack
                 actionPerformed = true;
             } else if (availableResource >= 5) {
                 displayWithDelay("Computer chooses a skill!", 250);
-                performAttack(currentCharacterIndex, res, 2, opponent, currentCharacter,2); // Skill attack
+                performAttack(currentCharacterIndex, res, 2, opponentCurrent,opponent, currentCharacter,2); // Skill attack
                 actionPerformed = true;
             } else if (availableResource >= 2) {
                 displayWithDelay("Computer chooses basic attack!", 250);
-                performAttack(currentCharacterIndex, res, 1, opponent, currentCharacter,2); // Basic attack
+                performAttack(currentCharacterIndex, res, 1,  opponentCurrent,opponent, currentCharacter,2); // Basic attack
                 actionPerformed = true;
             }
             // Add a 2-second pause after each attack
             try {
-                Thread.sleep(2000); // 2000 milliseconds = 2 seconds
+                Thread.sleep(1000); // 2000 milliseconds = 2 seconds
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }  
@@ -330,7 +326,6 @@ public class Player extends Choices {
                         }
                     }
                 }
-    
                 if (!switched) {
                     System.out.println(current.getName() + " has no more characters with resources to act.");
                     return; // End turn if no action was possible
@@ -339,7 +334,6 @@ public class Player extends Choices {
             // Reset actionPerformed for the next character's turn and check resource exhaustion
             actionPerformed = false;
             boolean resourcesExhausted = true;
-    
             // Check if all characters have resources below 2
             for (int r : res) {
                 if (r >= 2) {
@@ -357,26 +351,25 @@ public class Player extends Choices {
 
 
     // Method to perform the chosen attack
-    private int performAttack(int i,  int[] res, int choice, Player opponent,Characters current,int gameMode) {
-        int damage = 0; // Initialize damage variable
+    private void performAttack(int i,  int[] res, int choice, Characters opponent,Player oppo,Characters current,int gameMode) {
         switch (choice) {
             case 1: 
-                    current.basicAttack(res[i], opponent.getCurrentCharacter(),gameMode); 
+                    current.basicAttack(res[i], opponent,gameMode,opponent.getDefence()); 
                     if(res[i] >= 2){
                         res[i] -= 2; 
                     }
                 break;
             case 2: // Skill attack
-                    current.skill(res[i], opponent.getCurrentCharacter(),gameMode);
+                    current.skill(res[i], opponent,gameMode,opponent.getDefence());
                     if(res[i] >= 5){
                         skillSpecialCases(i, res, choice, opponent, current,gameMode);
                         res[i] -= 5; 
                     }
                 break;
             case 3: // Ultimate attack
-                    current.ult(res[i], opponent.getCurrentCharacter(),gameMode);
+                    current.ult(res[i], opponent,gameMode,opponent.getDefence());
                     if(res[i] >= 8){
-                        ultSpecialCases(i, res, choice, opponent, current, gameMode);
+                        ultSpecialCases(i, res, choice, oppo, current, gameMode);
                         res[i] -=8; 
                     }
                 break;
@@ -384,69 +377,123 @@ public class Player extends Choices {
                 System.out.println("Invalid choice for attack.");
                 break;
         }
-        return damage; // Return damage dealt
     }
 
-
-
-    // Switch to the next alive character in the opponent's team
-    public boolean switchToNextAliveCharacter() {
-        for (int i = 0; i < characters.length; i++) {
-            if (characters[i].isAlive()) {
-                index = i; // Switch to the next alive character
-                displayWithDelay("\nEnemy Character is Switching to " + characters[i].getName(),150);
-                return true; // Successful switch
-            }
-        }
-        return false; // No alive characters left
-    }
-
-
-
-    private void skillSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current,int gameMode) {
+    private void skillSpecialCases(int i,  int[] res, int choice, Characters opponent,Characters current,int gameMode) {
         Scanner scan = new Scanner(System.in);
+        Random rand = new Random();
+        boolean isEnabled = true,isEnabled2 = true,isEnabled3 = true;
         if (current.getName().equals("Guardian")) { // naa diri ang heal sa aquamancer gi implement
             int shieldAmount = current.getRandomBetween(5, 15);
-            printAllCharacterStatus(res);
-            System.out.println();
-            System.out.print("Your Choice: ");
-            int shieldChoice = scan.nextInt() - 1;
+            int shieldChoice = 0;
+            if(gameMode == 1){
+                while(isEnabled2){
+                    try{
+                        System.out.println("Which character do you want to be shielded? ");
+                        printAllCharacterStatus(res);
+                        System.out.println();
+                        System.out.print("Your Choice: ");
+                        shieldChoice = scan.nextInt() - 1;
+                        if(shieldChoice < 0 || shieldChoice > 2){
+                            displayWithDelay("\nInvalid Choice! Please enter (1 ,2 ,3 only!)",100);
+                        }else{
+                            isEnabled2 = false;
+                        }
+                    }catch(Exception e){
+                        displayWithDelay("\nPlease Enter a number!\n",100);
+                        scan.next();
+                    }
+                }
+            }else if(gameMode == 2){
+                System.out.println("Which character do you want to be shielded? ");
+                printAllCharacterStatus(res);
+                System.out.println();
+                shieldChoice = rand.nextInt(3);
+            }
             characters[shieldChoice].setShield(shieldAmount + characters[shieldChoice].getShield());
             displayWithDelay(current.getName() + " focuses intensely, channeling a protective shield!", 150);
-            displayWithDelay(characters[shieldChoice].getName() + " is protected by a shield that has " + shieldAmount + " health points.", 150);
             if(gameMode == 1){
+                displayWithDelay(characters[shieldChoice].getName() + " is protected by a shield that has " + shieldAmount + " health points.", 150);
                 displayWithDelay("You now have " + (res[i]-5) + " stamina left.", 150);
             }else{
+                displayWithDelay("Computer chose to shield " + characters[shieldChoice].getName() + " for " + shieldAmount + "health points",150);
                 displayWithDelay("Computer has " + (res[i]-5) + " stamina left.", 150);
             } 
         }
         if (current.getName().equals("Verdant Warden")) {
             int healAmount = current.getRandomBetween(0, 8);
-            printAllCharacterStatus(res);
-            System.out.println();
-            System.out.print("Your Choice: ");
-            int healChoice = scan.nextInt() - 1;
-            characters[healChoice].heal(healAmount);
-            displayWithDelay(characters[healChoice].getName() + " channels nature's energy, creating a healing aura!", 150);
-            displayWithDelay(characters[healChoice].getName() + " receive " + healAmount + " health from the soothing energy!", 150);
+            int damage = current.getRandomBetween(10,15) - opponent.getDefence();
+            int healChoice = 0;
             if(gameMode == 1){
-                displayWithDelay("You now have " + (res[i]-5) + " spirit left.", 150);
-            }else{
-                displayWithDelay("Computer has " + (res[i]-5) + " spirit left.", 150);
-            } 
+                while(isEnabled){
+                    try{
+                        System.out.println("Choose Character to heal: ");
+                        printAllCharacterStatus(res);
+                        System.out.println();
+                        System.out.print("Your Choice: ");
+                        healChoice = scan.nextInt() - 1;
+                        if(healChoice < 0 || healChoice > 2){
+                          displayWithDelay("\nInvalid Choice! Please enter (1 ,2 ,3 only!)",100);
+                        }else{
+                            isEnabled = false;
+                        }
+                    }catch(Exception e){
+                        displayWithDelay("\nPlease Enter a number!\n",100);
+                        scan.next();
+                    }
+                }
+            }else if (gameMode == 2){
+                System.out.println("Choose Character to heal: ");
+                printAllCharacterStatus(res);
+                System.out.println();
+                healChoice = rand.nextInt(3);
+            }
+            characters[healChoice].heal(healAmount);
+            opponent.takeDamage(damage);
+            displayWithDelay(current.getName() + " channels nature's energy, creating a healing aura!", 150);
+            displayWithDelay(characters[healChoice].getName() + " receives " + healAmount + " health from the soothing energy!", 150);
+            if (gameMode == 1) {
+                displayWithDelay("The enemy's " + opponent.getName() + " has been blasted by nature's fierce power, taking " + damage + " damage!", 150);
+                displayWithDelay("You now have " + (res[i] - 5) + " spirit left.", 150);
+            } else {
+                displayWithDelay("The " + current.getName() + " (user's character) has blasted " + opponent.getName() + " with nature's fierce power, taking " + damage + " damage!", 150);
+                displayWithDelay("Computer has " + (res[i] - 5) + " spirit left.", 150);
+            }
         }
         if (current.getName().equals("Aquamancer")) {
             int healAmount = current.getRandomBetween(5, 12);
-            printAllCharacterStatus(res);
-            System.out.println();
-            System.out.print("Your Choice: ");
-            int healChoice = scan.nextInt() - 1;
-            characters[healChoice].heal(healAmount);
-            displayWithDelay(current.getName() + " weaves a healing spell and releases it to soothe the wounds of an ally!", 150);
-            displayWithDelay("The spell provides a burst of rejuvenation and restores " + healAmount + " health, replenishing the ally's strength!", 150);
+            int healChoice = 0;
             if(gameMode == 1){
+                while(isEnabled3){
+                    try {        
+                    System.out.println("Which character do you want to be healed?");
+                    printAllCharacterStatus(res);
+                    System.out.println();
+                    System.out.print("Your Choice: ");
+                     healChoice = scan.nextInt() - 1;
+                     if(healChoice < 0 || healChoice > 2){
+                        displayWithDelay("\nInvalid Choice! Please enter (1 ,2 ,3 only!)",100);
+                      }else{
+                          isEnabled3 = false;
+                      }
+                    } catch (Exception e) {
+                        displayWithDelay("\nPlease Enter a number!\n",100);
+                        scan.next();
+                    }
+                }
+            }else if(gameMode == 2){
+                System.out.println("Which character do you want to be healed?");
+                printAllCharacterStatus(res);
+                System.out.println();
+                healChoice = rand.nextInt(3);
+            }
+            characters[healChoice].heal(healAmount);
+            if(gameMode == 1){
+                displayWithDelay(current.getName() + " weaves a healing spell and releases it to soothe the wounds of an ally!", 150);
+                displayWithDelay("The spell provides a burst of rejuvenation and restores " + healAmount + " health, replenishing the ally's strength!", 150);
                 displayWithDelay("You now have " + (res[i]-5) + " mana left.", 150);
             }else{
+                displayWithDelay("Computer chose to heal " + characters[healChoice].getName() + " for " + healAmount + "health points",150);
                 displayWithDelay("Computer has " + (res[i]-5) + " mana left.", 150);
             } 
         }
@@ -454,7 +501,8 @@ public class Player extends Choices {
 
     private void ultSpecialCases(int i,  int[] res, int choice, Player opponent,Characters current, int gameMode) {
         if (current.getName().equals("Aquamancer")) { // naa diri ang heal sa aquamancer gi implement
-            int healAmount = current.getRandomBetween(10, 25);
+            int healAmount = current.getRandomBetween(10, 15);
+            displayWithDelay(current.getName() + " channels their power and releases a wave of healing energy!", 150);
             healAllCharacters(healAmount);
             displayWithDelay("All allies are healed for " + healAmount + " health points!", 150);
             if(gameMode == 1){
@@ -465,7 +513,7 @@ public class Player extends Choices {
         }
         if (current.getName().equals("Verdant Warden")) {
             int healAmount = current.getRandomBetween(8, 12);
-            int damage = current.getRandomBetween(10, 20);
+            int damage = current.getRandomBetween(15, 17);
             displayWithDelay(current.getName() + " channels nature's energy, unleashing a flurry of arrows!", 150);
             displayWithDelay("Each enemy takes " + damage + " damage from the barrage!", 150);
             displayWithDelay("In, addition, all allies receive " + healAmount + " health!", 150);
@@ -488,7 +536,7 @@ public class Player extends Choices {
             }else{
                 displayWithDelay("Computer has " + (res[i]-8) + " stamina left.", 150);
             } 
-        }
+        } 
     }
 
     public void damageAllEnemies(int damage, Player opponent) {
@@ -508,4 +556,11 @@ public class Player extends Choices {
         }
     }
 
+    public void healAllCharacters(int healAmount) {
+        for (Characters character : characters) {
+            if (character.isAlive()) {
+                character.heal(healAmount);
+            }
+        }
+    }
 }

@@ -8,7 +8,7 @@ import java.util.Scanner;
         String mage = "Ember Witch";
         String kingdom = "Camelot";
 
-       gameLogic.gameTitle();
+        gameLogic.gameTitle();
         String playerName = gameLogic.name();
         ///////////////////////////read story
         gameLogic.readStory(playerName, kingdom, warrior, ranger, mage);

@@ -1,4 +1,3 @@
-import java.util.Random;
 
 public class ShadowStrider extends Characters{
 
@@ -8,13 +7,13 @@ public class ShadowStrider extends Characters{
 
     
     @Override
-    public void basicAttack(int res, Characters opponent,int gameMode) {     
+    public void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence) {     
         if (res < 0) {
         res = 0;
     }
-        int damage = getRandomBetween(5, 15); // Higher damage range for a ranger/archer type
+        int damage =getRandomBetween(0,18);// ensures that if damage is negative ex(1 - 10 = -9) then it would just return 0
         if (res < 2) {
-            System.out.println("Insufficient Spirit or Energy! Please Switch Character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
             res -=2;
@@ -32,14 +31,14 @@ public class ShadowStrider extends Characters{
 
 
     @Override
-    public void skill(int res, Characters opponent,int gameMode) {
+    public void skill(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 0) {
             res = 0;
         }
     
-        int damage = getRandomBetween(15, 25); // Higher damage range for a ranger/archer type
+        int damage = getRandomBetween(18,30) - enemyDefence; // Higher damage range for a ranger/archer type
         if (res < 5) {
-            System.out.println("Insufficient Spirit or Energy! Please Switch Character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
             res -= 5;
@@ -57,13 +56,13 @@ public class ShadowStrider extends Characters{
     
 
     @Override
-    public void ult(int res, Characters opponent,int gameMode) {
+    public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 0) {
             res = 0;
         }
-        int damage = getRandomBetween(30, 35);
+        int damage = getRandomBetween(30, 35) - enemyDefence;
         if (res < 8) {
-            System.out.println("Insufficient Spirit or Energy! Please switch character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
             res -=8;
@@ -78,13 +77,6 @@ public class ShadowStrider extends Characters{
         opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity
     }
 
-
-    @Override
-    public int getRandomBetween(int min, int max) {
-            Random random = new Random();
-            // Generate random number between min (inclusive) and max (inclusive)
-            return random.nextInt((max - min) + 1) + min;
-        }
 
     @Override
     public void choices( int res,int gameMode) {
@@ -102,8 +94,8 @@ public class ShadowStrider extends Characters{
             }
         }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Spirit | Damage: 5 - 15 )");
-        System.out.println("2) Skill (Cost: 5 Spirit | Damage: 15 - 25 )");
+        System.out.println("1) Basic Attack (Cost: 2 Spirit | Damage: 0 - 18 )");
+        System.out.println("2) Skill (Cost: 5 Spirit | Damage: 18 - 30 )");
         System.out.println("3) Ultimate Skill (Cost: 8 Spirit | Damage: 30 - 35)");
         System.out.println("4) Switch Character");
         System.out.println("5) Show All Character Statuses");

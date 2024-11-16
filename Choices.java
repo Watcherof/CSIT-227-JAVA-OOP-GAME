@@ -2,7 +2,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Choices implements ChoicesInterface {
-
     // Arrays to store valid character names for each class
     private final String[] validMageCharacters = {"Ember Witch", "Aquamancer", "00Kha1"};
     private final String[] validWarriorCharacters = {"Guardians", "General"};
@@ -152,7 +151,7 @@ public class Choices implements ChoicesInterface {
                 if (i == 0) { // Warrior class
                     chosenCharacter = validWarriorCharacters[random.nextInt(validWarriorCharacters.length)];
                 } else if (i == 1) { // Mage class
-                    chosenCharacter = validMageCharacters[random.nextInt(validMageCharacters.length)];
+                    chosenCharacter = validMageCharacters[random.nextInt(validMageCharacters.length - 1)]; // ensure di makuha ang hidden character
                 } else { // Ranger class
                     chosenCharacter = validRangerCharacters[random.nextInt(validRangerCharacters.length)];
                 }
@@ -162,9 +161,7 @@ public class Choices implements ChoicesInterface {
         }
         return selectedCharacters; // Return the array of character instances
     }
-    
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public Characters[] selectCharacters() {
         Scanner scanner = new Scanner(System.in);
@@ -204,8 +201,6 @@ public class Choices implements ChoicesInterface {
        
         return selectedCharacters; // Return the array of character instances
     }
-
-
 
     @Override
     public void displayCharacters(String[] characters,int gameMode) {
@@ -256,8 +251,6 @@ public class Choices implements ChoicesInterface {
         System.out.println("╚═════════════╩══════════════════════════╩═════════════════════╝");
         System.out.println(); // Add an empty line for formatting
     }
-
-
 
     public void displayWithDelay(String text, int delayInMillis) {
         String[] words = text.split(" ");  // Split text into words

@@ -266,25 +266,14 @@ public class Story implements StoryInterface {
         displayWithDelay("I better hurry up, or I might get fired!", 300);
         pause(350);
     }
-    
-
-       /*
-        displayWithDelay("",300);
-        pause(350);
-
-        displayWithDelay("\n",150);
-        pause(300);
-        
-        */
-
     @Override
     public void tellCharLoreAttack() {
-       //
+       
     }
 
     @Override
     public void tellCharLoreSupport() {
-        //
+        
     }
 
 

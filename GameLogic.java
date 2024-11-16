@@ -66,9 +66,6 @@ public class GameLogic {
         return playerName;
     }
     
-    
-
-
     public int chooseMode() {
             int mode = 0;
             boolean isEnabled = true;
@@ -242,9 +239,6 @@ public class GameLogic {
             System.out.println("Could not clear the screen.");
         }
     }
-
-
-
 
     public void readStory(String playerName, String kingdom, String warrior, String ranger, String mage) throws InterruptedException {
         boolean isEnabled = true;

@@ -3,11 +3,11 @@ public class Khai extends Characters{
 
     public Khai() {
         super("Khai", 1000000, 1000000, "Stamina");
-        //TODO Auto-generated constructor stub
+       
     }
 
     @Override
-    public void basicAttack(int res, Characters opponent,int gameMode) {
+    public void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence) {
         int damage = 1111111; // Damage dealt by the basic attack
         if (res < 0) {
             res = 0;
@@ -23,7 +23,7 @@ public class Khai extends Characters{
 
     @Override
     // TODO IMPLEMENT SHIDEL SYSTEM
-    public void skill(int res, Characters opponent,int gameMode) {
+    public void skill(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 5) {
             displayWithDelay(super.getName()+ " gathers energy around his whole body.", 150);
         }
@@ -34,7 +34,7 @@ public class Khai extends Characters{
 
     @Override
     // AOE SHIELD NI 
-    public void ult(int res, Characters opponent,int gameMode) {
+    public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 10) {
             displayWithDelay("With a mere flick of their fingers, the air around them shimmered as a ball of pure, crackling energy", 150);
             displayWithDelay("materialized out of nothing, growing larger with every heartbeat as the very fabric of reality bent to", 150);

@@ -1,4 +1,3 @@
-import java.util.*;
 public class Guardian extends Characters{
 
     public Guardian() {
@@ -7,13 +6,13 @@ public class Guardian extends Characters{
     }
 
     @Override
-    public void basicAttack(int res, Characters opponent,int gameMode) {
-        int damage = getRandomBetween(0, 4); // Damage dealt by the basic attack
+    public void basicAttack(int res, Characters opponent,int gameMode,int enemyDefence) {
+        int damage = getRandomBetween(0, 7);// ensures that if damage is negative ex(1 - 10 = -9) then it would just return 0
         if (res < 0) {
             res = 0;
         }
         if (res < 2) {
-            System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
             return;
         } else {
             res -= 2; // Cost for the basic attack
@@ -32,38 +31,23 @@ public class Guardian extends Characters{
 
     @Override
     // TODO IMPLEMENT SHIDEL SYSTEM
-    public void skill(int res, Characters opponent,int gameMode) {
+    public void skill(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 5) {
-            System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
-        } else {
-            System.out.println("Which character do you want to be shielded? ");
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
         }
     }
 
     @Override
     // AOE SHIELD NI 
-    public void ult(int res, Characters opponent,int gameMode) {
+    public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
         // int damage = getRandomBetween(16, 25);
         if (res < 8) {
-            System.out.println("Insufficient Stamina or Energy! Please Switch Character or END TURN!");
-            
+            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
         } 
         
         
     }
 
-
-   
-
-    @Override
-    public int getRandomBetween(int min, int max) {
-       if (min > max) {
-           throw new IllegalArgumentException("Min should be less than or equal to Max");
-       }
-       Random random = new Random();
-       // Generate random number between min (inclusive) and max (inclusive)
-       return random.nextInt((max - min) + 1) + min;
-   }
 
      @Override
      public void choices( int res,int gameMode) {
@@ -81,7 +65,7 @@ public class Guardian extends Characters{
                 }
             }
         System.out.println("\nChoose Attack: ");
-        System.out.println("1) Basic Attack (Cost: 2 Stamina | Damage: 0 - 4)");
+        System.out.println("1) Basic Attack (Cost: 2 Stamina | Damage: 0 - 7)");
         System.out.println("2) Skill (Cost: 5 Stamina | Shield(Single Ally): 5 - 15)");
         System.out.println("3) Ultimate Skill (Cost: 8 Stamina | Shield(All Allies): 5 - 10)");
         System.out.println("4) Switch Character");
