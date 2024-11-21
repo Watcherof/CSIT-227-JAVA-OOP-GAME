@@ -143,96 +143,96 @@ public class Story implements StoryInterface {
         // Character Dialogue
         displayWithDelay("Mysterious Creature: And you have been summoned as the Great Chosen One.", 100);
         displayWithDelay("It is your duty to choose which empire to side with in order to end the war.", 100);
-        pause(350);
+        pause(300);
 
         displayWithDelay(name + ": So, you're saying I am the one who is supposed to end this war?", 100);
-        pause(350);
+        pause(300);
 
-        displayWithDelay("\nMysterious Creature: Yes, exactly. That is why you were summoned, O Great One.", 300);
-        pause(350);
+        displayWithDelay("\nMysterious Creature: Yes, exactly. That is why you were summoned, O Great One.", 100);
+        pause(300);
 
-        displayWithDelay(name + ": But I can’t fight!", 300);
-        pause(350);
+        displayWithDelay(name + ": But I can’t fight!", 100);
+        pause(300);
 
-        displayWithDelay("\nMysterious Creature: The kingdoms have gathered their elite warriors,", 300);
-        displayWithDelay("ready to engage in the impending battles.", 300);
-        displayWithDelay("Your duty is to select a side and lead these champions to triumph.", 300);
-        displayWithDelay("However, time is no longer on my side.", 300);
-        displayWithDelay("I shall inscribe a symbol upon your arm, a testament to your loyalty and a mark of the trust I place in you.", 300);
-        displayWithDelay("With this emblem, I entrust you with the weighty responsibility of guiding our forces to victory.", 300);
-        pause(350);
+        displayWithDelay("\nMysterious Creature: The kingdoms have gathered their elite warriors,", 100);
+        displayWithDelay("ready to engage in the impending battles.", 100);
+        displayWithDelay("Your duty is to select a side and lead these champions to triumph.", 100);
+        displayWithDelay("However, time is no longer on my side.", 100);
+        displayWithDelay("I shall inscribe a symbol upon your arm, a testament to your loyalty and a mark of the trust I place in you.", 100);
+        displayWithDelay("With this emblem, I entrust you with the weighty responsibility of guiding our forces to victory.", 100);
+        pause(300);
 
-        displayWithDelay(name + ": Wait, I still have more questions!", 300);
-        pause(350);
+        displayWithDelay(name + ": Wait, I still have more questions!", 100);
+        pause(300);
 
-        displayWithDelay("\nMysterious Creature: fades away", 300);
-        pause(350);
+        displayWithDelay("\nMysterious Creature: fades away", 100);
+        pause(300);
     }
 
 
     @Override
-    public void tellStoryKingdom(String kingdom, String name, String warrior, String ranger, String mage) {
-        displayWithDelay("The main character " + name + " stands before the generals, having chosen a side.", 300);
-        displayWithDelay("He explains his purpose to them.", 300);
-        pause(350);
+    public void tellStoryKingdom(String name) {
+        displayWithDelay("The main character " + name + " stands before the generals, having chosen a side.", 100);
+        displayWithDelay("He explains his purpose to them.", 100);
+        pause(300);
     
-        displayWithDelay(name + ": I have been sent by a higher being, a mysterious creature,", 300);
-        displayWithDelay("to aid in bringing an end to this war.", 300);
-        pause(350);
+        displayWithDelay(name + ": I have been sent by a higher being, a mysterious creature,", 100);
+        displayWithDelay("to aid in bringing an end to this war.", 100);
+        pause(300);
     
-        displayWithDelay("General: So, you are here to assist us at the behest of the true beings?", 300);
-        pause(350);
+        displayWithDelay("General: So, you are here to assist us at the behest of the true beings?", 100);
+        pause(300);
     
-        displayWithDelay(name + ": Yes, that is the essence of my mission.", 300);
-        pause(350);
+        displayWithDelay(name + ": Yes, that is the essence of my mission.", 100);
+        pause(300);
     
-        displayWithDelay("General: How do you intend to prove that you were sent by the higher beings?", 300);
-        pause(350);
+        displayWithDelay("General: How do you intend to prove that you were sent by the higher beings?", 100);
+        pause(300);
     
-        displayWithDelay("You reveal the mark engraved on your arm.", 300);
-        pause(350);
+        displayWithDelay("You reveal the mark engraved on your arm.", 100);
+        pause(300);
     
-        displayWithDelay("General: It seems the prophecy was true. You are the chosen one.", 300);
-        displayWithDelay("Follow me; I will escort you to the king.", 300);
-        pause(350);
+        displayWithDelay("General: It seems the prophecy was true. You are the chosen one.", 100);
+        displayWithDelay("Follow me; I will escort you to the king.", 100);
+        pause(300);
     
-        displayWithDelay(warrior + " (Warrior class): \"O great chosen one, I, " + warrior + ",", 300);
-        displayWithDelay("from the " + kingdom + ", pledge my unwavering loyalty to you.", 300);
-        displayWithDelay("With my sword and shield, I shall fight fiercely by your side until victory is ours in this war.\"", 300);
-        pause(350);
+        displayWithDelay("Guardian (Warrior class): \"O great chosen one, I, Guardian,", 100);
+        displayWithDelay("from the Camelot, pledge my unwavering loyalty to you.", 100);
+        displayWithDelay("With my sword and shield, I shall fight fiercely by your side until victory is ours in this war.\"", 100);
+        pause(300);
     
-        displayWithDelay(ranger + " (Ranger class): \"O great chosen one, I, " + ranger + ",", 300);
-        displayWithDelay("from the " + kingdom + ", vow to be your eyes and ears in the wild.", 300);
-        displayWithDelay("My arrows shall strike true, and no enemy will escape my keen sight.", 300);
-        displayWithDelay("Together, we will move swiftly and silently to bring triumph in this battle.\"", 300);
-        pause(350);
+        displayWithDelay("Shadow Strider (Ranger class): \"O great chosen one, I, Shadow strider,", 100);
+        displayWithDelay("from the Camelot, vow to be your eyes and ears in the wild.", 100);
+        displayWithDelay("My arrows shall strike true, and no enemy will escape my keen sight.", 100);
+        displayWithDelay("Together, we will move swiftly and silently to bring triumph in this battle.\"", 100);
+        pause(300);
     
-        displayWithDelay(mage + " (Mage class): \"O great chosen one, I, " + mage + ",", 300);
-        displayWithDelay("from the " + kingdom + ", offer you the power of the ancient elements.", 300);
-        displayWithDelay("With the forces of fire, ice, and lightning at my command,", 300);
-        displayWithDelay("I will shatter the enemies that stand in our way.", 300);
-        displayWithDelay("Let magic guide our path to victory.\"", 300);
-        pause(350);
+        displayWithDelay("Aquamancer (Mage class): \"O great chosen one, I, Aquamancer,", 100);
+        displayWithDelay("from the Camelot, offer you the power of the ancient elements.", 100);
+        displayWithDelay("With the forces of fire, ice, and lightning at my command,", 100);
+        displayWithDelay("I will shatter the enemies that stand in our way.", 100);
+        displayWithDelay("Let magic guide our path to victory.\"", 100);
+        pause(300);
     
-        displayWithDelay("The King steps forward, his demeanor commanding yet regal.", 300);
-        pause(350);
+        displayWithDelay("The King steps forward, his demeanor commanding yet regal.", 100);
+        pause(300);
     
         // Adjusting based on chosen kingdom
-        displayWithDelay("King of " + kingdom + ": You claim to be a harbinger of hope in these dark times.", 300);
-        displayWithDelay("I shall place my trust in you.", 300);
-        displayWithDelay("I will entrust you with my finest warriors; they will be under your command", 300);
-        displayWithDelay("as we strive to secure victory in this conflict.", 300);
-        pause(350);
+        displayWithDelay("King of Camelot: You claim to be a harbinger of hope in these dark times.", 100);
+        displayWithDelay("I shall place my trust in you.", 100);
+        displayWithDelay("I will entrust you with my finest warriors; they will be under your command", 100);
+        displayWithDelay("as we strive to secure victory in this conflict.", 100);
+        pause(300);
     
-        displayWithDelay("The King gestures to the warriors, ready and eager to fight.", 300);
-        pause(350);
+        displayWithDelay("The King gestures to the warriors, ready and eager to fight.", 100);
+        pause(300);
     
-        displayWithDelay("King of " + kingdom + ": Now go, and lead us to triumph in this war.", 300);
-        pause(350);
+        displayWithDelay("King of Camelot: Now go, and lead us to triumph in this war.", 100);
+        pause(300);
     
-        displayWithDelay("The MC departs, accompanied by the warriors he has selected,", 300);
-        displayWithDelay("determined to face the challenges that lie ahead.", 300);
-        pause(350);
+        displayWithDelay("The MC departs, accompanied by the warriors he has selected,", 100);
+        displayWithDelay("determined to face the challenges that lie ahead.", 100);
+        pause(300);
     }
     
 

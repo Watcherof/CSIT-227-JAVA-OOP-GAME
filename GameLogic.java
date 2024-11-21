@@ -240,7 +240,7 @@ public class GameLogic {
         }
     }
 
-    public void readStory(String playerName, String kingdom, String warrior, String ranger, String mage) throws InterruptedException {
+    public void readStory(String playerName) throws InterruptedException {
         boolean isEnabled = true;
         int skip = 0;
         int flag = 0;
@@ -263,7 +263,7 @@ public class GameLogic {
                 Thread.sleep(1000);
                 s1.tellStoryIntro(playerName); 
                 Thread.sleep(1000);
-                s1.tellStoryKingdom(kingdom, playerName, warrior, ranger, mage);
+                s1.tellStoryKingdom(playerName);
                 Thread.sleep(1000);
                 s1.tellStoryEnd(playerName);
             }else if(skip == 2){
