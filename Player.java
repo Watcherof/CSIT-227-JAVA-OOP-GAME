@@ -1,9 +1,9 @@
 import java.util.Random; 
 import java.util.Scanner;
 
-public class Player extends Choices { 
+public class Player extends Choices implements PlayerInterface { 
     private String name;
-    private final Characters[] chosenCharacters = new Characters[3]; // Array to store selected Characters
+    //private final Characters[] chosenCharacters = new Characters[3]; // Array to store selected Characters
     private final Characters[] characters; // Array of available characters
     private int index; // Index of the currently active character
     private final String[] type = {"Stamina","Mana","Spirit"};
@@ -15,25 +15,30 @@ public class Player extends Choices {
     }
 
     // Getters
+    @Override
     public String getName() {
         return name; // Return player's name
     }
 
+    @Override
     public Characters getCurrentCharacter() {
         return characters[this.index]; // Return the currently active character
     }
 
+    @Override
     public Characters[] getAllCharacters() {
         return characters;
     }
 
     // Method to return chosen Characters
+    @Override
     public Characters[] getChosenChar() {
         return this.characters; // Return the array of chosen Characters
     }
 
 
     // Switch character if valid
+    @Override
     public boolean switchCharacter(int index) {
         if (index == this.index) {
             displayWithDelay("Cannot change to the same character!", 100);
@@ -62,6 +67,7 @@ public class Player extends Choices {
     
     
     // Check if the player has any alive characters
+    @Override
     public boolean hasAliveCharacters() {
         for (Characters character : characters) {
             if (character.isAlive()) {
@@ -71,6 +77,7 @@ public class Player extends Choices {
         return false; // No alive characters found
     }
 
+    @Override
     public void printAllCharacterStatus(int[] res) {
         for (int i = 0; i < characters.length; i++) {
             if (characters[i].isAlive()) {
@@ -93,6 +100,7 @@ public class Player extends Choices {
     }
 
     // Switch to the next alive character in the opponent's team
+    @Override
     public boolean switchToNextAliveCharacter() {
         for (int i = 0; i < characters.length; i++) {
             if (characters[i].isAlive()) {
@@ -106,6 +114,7 @@ public class Player extends Choices {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Generate random numbers that sum up to 10
+    @Override
     public int[] generateNumbers() {
         Random random = new Random(); // Create a Random object
         int[] numbers = new int[3]; // Array to hold three numbers
@@ -116,7 +125,7 @@ public class Player extends Choices {
             numbers[i] = random.nextInt(Math.min(sum + 1, 11)); // Ensure number does not exceed remaining sum or 10
             sum -= numbers[i]; // Subtract the generated number from the sum
         }
-    
+
         // The third number should be the remainder of the sum to ensure total sum is 10
         numbers[2] = sum; // Assign remaining sum to the third number
     
@@ -125,10 +134,11 @@ public class Player extends Choices {
     
 
     // Wish method to receive random resources
+    @Override
     public int[] wish() {
         displayWithDelay("\nPress Enter key to wish...",100); // Prompt for user input
         Scanner scan = new Scanner(System.in); // Create a Scanner for input
-        scan.nextLine(); // Wait for user to press Enter
+        scan.nextLine(); 
         int[] result = generateNumbers(); // Generate random resource numbers
         System.out.println("You received: "); // Print received resources
         System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2]);
@@ -136,7 +146,23 @@ public class Player extends Choices {
         return result; // Return the generated resources
     }
 
+    @Override
+    public int[] wishAI() {
+        try {
+            displayWithDelay("\nPress Enter key to wish...", 100); // Prompt for user input
+            Thread.sleep(500); // Add a 500ms delay before generating numbers (adjust as needed)
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        int[] result = generateNumbers(); // Generate random resource numbers
+        System.out.println("Computer received: "); // Print received resources
+        System.out.println("Stamina: " + result[0] + ", Mana: " + result[1] + ", Spirit: " + result[2]);
+        return result; // Return the generated resources
+    }
+    
+
     // Combat method to manage player vs opponent combat
+    @Override
     public void combat(Player current, Player opponent) {
         int[] res = wish();  // Assume res[0] is stamina or energy
         Scanner scan = new Scanner(System.in); // Create a Scanner for user input
@@ -144,7 +170,7 @@ public class Player extends Choices {
         Characters mc; // Get the current character of the player
         int choice = 0;
         int a = this.index; // like this because if we end turn the res will not be updated together with the current player
-       do{
+        while(current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6){
               mc = current.getCurrentCharacter(); // Get the current character of the player
             while(true){
                 try{
@@ -242,18 +268,19 @@ public class Player extends Choices {
                 }
             }
             if (resourcesExhausted) {
-                displayWithDelay(current.getName() + " has exhausted all resources now it is " + opponent.getName() + " turn",250);
+                displayWithDelay(current.getName() + " has exhausted all resources now it is " + opponent.getName() + " turn",150);
                 return ; // End turn if all resources are used up
             }
-        } while(current.hasAliveCharacters() && opponent.hasAliveCharacters() || choice == 6);
+        }
     }
 
 
     
     // current kay AI ; Opponent kay user
+    @Override
     public void computerCombat(Player current, Player opponent) {
         Random rand = new Random();
-        int[] res = wish();  // Generate resources (e.g., stamina/energy for each character)
+        int[] res = wishAI();  // Generate resources (e.g., stamina/energy for each character)
         Characters currentCharacter;
         Characters opponentCurrent = opponent.getCurrentCharacter(); // Get the opponent's current character
         int currentCharacterIndex = this.index; // Track current character index for resources
@@ -342,7 +369,7 @@ public class Player extends Choices {
                 }
             }
             if (resourcesExhausted) {
-                displayWithDelay(current.getName() + " has exhausted all resources now it is " + opponent.getName() + " turn",250);
+                displayWithDelay(current.getName() + " has exhausted all resources now it is " + opponent.getName() + " turn",150);
                 return; // End turn if all resources are used up
             }
         }
@@ -379,7 +406,8 @@ public class Player extends Choices {
         }
     }
 
-    private void skillSpecialCases(int i,  int[] res, int choice, Characters opponent,Characters current,int gameMode) {
+    @Override
+    public void skillSpecialCases(int i,  int[] res, int choice, Characters opponent,Characters current,int gameMode) {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
         boolean isEnabled = true,isEnabled2 = true,isEnabled3 = true;
@@ -539,7 +567,7 @@ public class Player extends Choices {
         } 
     }
 
-    public void damageAllEnemies(int damage, Player opponent) {
+    private void damageAllEnemies(int damage, Player opponent) {
         Characters[] chars = opponent.getAllCharacters();
         for (Characters character : chars) {
             if (character.isAlive()) {
@@ -548,7 +576,7 @@ public class Player extends Choices {
         }
     }
 
-    public void shieldAllAllies(int shieldAmount) {
+    private void shieldAllAllies(int shieldAmount) {
         for (Characters character : characters) {
             if (character.isAlive()) {
                 character.setShield(shieldAmount + character.getShield());
@@ -556,7 +584,7 @@ public class Player extends Choices {
         }
     }
 
-    public void healAllCharacters(int healAmount) {
+    private void healAllCharacters(int healAmount) {
         for (Characters character : characters) {
             if (character.isAlive()) {
                 character.heal(healAmount);

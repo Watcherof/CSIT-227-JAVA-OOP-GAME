@@ -3,15 +3,11 @@ import java.util.Scanner;
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
         GameLogic gameLogic = new GameLogic();
-        String warrior = "Guardian";
-        String ranger = "Arcane Musketeer";
-        String mage = "Ember Witch";
-        String kingdom = "Camelot";
 
         gameLogic.gameTitle();
         String playerName = gameLogic.name();
         ///////////////////////////read story
-        gameLogic.readStory(playerName, kingdom, warrior, ranger, mage);
+        gameLogic.readStory(playerName);
         ///////////////////////////////////////
         // Start the game
         gameLogic.startGame(playerName, gameLogic.chooseMode());
