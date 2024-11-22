@@ -51,7 +51,7 @@ public class VerdantWarden extends Characters {
     // attack all && heal all
     public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
         if (res < 8) { 
-            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
+            displayWithDelay("Insufficient Spirit! Please Switch Character or END TURN!", 150);
         }
     }
 

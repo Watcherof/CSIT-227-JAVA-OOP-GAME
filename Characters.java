@@ -66,13 +66,13 @@ public abstract class Characters {
         if (shield > 0) {
             if (shield > damage) {
                 shield -= damage;
-                System.out.println("Shield blocked the attack!");
+                displayWithDelay("Shield blocked the attack!", 150);
                 damage = 0;
             } else {
                 damage -= shield;
                 shield = 0;
                 health -= damage;
-                System.out.println("Shield broken!");
+                displayWithDelay("Shield broken!", 150);
             }
         } else {
             this.health -= damage; // Subtract damage taken from healt

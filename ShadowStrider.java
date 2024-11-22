@@ -18,7 +18,7 @@ public class ShadowStrider extends Characters{
         } else {
             res -=2;
             displayWithDelay(super.getName() + " swiftly draws their bow and aims for a precise shot!", 150);
-            displayWithDelay("They unleash the arrow, dealing " + damage + " damage to the enemies.", 150);
+            displayWithDelay("They unleash the arrow, dealing " + damage + " damage to the enemy.", 150);
             if(gameMode == 1){
                 displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
@@ -43,8 +43,8 @@ public class ShadowStrider extends Characters{
         } else {
             res -= 5;
             displayWithDelay(super.getName() + " readies their bow, swiftly nocking multiple arrows at once!", 150);
-            displayWithDelay("They release a flurry of arrows, each one striking enemies across the battlefield!", 150);
-            displayWithDelay("A rain of arrows falls upon the enemies, dealing " + damage + " damage to each of them.", 150);
+            displayWithDelay("They release a flurry of arrows, each one striking the enemy across the battlefield!", 150);
+            displayWithDelay("A rain of arrows falls upon the enemy, dealing " + damage + " damage to them.", 150);
             if(gameMode == 1){
                 displayWithDelay("You now have " + res + " spirit left.", 150);
             }else{
@@ -57,24 +57,9 @@ public class ShadowStrider extends Characters{
 
     @Override
     public void ult(int res, Characters opponent,int gameMode,int enemyDefence) {
-        if (res < 0) {
-            res = 0;
+        if (res < 8) { 
+            displayWithDelay("Insufficient Spirit! Please Switch Character or END TURN!", 150);
         }
-        int damage = getRandomBetween(30, 35) - enemyDefence;
-        if (res < 8) {
-            displayWithDelay("Insufficient Stamina or Energy! Please Switch Character or END TURN!", 150);
-            return;
-        } else {
-            res -=8;
-            displayWithDelay(super.getName() + " harnesses the power of the storm, nocking arrows imbued with fury!", 150);
-            displayWithDelay("A barrage of arrows rains down, each striking true and dealing " + damage + " damage to all enemies!", 150);
-            if(gameMode == 1){
-                displayWithDelay("You now have " + res + " spirit left.", 150);
-            }else{
-                displayWithDelay("Computer has " + res + " spirit left.", 150);
-            }
-        }
-        opponent.takeDamage(damage); // Assuming opponent represents all enemies for simplicity
     }
 
 

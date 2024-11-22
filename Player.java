@@ -565,13 +565,24 @@ public class Player extends Choices implements PlayerInterface {
                 displayWithDelay("Computer has " + (res[i]-8) + " stamina left.", 150);
             } 
         } 
+        if (current.getName().equals("Shadow Strider")) {
+            int damage = current.getRandomBetween(30, 35);
+            displayWithDelay(current.getName() + " harnesses the power of the storm, nocking arrows imbued with fury!", 150);
+            displayWithDelay("A barrage of arrows rains down, each striking true and dealing " + damage + " damage to all enemies!", 150);
+            damageAllEnemies(damage, opponent);
+            if(gameMode == 1){
+                displayWithDelay("You now have " + (res[i]-8) + " spirit left.", 150);
+            }else{
+                displayWithDelay("Computer has " + (res[i]-8) + " spirit left.", 150);
+            } 
+        }
     }
 
     private void damageAllEnemies(int damage, Player opponent) {
         Characters[] chars = opponent.getAllCharacters();
         for (Characters character : chars) {
             if (character.isAlive()) {
-                character.takeDamage(damage);
+                character.takeDamage(damage - character.getDefence());
             }
         }
     }
