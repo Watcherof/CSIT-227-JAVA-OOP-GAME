@@ -27,33 +27,33 @@ public class Story implements StoryInterface {
     @Override
     public void tellStoryIntro(String name) {
         // Intro
-        displayWithDelay("\nOne day in Cebu, a game developer had not slept or eaten for three days", 150);
-        displayWithDelay("because he was busy coding a game that was set to release soon.", 150);
-        pause(650); // Additional pause between dialogues
+        displayWithDelay("\nOne day in Cebu, a game developer had not slept or eaten for three days", 100);
+        displayWithDelay("because he was busy coding a game that was set to release soon.", 100);
+        pause(300); // Additional pause between dialogues
 
-        displayWithDelay("\nHe was responsible for finalizing the game before handing it over to the QA tester,", 150);
-        displayWithDelay("ensuring there would be fewer bugs on launch day.", 150);
-        pause(650);
+        displayWithDelay("\nHe was responsible for finalizing the game before handing it over to the QA tester,", 100);
+        displayWithDelay("ensuring there would be fewer bugs on launch day.", 100);
+        pause(300);
 
-        displayWithDelay("\nBut while coding, exhaustion overcame him, and he suddenly passed out.", 150);
-        displayWithDelay("When he woke up, he found himself on a hill overlooking two massive armies locked in battle.", 150);
-        pause(650);
+        displayWithDelay("\nBut while coding, exhaustion overcame him, and he suddenly passed out.", 100);
+        displayWithDelay("When he woke up, he found himself on a hill overlooking two massive armies locked in battle.", 100);
+        pause(300);
 
         // Character dialogue
-        displayWithDelay("\n"+name + ": Where am I?", 150); // Faster delay
-        pause(350);
+        displayWithDelay("\n"+name + ": Where am I?", 100); // Faster delay
+        pause(300);
 
-        displayWithDelay("\nMysterious Creature: Hello there, " + name + ".", 150);
-        displayWithDelay("I am a guardian of this world, and I have summoned you here to help us.", 150);
-        pause(350);
+        displayWithDelay("\nMysterious Creature: Hello there, " + name + ".", 100);
+        displayWithDelay("I am a guardian of this world, and I have summoned you here to help us.", 100);
+        pause(300);
 
         displayWithDelay("\n"+name + ": What are you?", 150);
-        displayWithDelay("Why are they fighting over there? Take me back!", 150);
-        pause(350);
+        displayWithDelay("Why are they fighting over there? Take me back!", 100);
+        pause(300);
 
-        displayWithDelay("\nMysterious Creature: Calm down, " + name + ".", 150);
-        displayWithDelay("I will explain the situation before answering your questions, so listen carefully.", 150);
-        pause(650);
+        displayWithDelay("\nMysterious Creature: Calm down, " + name + ".", 100);
+        displayWithDelay("I will explain the situation before answering your questions, so listen carefully.", 100);
+        pause(300);
 
         ///////////////////// WORLD SETTING /////////////
         displayWithDelay("\nThousands of years ago, when the world was fractured and untamed,", 100);
@@ -240,31 +240,31 @@ public class Story implements StoryInterface {
 
     @Override 
     public void tellStoryEnd(String name) {
-        displayWithDelay(name + ": Finally, it’s over! We did it, guys!", 300);
+        displayWithDelay(name + ": Finally, it’s over! We did it, guys!", 100);
         pause(350);
     
-        displayWithDelay("Mysterious Creature: Well done, " + name + ".", 300);
-        displayWithDelay("You have done well for the task and hardships that I have given you.", 300);
-        displayWithDelay("With this, I can now safely send you back to your world.", 300);
-        pause(350);
+        displayWithDelay("Mysterious Creature: Well done, " + name + ".", 100);
+        displayWithDelay("You have done well for the task and hardships that I have given you.", 100);
+        displayWithDelay("With this, I can now safely send you back to your world.", 100);
+        pause(300);
     
-        displayWithDelay(name + ": Thank you! I didn't know if I could make it through,", 300);
-        displayWithDelay("but we pushed through together. I am ready to go home now!", 300);
-        pause(350);
+        displayWithDelay(name + ": Thank you! I didn't know if I could make it through,", 100);
+        displayWithDelay("but we pushed through together. I am ready to go home now!", 100);
+        pause(300);
     
-        displayWithDelay("Mysterious Creature casts a spell that sends the MC back home.", 300);
-        displayWithDelay("MC wakes up and looks around the house.", 300);
-        pause(350);
+        displayWithDelay("Mysterious Creature casts a spell that sends the MC back home.", 100);
+        displayWithDelay("MC wakes up and looks around the house.", 100);
+        pause(300);
     
-        displayWithDelay(name + ": Man, what a crazy day! But at least I did something valuable from that trip.", 300);
-        pause(350);
+        displayWithDelay(name + ": Man, what a crazy day! But at least I did something valuable from that trip.", 100);
+        pause(300);
     
-        displayWithDelay("QA Tester calls for the code.", 300);
-        pause(350);
+        displayWithDelay("QA Tester calls for the code.", 100);
+        pause(300);
     
-        displayWithDelay(name + ": Oh no, I forgot I still have projects to finish!", 300);
-        displayWithDelay("I better hurry up, or I might get fired!", 300);
-        pause(350);
+        displayWithDelay(name + ": Oh no, I forgot I still have projects to finish!", 100);
+        displayWithDelay("I better hurry up, or I might get fired!", 100);
+        pause(300);
     }
     @Override
     public void tellCharLoreAttack() {
